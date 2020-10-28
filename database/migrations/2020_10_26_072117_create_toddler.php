@@ -15,11 +15,11 @@ class CreateToddler extends Migration
     {
         Schema::create('toddlers', function (Blueprint $table) {
             $table->id();
-            $table->float('weight', 4, 1);
-            $table->float('length', 2, 1)->nullable();
-            $table->float('height', 2, 1)->nullable();
-            $table->float('biceps_skinfold', 2, 1);
-            $table->float('arm_circumference', 2, 1);
+            $table->float('weight', 4, 1)->comment('kg');
+            $table->float('length', 2, 1)->nullable()->comment('cm');
+            $table->float('height', 2, 1)->nullable()->comment('cm');
+            $table->float('biceps_skinfold', 2, 1)->comment('cm');
+            $table->float('arm_circumference', 2, 1)->comment('cm');
             $table->timestamps();
             $table->softDeletes();
         });

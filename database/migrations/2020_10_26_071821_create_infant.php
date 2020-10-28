@@ -15,9 +15,9 @@ class CreateInfant extends Migration
     {
         Schema::create('infants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float('weight', 4, 1);
-            $table->float('length', 2, 1);
-            $table->float('head_circumference', 2, 1);
+            $table->float('weight', 4, 1)->comment('kg');
+            $table->float('length', 2, 1)->comment('cm');
+            $table->float('head_circumference', 2, 1)->comment('cm');
             $table->timestamps();
             $table->softDeletes();
         });

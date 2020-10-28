@@ -15,12 +15,12 @@ class CreateChildren extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->id();
-            $table->float('weight', 4, 1);
-            $table->float('height', 2, 1);
-            $table->float('arm_circumference', 2, 1);
-            $table->float('head_circumference', 2, 1);
-            $table->float('chest_circumference', 2, 1);
-            $table->float('biceps_skinfold', 2, 1);
+            $table->float('weight', 4, 1)->comment('kg');
+            $table->float('height', 3, 1)->comment('cm');
+            $table->float('arm_circumference', 2, 1)->comment('cm');
+            $table->float('head_circumference', 2, 1)->comment('cm');
+            $table->float('chest_circumference', 2, 1)->comment('cm');
+            $table->float('biceps_skinfold', 2, 1)->comment('cm');
             $table->timestamps();
             $table->softDeletes();
         });

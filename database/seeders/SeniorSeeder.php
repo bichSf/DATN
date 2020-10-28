@@ -19,7 +19,7 @@ class SeniorSeeder extends Seeder
         for ($i = 0; $i < 1000; $i++) {
             DB::table('seniors')->insert([
                 'weight' => $faker->randomFloat($nbMaxDecimals = 1, $min = 3.0, $max = 13.0),
-                'height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 50.0, $max = 90.0),
+                'height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 120.0, $max = 160.0),
                 'arm_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 20.0, $max = 30.0),
                 'biceps_skinfold' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0.5, $max = 0.8),
                 'knee_height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 20.0, $max = 50.0),
