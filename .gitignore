@@ -3,7 +3,6 @@
 /public/storage
 /storage/*.key
 /vendor
-/laradock
 /.DS_Store
 .env
 .env.backup
