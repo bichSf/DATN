@@ -17,7 +17,7 @@ class AdultSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         for ($i = 0; $i < 1000; $i++) {
-            DB::table('adults')->insert([
+            DB::table('adults_20_60')->insert([
                 'weight' => $faker->randomFloat($nbMaxDecimals = 1, $min = 3.0, $max = 13.0),
                 'height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 140.0, $max = 180.0),
                 'arm_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 20.0, $max = 30.0),

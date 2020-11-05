@@ -17,7 +17,7 @@ class ChildrenSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         for ($i = 0; $i < 1000; $i++) {
-            DB::table('children')->insert([
+            DB::table('children_5_11')->insert([
                 'weight' => $faker->randomFloat($nbMaxDecimals = 1, $min = 3.0, $max = 13.0),
                 'height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 100.0, $max = 150.0),
                 'arm_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 18.0, $max = 20.0),

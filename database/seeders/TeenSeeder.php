@@ -17,7 +17,7 @@ class TeenSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         for ($i = 0; $i < 1000; $i++) {
-            DB::table('teens')->insert([
+            DB::table('teens_11_20')->insert([
                 'weight' => $faker->randomFloat($nbMaxDecimals = 1, $min = 3.0, $max = 13.0),
                 'height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 120.0, $max = 170.0),
                 'biceps_skinfold' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0.5, $max = 0.8),

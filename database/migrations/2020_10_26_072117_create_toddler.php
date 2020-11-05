@@ -13,7 +13,7 @@ class CreateToddler extends Migration
      */
     public function up()
     {
-        Schema::create('toddlers', function (Blueprint $table) {
+        Schema::create('toddlers_1_60', function (Blueprint $table) {
             $table->id();
             $table->float('weight', 4, 1)->comment('kg');
             $table->float('length', 2, 1)->nullable()->comment('cm');
