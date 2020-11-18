@@ -19,7 +19,7 @@ class InfantSeeder extends Seeder
         for ($i = 0; $i < 1000; $i++) {
             DB::table('infants_0_0')->insert([
                 'weight' => $faker->randomFloat($nbMaxDecimals = 1, $min = 2.0, $max = 5.0),
-                'length' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 60.0),
+                'height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 60.0),
                 'head_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 40.0)
             ]);
         }

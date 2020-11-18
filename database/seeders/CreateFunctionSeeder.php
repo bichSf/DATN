@@ -13,13 +13,8 @@ class CreateFunctionSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement("DROP VIEW IF EXISTS zcore_weight_adults_20_60;");
-        DB::statement("DROP VIEW IF EXISTS zcore_height_adults_20_60;");
         DB::statement("
-        DROP FUNCTION IF EXISTS get_avg_attribute;
-        ");
-        DB::statement("
-        CREATE FUNCTION get_avg_attribute (attribute_name TEXT, table_name TEXT)
+        CREATE OR REPLACE FUNCTION get_avg_attribute (attribute_name TEXT, table_name TEXT)
         RETURNS FLOAT
         AS $$
 	    DECLARE avgAttri FLOAT;
@@ -45,12 +40,12 @@ class CreateFunctionSeeder extends Seeder
         LANGUAGE plpgsql;
         ");
         DB::statement("
-        CREATE VIEW zcore_weight_adults_20_60 AS
+        CREATE OR REPLACE VIEW zcore_weight_adults_20_60 AS
             SELECT id, weight, ((weight - get_avg_attribute('weight', 'adults_20_60')) / 3.5) as zcore
             FROM adults_20_60;
         ");
         DB::statement("
-        CREATE VIEW zcore_height_adults_20_60 AS
+        CREATE OR REPLACE VIEW zcore_height_adults_20_60 AS
             SELECT id, height, ((height - get_avg_attribute('height', 'adults_20_60')) / 3.5) as zcore
             FROM adults_20_60;
         ");
