@@ -13,7 +13,7 @@ class CreateChildren extends Migration
      */
     public function up()
     {
-        Schema::create('children', function (Blueprint $table) {
+        Schema::create('children_5_11', function (Blueprint $table) {
             $table->id();
             $table->float('weight', 4, 1)->comment('kg');
             $table->float('height', 3, 1)->comment('cm');

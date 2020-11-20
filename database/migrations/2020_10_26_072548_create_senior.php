@@ -13,7 +13,7 @@ class CreateSenior extends Migration
      */
     public function up()
     {
-        Schema::create('seniors', function (Blueprint $table) {
+        Schema::create('seniors_60_100', function (Blueprint $table) {
             $table->id();
             $table->float('weight', 4, 1)->comment('kg');
             $table->float('height', 3, 1)->comment('cm');

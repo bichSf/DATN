@@ -13,7 +13,7 @@ class CreateTeen extends Migration
      */
     public function up()
     {
-        Schema::create('teens', function (Blueprint $table) {
+        Schema::create('teens_11_20', function (Blueprint $table) {
             $table->id();
             $table->float('weight', 4, 1)->comment('kg');
             $table->float('height', 3, 1)->comment('cm');
