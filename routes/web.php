@@ -14,3 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/demo-chart', 'HomeController@index');
+Route::get('/users/profile', function () {
+    return view('profiles.index');
+})->name(USER_TOP);
+
+Route::get('/pass-reminder', function () {
+    return view('forgot_password.step2');
+});
+
+Route::namespace('Auth')->group(function () {
+
+});
+
+Route::namespace('Backend')->group(function () {
+
+});
+/*
+| Web Routes need to login
+*/
