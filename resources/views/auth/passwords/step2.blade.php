@@ -1,4 +1,4 @@
-@extends('layout.base.master')
+@extends('layouts.master')
 @section('content')
     <div class="container">
         <h1 class="text-center m70t">Quên mật khẩu</h1>

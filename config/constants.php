@@ -3,12 +3,14 @@
  * Define const for route name
  */
 const USER_TOP = 'user.top';
-//const USER_HOME = 'user.home';
+const USER_LOGIN = 'user.login';
 
+const USER_FORGET_PASSWORD_INDEX = 'user.forget_password.index';
 const USER_RESET_PASSWORD_INDEX = 'user.reset_password.index';
-const USER_RESET_PASSWORD_SEND_MAIL = 'user.reset_password.send_mail';
-const USER_RESET_PASSWORD_CONFIRM = 'user.reset_password.confirm';
-const USER_RESET_PASSWORD_UPDATE = 'user.reset_password.update';
+const USER_STATISTICAL = 'user.statistical';
+const USER_PROFILE = 'user.profile';
+const USER_POPULATION = 'user.population';
+const USER_POPULATION = 'user.profile';
 /**
  *  Define role value
  */

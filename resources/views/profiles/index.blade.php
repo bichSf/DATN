@@ -1,6 +1,6 @@
-@extends('layout.base.master')
+@extends('layouts.base')
 @section('content')
-    <div class="container-fluid container-wrapper p0 bg-white">
+    <div class="container-fluid container-wrapper p0 p30t bg-white">
         <div class="container container-info">
             <form action="" id="form-data-profile">
                 <div class="head">
