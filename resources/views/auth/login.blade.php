@@ -5,7 +5,7 @@
 @section('title', 'Đăng nhập')
 @section('content')
     <main class="login-form">
-        <div class="">
+        <div class="vertical-center">
             <div class="row justify-content-center">
                 <div class="col-md-5 custom-center">
                     @include('partials/flash_messages')

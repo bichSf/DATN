@@ -1,3 +1,9 @@
+body {
+    background-color: #f0f1f2!important;
+}
+body span {
+    font-size: 15px;
+}
 .m10b {
     margin-bottom: 10px !important;
 }
@@ -55,7 +61,7 @@
 
 #wrapper-content {
     background-color: rgb(240, 241, 242);
-    min-height: 100vh;
+    /*min-height: 100vh;*/
 }
 
 .main-sidebar-left {
@@ -89,8 +95,16 @@
     height: 90%;
 }
 
+.h-30 {
+    height: 30% !important;
+}
+
+.w-30 {
+    width: 30% !important;
+}
+
 .wrapper-content {
-    padding-top: 85px;
+    padding-top: 80px;
     padding-left: 270px !important;
 }
 

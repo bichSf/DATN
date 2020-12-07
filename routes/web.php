@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 })->name(USER_LOGIN);
 
@@ -32,6 +32,14 @@ Route::get('/pass-reset', function () {
 Route::get('/population', function () {
     return view('admin.population.index');
 })->name(USER_POPULATION);
+
+Route::get('/simulation', function () {
+    return view('admin.simulation.simulation');
+});
+
+Route::get('/create', function () {
+    return view('admin.population.index1');
+});
 
 Route::get('/statistical', 'HomeController@index')->name(USER_STATISTICAL);
 

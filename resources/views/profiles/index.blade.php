@@ -1,12 +1,12 @@
 @extends('layouts.base')
 @section('content')
-    <div class="container-fluid container-wrapper p0 p30t bg-white">
-        <div class="container container-info">
-            <form action="" id="form-data-profile">
-                <div class="head">
-                    <h1 class="text-center fw-bold">Thông tin cá nhân</h1>
-                </div>
-                @include('partials.flash_messages')
+    <div class="head">
+        <h1 class="text-center fw-bold">Thông tin cá nhân</h1>
+    </div>
+
+    <div class="display-highcharts m30t">
+        <div class="row m0 bg-white" style="padding: 30px 15px;">
+            <div class="col-6">
                 <table class="table table-bordered">
                     <tr>
                         <td class="label-info">
@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <td class="label-info">
-                            <span>Giới tính</span>
+                            <span>Giới tính / Ngày sinh</span>
                             <label class="label-required float-md-right">Bắt buộc</label>
                         </td>
                         <td>
@@ -87,7 +87,7 @@
                     </tr>
                     <tr>
                         <td class="label-info">
-                            <span>SDT</span>
+                            <span>SĐT</span>
                             <label class="label-required float-md-right">Bắt buộc</label>
                         </td>
                         <td>
@@ -100,15 +100,101 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="label-info">
+                            <span>Địa chỉ</span>
+                            <label class="label-required float-md-right">Bắt buộc</label>
+                        </td>
+                        <td>
+                            <div class="row p20l">
+                                <div class="col-10 col-md-8 p0l p0r">
+                                    <input type="text" name="phone" class="form-control fs13 progress-calculate"
+                                           value="" placeholder="">
+                                </div>
+                                <p class="error-message p5t m0" data-error="phone"></p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-info">
+                            <span>Thông tin khác</span>
+{{--                            <label class="label-required float-md-right">Bắt buộc</label>--}}
+                        </td>
+                        <td>
+                            <div class="row p20l">
+                                <div class="col-10 col-md-8 p0l p0r">
+                                    <textarea name="memo_broker" class="form-control essential-input-border text-left fs14" rows="5" placeholder=""></textarea>
+                                </div>
+                                <p class="error-message p5t m0" data-error="phone"></p>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
-                <input id="input-avatar" type="file" name="avatar" class="d-none progress-calculate-avatar">
-
-                <div class="row p15r p15l">
-                    <div class="col-12 text-center">
-                        <button type="button" id="import-info" class="btn border-0 custom-top-btn-primary import-info">Lưu</button>
-                    </div>
+            </div>
+            <div class="col-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <td class="label-info">
+                            <span>Bộ phận</span>
+                            <label class="label-required float-md-right">Bắt buộc</label>
+                        </td>
+                        <td>
+                            <div class="row p20l">
+                                <div class="col-10 col-md-8 p0l p0r">
+                                    <select  class="form-control fs13 progress-calculate" name="" id="">
+                                        <option value="">Value 1</option>
+                                        <option value="">Value 1</option>
+                                        <option value="">Value 1</option>
+                                        <option value="">Value 1</option>
+                                    </select>
+                                </div>
+                                <p class="error-message p5t m0" data-error="phone"></p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-info">
+                            <span>Chức vụ</span>
+                            <label class="label-required float-md-right">Bắt buộc</label>
+                        </td>
+                        <td>
+                            <div class="row p20l">
+                                <div class="col-10 col-md-8 p0l p0r">
+                                    <select  class="form-control fs13 progress-calculate" name="" id="">
+                                        <option value="">Value 1</option>
+                                        <option value="">Value 1</option>
+                                        <option value="">Value 1</option>
+                                        <option value="">Value 1</option>
+                                    </select>
+                                </div>
+                                <p class="error-message p5t m0" data-error="phone"></p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-info">
+                            <span>Chi nhánh</span>
+                            <label class="label-required float-md-right">Bắt buộc</label>
+                        </td>
+                        <td>
+                            <div class="row p20l">
+                                <div class="col-10 col-md-8 p0l p0r">
+                                    <input type="text" name="phone" class="form-control fs13 progress-calculate"
+                                           value="" placeholder="">
+                                </div>
+                                <p class="error-message p5t m0" data-error="phone"></p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="m30t">
+            <div class="row m0">
+                <div class="col-12 p0r text-right">
+                    <button type="button" class="btn custom-btn-success fs15 btn-submit-summary btn-essential-submit" style="min-width: 100px">Lưu</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection

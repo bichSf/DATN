@@ -147,7 +147,7 @@ var demoChart = (function () {
 
             title: {
                 text: 'Hiện trạng & Trung bình',
-                x: -80
+                // x: -80
             },
 
             pane: {

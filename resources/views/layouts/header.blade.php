@@ -1,9 +1,9 @@
-<header id="header" class="header" style="background-color: #d8d8d7;">
+<header id="header" class="header" style="height: 80px">
     <div class="container-fluid">
-        <div class="row p10l p10r" style="justify-content: space-between">
+        <div class="row" style="justify-content: space-between">
             <div class="header-simulation-logo d-none d-md-block">
-                <a class="h-100 center-vertically" href="">
-                    <img class="logo-header h-90" src="{{ asset('images/HUSTSV.png') }}">
+                <a class="" href="">
+                    <img class="logo-header" src="{{ asset('images/banner-bk.png') }}">
                 </a>
             </div>
             <div class="header-simulation-right">

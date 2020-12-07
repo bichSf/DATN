@@ -21,15 +21,13 @@
 </head>
 <body>
 <div id="wrapper">
-    @include('layouts/header')
-    <div id="wrapper-content" class="wrapper-content">
-        @include('layouts/sidebar')
-        <div class="container-fluid container-wrapper p0 p30t" style="background-color: #f0f1f2!important">
+    @include('layouts/header_simulation')
+
+        <div class="container-fluid container-wrapper p30t" style="background-color: #f0f1f2!important; padding: 0 10%">
             <div class="container-info">
             @yield('content')
+            </div>
         </div>
-        </div>
-    </div>
 </div>
 </body>
 <script>
