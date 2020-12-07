@@ -33,9 +33,10 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Đăng nhập
-                                    </button>
+                                    <a class="btn btn-primary" href="{{ route(USER_PROFILE) }}">Đăng nhập</a>
+                                    {{--                                    <button type="submit" class="btn btn-primary">--}}
+{{--                                        Đăng nhập--}}
+{{--                                    </button>--}}
                                 </div>
                             </form>
                         </div>

@@ -17,6 +17,17 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name(USER_LOGIN);
 
+Route::prefix('admin')->group(function () {
+    Route::get('user', function () {
+        return view('admin.user.index');
+    })->name(ADMIN_MANAGER_USER);
+
+    Route::get('survey', function () {
+        return view('admin.survey.index');
+    })->name(ADMIN_MANAGER_SURVEY);
+});
+
+
 Route::get('/pass-reminder', function () {
     return view('auth.passwords.step1');
 })->name(USER_FORGET_PASSWORD_INDEX);
@@ -38,7 +49,7 @@ Route::get('/simulation', function () {
 });
 
 Route::get('/create', function () {
-    return view('admin.population.index1');
+    return view('admin.population.create');
 });
 
 Route::get('/statistical', 'HomeController@index')->name(USER_STATISTICAL);

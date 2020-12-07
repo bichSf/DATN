@@ -121,24 +121,24 @@
                 <div class="m0 m30b diagram-analysisu h-100">
                     <div class="col-12 p30 m25b diagram-block bg-white h-100">
                         <div>
-                            <div class="fs16 font-weight-bold text-center">Tình trạng hiện tại</div>
-                            <div class="row m0 fs16 m15t">
+                            <div class=" font-weight-bold text-center">Tình trạng hiện tại</div>
+                            <div class="row m0  m15t">
                                 <div class="col-6">Chỉ số Z-score: </div>
                                 <div class="col-6">-2.5</div>
                             </div>
-                            <div class="row m0 fs16 m15t">
+                            <div class="row m0  m15t">
                                 <div class="col-6">Thể trạng:</div>
                                 <div class="col-6">Suy dinh dưỡng cấp I</div>
                             </div>
-                            <div class="row m0 fs16 m15t">
+                            <div class="row m0  m15t">
                                 <div class="col-6">Tỷ lệ :</div>
                                 <div class="col-6">12%</div>
                             </div>
-                            <div class="row m0 fs16 m15t">
+                            <div class="row m0  m15t">
                                 <div class="col-6">Cân nặng nên có :</div>
                                 <div class="col-6">25 kg</div>
                             </div>
-                            <div class="row m0 fs16 m15t">
+                            <div class="row m0  m15t">
                                 <div class="col-6">Chỉ số BMI :</div>
                                 <div class="col-6">17.5</div>
                             </div>

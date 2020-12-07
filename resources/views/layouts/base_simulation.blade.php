@@ -23,7 +23,7 @@
 <div id="wrapper">
     @include('layouts/header_simulation')
 
-        <div class="container-fluid container-wrapper p30t" style="background-color: #f0f1f2!important; padding: 0 10%">
+        <div class="container-fluid container-wrapper p30t" style="background-color: #f0f1f2!important; padding: 0 10px">
             <div class="container-info">
             @yield('content')
             </div>

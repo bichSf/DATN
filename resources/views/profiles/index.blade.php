@@ -15,13 +15,11 @@
                         </td>
                         <td>
                             <div class="row p20l">
-                                <div class="col-12 col-md-3 p0l m5b">
-                                    <div id="image-avatar" class="avatar essential-icon-img pointer">
-                                        <img src="{{ asset('images/icon-img.png') }}">
-                                    </div>
+                                <div id="image-avatar" class="avatar essential-icon-img pointer" style="width: 40%;">
+                                    <img src="{{ asset('images/icon-img.png') }}">
                                 </div>
-                                <div class="col-md-9 p0l">
-                                    <p class="fs16 fw-bold m5b">Chọn tệp để tải lên</p>
+                                <div class="p5" style="width: 60%">
+                                    <p class="fs13 fw-bold m5b">Chọn tệp để tải lên</p>
                                     <p class="m5b">Bạn có thể tải lên hình ảnh bằng cách kéo và thả</p>
                                 </div>
                                 <p class="error-messages" data-error="avatar"></p>
@@ -57,14 +55,14 @@
                         </td>
                         <td>
                             <div class="row p20l">
-                                <select name="gender" class="form-control col-10 col-md-2 m5b fs13 progress-calculate">
-                                    <option value="0" selected>Nam</option>
-                                    <option value="1">Nữ</option>
-                                </select>
-                                <p class="error-message" data-error="gender"></p>
-                                <span class="col-10 col-md-1 d-none d-md-block text-center fs20">/</span>
-
-                                <div class="col-10 col-md-3 p0l p0r">
+                                <div class="col-6">
+                                    <select name="gender" class="form-control m5b fs13 progress-calculate">
+                                        <option value="0" selected>Nam</option>
+                                        <option value="1">Nữ</option>
+                                    </select>
+                                    <p class="error-message" data-error="gender"></p>
+                                </div>
+                                <div class="col-6">
                                     <input type="text" name="birthday" id="date-picker" class="form-control fs13 progress-calculate" value="">
                                     <p class="error-message p5t m0" data-error="birthday"></p>
                                 </div>
