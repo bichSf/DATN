@@ -15,7 +15,12 @@ class CreateManagerSurveyTable extends Migration
     {
         Schema::create('manager_survey', function (Blueprint $table) {
             $table->id();
-            $table->float('weight', 4, 1)->comment('kg');
+            $table->string('name');
+            $table->integer('year');
+            $table->integer('month');
+            $table->string('provincial');
+            $table->string('district');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

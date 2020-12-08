@@ -44,7 +44,7 @@ Route::get('/population', function () {
     return view('admin.population.index');
 })->name(USER_POPULATION);
 
-Route::get('/simulation', function () {
+Route::get('/', function () {
     return view('admin.simulation.simulation');
 });
 
