@@ -2,8 +2,10 @@
 /**
  * Define const for route name
  */
+const HOME = 'home';
 const USER_TOP = 'user.top';
 const USER_LOGIN = 'user.login';
+const LOGIN = 'login';
 
 const ADMIN_MANAGER_USER = 'admin.manager.user';
 const ADMIN_MANAGER_SURVEY= 'admin.manager.survey';
@@ -34,3 +36,5 @@ const TYPE_POPULATION_NAME = [
     'adults_20_60' => '20 đến 60 tuổi',
     'seniors_60_100' => 'Trên 60 tuổi',
 ];
+
+const STR_ERROR_FLASH = 'error-flash';

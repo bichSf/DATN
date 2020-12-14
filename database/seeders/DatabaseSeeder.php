@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AdultSeeder::class,
             SeniorSeeder::class,
             CreateFunctionSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }

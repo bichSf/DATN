@@ -12,22 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name(HOME);
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name(USER_LOGIN);
+Route::get('/login', 'LoginController@index')->name(USER_LOGIN);
+Route::post('/login', 'LoginController@login')->name(LOGIN);
 
-Route::prefix('admin')->group(function () {
-    Route::get('user', function () {
-        return view('admin.user.index');
-    })->name(ADMIN_MANAGER_USER);
+Route::middleware('auth.admin')->group(function () {
+    Route::prefix('statistical')->group(function () {
+        Route::get('user', function () {
+            return view('admin.user.index');
+        })->name(ADMIN_MANAGER_USER);
 
-    Route::get('survey', function () {
-        return view('admin.survey.index');
-    })->name(ADMIN_MANAGER_SURVEY);
+        Route::get('survey', function () {
+            return view('admin.survey.index');
+        })->name(ADMIN_MANAGER_SURVEY);
+    });
 });
-
 
 Route::get('/pass-reminder', function () {
     return view('auth.passwords.step1');
@@ -47,14 +47,3 @@ Route::prefix('statistical')->group(function () {
     Route::get('/create', 'StatisticController@create')->name(USER_STATISTICAL_CREATE);
     Route::post('/create', 'StatisticController@store')->name(USER_STATISTICAL_STORE);
 });
-
-Route::namespace('Auth')->group(function () {
-
-});
-
-Route::namespace('Backend')->group(function () {
-
-});
-/*
-| Web Routes need to login
-*/
