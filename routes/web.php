@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'HomeController@index');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -40,19 +41,12 @@ Route::get('/pass-reset', function () {
     return view('auth.passwords.reset');
 })->name(USER_RESET_PASSWORD_INDEX);
 
-Route::get('/population', function () {
-    return view('admin.population.index');
-})->name(USER_POPULATION);
-
-Route::get('/', function () {
-    return view('admin.simulation.simulation');
+Route::prefix('statistical')->group(function () {
+    Route::get('/', 'StatisticController@index')->name(USER_STATISTICAL);
+    Route::get('/population', 'StatisticController@showPopulation')->name(USER_STATISTICAL_POPULATION);
+    Route::get('/create', 'StatisticController@create')->name(USER_STATISTICAL_CREATE);
+    Route::post('/create', 'StatisticController@store')->name(USER_STATISTICAL_STORE);
 });
-
-Route::get('/create', function () {
-    return view('admin.population.create');
-});
-
-Route::get('/statistical', 'HomeController@index')->name(USER_STATISTICAL);
 
 Route::namespace('Auth')->group(function () {
 

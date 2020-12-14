@@ -31,7 +31,7 @@
                         </a>
                     </div>
                     <div class="text-right m10l">
-                        <a href="/create" class="btn btn-success">
+                        <a href="{{ route(USER_STATISTICAL_CREATE) }}" class="btn btn-success">
                             Thêm bản ghi
                         </a>
                     </div>
