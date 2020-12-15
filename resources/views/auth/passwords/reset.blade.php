@@ -12,7 +12,7 @@
                 @csrf
                 <div class="row m0 m10t">
                     <label class="offset-4 fs12-sp m5t" for="email-reset">Old password
-                        <span class="text-red">*</span>
+                        <span class="text-danger">*</span>
                     </label>
                 </div>
                 <div class="row m0 m10t">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="row m0 m10t">
                     <label class="offset-4 fs12-sp m5t" for="email-reset">Password
-                        <span class="text-red">*</span>
+                        <span class="text-danger">*</span>
                     </label>
                 </div>
                 <div class="row m0 m10t">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="row m0 m10t">
                     <label class="offset-4 fs12-sp m5t" for="email-reset">Password confirm
-                        <span class="text-red">*</span>
+                        <span class="text-danger">*</span>
                     </label>
                 </div>
                 <div class="row m0 m10t">

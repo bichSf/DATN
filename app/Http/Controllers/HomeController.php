@@ -13,6 +13,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.simulation.simulation');
+        return view('simulation.simulation');
     }
 }

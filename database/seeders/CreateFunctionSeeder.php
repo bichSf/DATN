@@ -18,22 +18,9 @@ class CreateFunctionSeeder extends Seeder
         RETURNS FLOAT
         AS $$
 	    DECLARE avgAttri FLOAT;
+	    query TEXT;
 	    BEGIN
-		    CASE
-			    WHEN attribute_name = 'weight' AND table_name = 'infants_0_0' THEN avgAttri = (SELECT AVG(weight) FROM infants_0_0);
-				WHEN attribute_name = 'height' AND table_name = 'infants_0_0' THEN avgAttri = (SELECT AVG(height) FROM infants_0_0);
-				WHEN attribute_name = 'weight' AND table_name = 'toddlers_1_60' THEN avgAttri = (SELECT AVG(weight) FROM toddlers_1_60);
-				WHEN attribute_name = 'height' AND table_name = 'toddlers_1_60' THEN avgAttri = (SELECT AVG(height) FROM toddlers_1_60);
-				WHEN attribute_name = 'weight' AND table_name = 'children_5_11' THEN avgAttri = (SELECT AVG(weight) FROM children_5_11);
-				WHEN attribute_name = 'height' AND table_name = 'children_5_11' THEN avgAttri = (SELECT AVG(height) FROM children_5_11);
-				WHEN attribute_name = 'weight' AND table_name = 'teens_11_20' THEN avgAttri = (SELECT AVG(weight) FROM teens_11_20);
-				WHEN attribute_name = 'height' AND table_name = 'teens_11_20' THEN avgAttri = (SELECT AVG(height) FROM teens_11_20);
-				WHEN attribute_name = 'weight' AND table_name = 'adults_20_60' THEN avgAttri = (SELECT AVG(weight) FROM adults_20_60);
-				WHEN attribute_name = 'height' AND table_name = 'adults_20_60' THEN avgAttri = (SELECT AVG(height) FROM adults_20_60);
-				WHEN attribute_name = 'weight' AND table_name = 'seniors_60_100' THEN avgAttri = (SELECT AVG(weight) FROM seniors_60_100);
-				WHEN attribute_name = 'height' AND table_name = 'seniors_60_100' THEN avgAttri = (SELECT AVG(height) FROM seniors_60_100);
-		    END CASE;
-
+            query = 'SELECT AVG(' & attribute_name & ') FROM  ' & table_name;
 		    RETURN avgAttri;
 	    END;
 	    $$

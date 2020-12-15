@@ -13,7 +13,7 @@
             <div class="col-6">
                 <div class="row m0" style="justify-content: flex-end">
                     <div class="text-right m10l">
-                        <a href="/create" class="btn btn-success">
+                        <a href="{{ route(ADMIN_SURVEY_CREATE) }}" class="btn btn-success">
                             Thêm bản ghi
                         </a>
                     </div>

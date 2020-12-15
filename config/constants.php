@@ -7,8 +7,12 @@ const USER_TOP = 'user.top';
 const USER_LOGIN = 'user.login';
 const LOGIN = 'login';
 
-const ADMIN_MANAGER_USER = 'admin.manager.user';
-const ADMIN_MANAGER_SURVEY= 'admin.manager.survey';
+const ADMIN_MANAGER_USER = 'admin.manager_user';
+const ADMIN_USER_CREATE = 'admin.user_create';
+const ADMIN_USER_STORE = 'admin.user_store';
+const ADMIN_MANAGER_SURVEY= 'admin.manager_survey';
+const ADMIN_SURVEY_CREATE = 'admin.survey_create';
+const ADMIN_SURVEY_STORE = 'admin.survey_store';
 
 const USER_FORGET_PASSWORD_INDEX = 'user.forget_password.index';
 const USER_RESET_PASSWORD_INDEX = 'user.reset_password.index';
@@ -38,3 +42,5 @@ const TYPE_POPULATION_NAME = [
 ];
 
 const STR_ERROR_FLASH = 'error-flash';
+
+const DATE_YEAR_MIN = '2000';
