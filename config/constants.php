@@ -44,3 +44,13 @@ const TYPE_POPULATION_NAME = [
 const STR_ERROR_FLASH = 'error-flash';
 
 const DATE_YEAR_MIN = '2000';
+
+const NORTHERN = 1;
+const SOUTH = 2;
+const CENTRAL = 3;
+const AREAS = [
+    NORTHERN => 'Miền Bắc',
+    SOUTH => 'Miền Nam',
+    CENTRAL => 'Miền Trung'
+];
+

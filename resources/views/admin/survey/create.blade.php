@@ -18,6 +18,20 @@
                                 @error('name')<div class="m5t"></div><span class="text-danger" data-error="name">{{ $message }}</span>@enderror
                             </div>
                         </div>
+
+                        <div class="row m0 m30b">
+                            <label class="col-2" for="">Miền <span class="text-danger">&nbsp;*</span></label>
+                            <div class="col-8">
+                                <select name="area_id" class="form-control @error('year') input-error @enderror"
+                                        style="width: 200px;">
+                                    @foreach(AREAS as $key => $value)
+                                        <option value="{{ $key }}" {{ old('area_id')== $key ? 'selected' : ''  }}>{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                                @error('area_id')<div class="m5t"></div><span class="text-danger" data-error="area_id">{{ $message }}</span>@enderror
+                            </div>
+                        </div>
+
                         <div class="row m0 m30b">
                             <label class="col-2" for="">Năm <span class="text-danger">&nbsp;*</span></label>
                             <div class="col-8">
@@ -30,6 +44,7 @@
                                 @error('year')<div class="m5t"></div><span class="text-danger" data-error="year">{{ $message }}</span>@enderror
                             </div>
                         </div>
+
                         <div class="row m0 m30b">
                             <label class="col-2" for="">Tháng <span class="text-danger">&nbsp;*</span></label>
                             <div class="col-8">

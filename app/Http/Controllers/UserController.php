@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -23,10 +24,10 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        if ($this->create($request->all())) {
+        if (User::create($request->all())) {
             return redirect()->route(ADMIN_MANAGER_USER);
         } else {
-            return redirect()->back()->with('error-flash', 'Thêm thất bại.');
+            return redirect()->back()->with(STR_ERROR_FLASH, 'Thêm thất bại.');
         }
     }
 

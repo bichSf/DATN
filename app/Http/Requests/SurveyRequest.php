@@ -25,6 +25,7 @@ class SurveyRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'area_id' => 'required',
             'month' => 'required',
             'year' => 'required',
         ];

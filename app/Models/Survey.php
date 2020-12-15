@@ -9,7 +9,7 @@ class Survey extends Model
 {
     use HasFactory;
 
-    protected $table = 'manager_survey';
+    protected $table = 'serveys';
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +18,7 @@ class Survey extends Model
      */
     protected $fillable = [
         'name',
+        'area_id',
         'year',
         'month',
     ];
