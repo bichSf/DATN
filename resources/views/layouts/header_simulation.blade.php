@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <div class="row" style="justify-content: space-between">
             <div class="header-simulation-logo d-none d-md-block">
-                <a class="" href="@if($currentUser && $currentUser->isUser()) {{ route(USER_STATISTICAL) }}
-                @elseif($currentUser && $currentUser->isAdmin()) {{ route(ADMIN_MANAGER_USER) }} @endif">
+                <a class="" href="@if(isset($currentUser) && $currentUser->isUser()) {{ route(USER_STATISTICAL) }}
+                @elseif(isset($currentUser) && $currentUser->isAdmin()) {{ route(ADMIN_MANAGER_USER) }} @endif">
                     <img class="logo-header" src="{{ asset('images/banner-bk.png') }}">
                 </a>
             </div>
