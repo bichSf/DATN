@@ -15,4 +15,4 @@ let Common = (function () {
 
 $(document).ready(function () {
     Common.optionDateTime();
-})
+});

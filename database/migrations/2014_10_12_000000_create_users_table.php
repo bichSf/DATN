@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('department')->nullable();
             $table->string('part')->nullable();
+            $table->string('branch')->nullable();
             $table->tinyInteger('role')->default(USER)->comment('1 => admin, 0 => user');
             $table->text('note')->nullable();
             $table->rememberToken();
