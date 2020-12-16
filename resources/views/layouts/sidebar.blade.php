@@ -1,7 +1,5 @@
 <aside class="main-sidebar-left nav-side-menu">
-    @php
-        $routeIndex = request()->route()->getName();
-    @endphp
+    @php($routeIndex = request()->route()->getName())
     <div class="content">
         <div id="jquery-accordion-menu" class="jquery-accordion-menu h-100 w-100" style="padding-top: 20px; box-shadow: unset !important;">
             <div class="jquery-accordion-menu-header fs18">DANH MỤC QUẢN LÝ</div>

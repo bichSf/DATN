@@ -11,10 +11,16 @@
                     <ul class="navbar-nav h-100">
                         <!-- Dropdown -->
                         <li class="nav-item dropdown h-100">
-                            <a class="nav-link text-white h-100 center-vertically" href="" id="navbardrop" data-toggle="tooltip" data-placement="top" title="Đăng xuất">
+                            <a class="nav-link text-white h-100 center-vertically" href="{{ route(LOGOUT) }}"
+                               id="navbardrop" data-toggle="tooltip" data-placement="top" title="Đăng xuất"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <img class="img-user w50" style="border-radius: 50%" src="{{ asset('images/admin.jpeg') }}">
-                                <span class="name-user text-center m10l text-black">{{ \Illuminate\Support\Facades\Auth::user()->profile['user_name'] ?? 'Default' }}</span>
+                                <span class="name-user text-center m10l text-black">{{ $currentUser->profile['user_name'] ?? 'Default' }}</span>
                             </a>
+
+                            <form id="logout-form" action="{{ route(LOGOUT) }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </nav>

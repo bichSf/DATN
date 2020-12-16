@@ -6,6 +6,7 @@ const HOME = 'home';
 const USER_TOP = 'user.top';
 const USER_LOGIN = 'user.login';
 const LOGIN = 'login';
+const LOGOUT = 'logout';
 
 const ADMIN_MANAGER_USER = 'admin.manager_user';
 const ADMIN_USER_CREATE = 'admin.user_create';
