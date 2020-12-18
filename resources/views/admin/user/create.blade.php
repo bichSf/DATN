@@ -7,7 +7,8 @@
     <div class="display-highcharts m30t">
         <div class="row m0 bg-white" style="padding: 30px 15px;">
             <div class="col-12 col-xl-8">
-                <table class="table table-bordered">
+                <form id="form-create-user" action="">
+                    <table class="table table-bordered">
                     <tr>
                         <td class="label-info">
                             <span>Avatar</span>
@@ -15,13 +16,11 @@
                         </td>
                         <td>
                             <div class="row p20l">
-                                <div id="image-avatar" name="avatar" class="avatar essential-icon-img pointer" style="width: 40%;">
-                                    <img src="{{ asset('images/icon-img.png') }}">
-                                </div>
+                                <img id="image-avatar" class="avatar essential-icon-img pointer" style="object-fit: contain" src="{{ asset('images/default_avatar.png') }}">
                                 <div class="p5" style="width: 60%">
                                     <p class="fs13 fw-bold m5b">Chọn tệp để tải lên</p>
-                                    <p class="m5b">Bạn có thể tải lên hình ảnh bằng cách kéo và thả</p>
                                 </div>
+                                <input name="avatar" type="file" style="display: none">
                                 <p class="error-messages" data-error="avatar"></p>
                             </div>
                         </td>
@@ -170,6 +169,7 @@
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
         </div>
         <div class="m30t">

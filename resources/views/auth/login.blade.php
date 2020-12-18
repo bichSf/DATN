@@ -16,7 +16,7 @@
 <div class="login">
     <h3 class="title-project">Khảo sát dinh dưỡng</h3>
     <div id="block-login">
-        <h3 class="title-form-login">Login</h3>
+        <h3 class="title-form-login">Đăng nhập</h3>
         @include('partials.flash_messages')
         <form class="form-login text-center" method="post" {{ route(LOGIN) }}>
             @csrf
@@ -43,7 +43,7 @@
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button type="submit" class="btn button-login">Login</button>
+            <button type="submit" class="btn button-login">Đăng nhập</button>
         </form>
     </div>
 </div>
