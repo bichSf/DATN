@@ -7,7 +7,6 @@
             <div class="head">
                 <h1 class="text-center fw-bold">Thay đổi mật khẩu</h1>
             </div>
-            @include('partials.flash_messages')
             <form id="email-reset">
                 @csrf
                 <div class="row m0 m10t">

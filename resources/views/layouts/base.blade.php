@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome-free-5.6.1.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/datepicker.standalone.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom/common.css')}}">
+    <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     @yield('styles')
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js')}}"></script>
     <script src="{{ asset('js/highcharts/highstock.js')}}"></script>
     @yield('script-files')
 </head>
@@ -37,7 +39,13 @@
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-    })
+    });
+
+    @if( \Illuminate\Support\Facades\Session::has(STR_SUCCESS_FLASH) )
+    toastr.success("{{ \Illuminate\Support\Facades\Session::get(STR_SUCCESS_FLASH) }}");
+    @elseif( \Illuminate\Support\Facades\Session::has(STR_ERROR_FLASH) )
+    toastr.error("{!! \Illuminate\Support\Facades\Session::get(STR_ERROR_FLASH) !!}");
+    @endif
 </script>
 @yield('js')
 </html>

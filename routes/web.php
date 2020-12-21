@@ -33,6 +33,8 @@ Route::middleware('auth.admin')->group(function () {
             Route::get('/', 'SurveyController@index')->name(ADMIN_MANAGER_SURVEY);
             Route::get('/create', 'SurveyController@create')->name(ADMIN_SURVEY_CREATE);
             Route::post('/store', 'SurveyController@store')->name(ADMIN_SURVEY_STORE);
+            Route::get('/edit/{id}', 'SurveyController@edit')->name(ADMIN_SURVEY_EDIT);
+            Route::post('/update/{id}', 'SurveyController@update')->name(ADMIN_SURVEY_UPDATE);
         });
     });
 

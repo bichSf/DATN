@@ -15,7 +15,9 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        return view('admin.survey.index');
+        return view('admin.survey.index', [
+            'listSurvey' => Survey::paginate(PAGINATE)
+        ]);
     }
 
     public function create()
@@ -26,14 +28,17 @@ class SurveyController extends Controller
     public function store(SurveyRequest $request)
     {
         if (Survey::create($request->all())) {
-            return redirect()->route(ADMIN_MANAGER_SURVEY);
+            return redirect()->route(ADMIN_MANAGER_SURVEY)->with(STR_SUCCESS_FLASH, 'Thêm thành công.');
         } else {
             return redirect()->back()->with(STR_ERROR_FLASH, 'Thêm thất bại.');
         }
     }
 
-    public function edit()
+    public function edit($id)
     {
+        return view('admin.survey.edit', [
+            'survey' => Survey::find($id)
+        ]);
     }
 
     public function update()

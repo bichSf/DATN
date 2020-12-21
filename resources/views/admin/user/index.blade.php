@@ -5,7 +5,6 @@
         <h1 class="text-center fw-bold">Quản lý nhân sự</h1>
     </div>
     <div class="display-highcharts m30t">
-        @include('partials/flash_messages')
         <div class="row m0 m30b">
             <div class="col-6">
 

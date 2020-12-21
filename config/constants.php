@@ -14,6 +14,8 @@ const ADMIN_USER_STORE = 'admin.user_store';
 const ADMIN_MANAGER_SURVEY= 'admin.manager_survey';
 const ADMIN_SURVEY_CREATE = 'admin.survey_create';
 const ADMIN_SURVEY_STORE = 'admin.survey_store';
+const ADMIN_SURVEY_EDIT = 'admin.survey_edit';
+const ADMIN_SURVEY_UPDATE = 'admin.survey_update';
 
 const USER_FORGET_PASSWORD_INDEX = 'user.forget_password.index';
 const USER_RESET_PASSWORD_INDEX = 'user.reset_password.index';
@@ -42,9 +44,11 @@ const TYPE_POPULATION_NAME = [
     'seniors_60_100' => 'Trên 60 tuổi',
 ];
 
+const STR_SUCCESS_FLASH = 'success-flash';
 const STR_ERROR_FLASH = 'error-flash';
 
 const DATE_YEAR_MIN = '2000';
+const PAGINATE = 10;
 
 const NORTHERN = 1;
 const SOUTH = 2;

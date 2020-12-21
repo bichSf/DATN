@@ -101,7 +101,6 @@
             </div>
         </div>
     <div class="display-highcharts m30t">
-        @include('partials/flash_messages')
         <form action="">
             <div class="row m0">
                 <div class="col-12 bg-white" style="padding: 30px;">

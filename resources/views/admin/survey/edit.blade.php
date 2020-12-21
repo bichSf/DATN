@@ -1,10 +1,10 @@
 @extends('layouts.base')
 @section('content')
     <div class="head">
-        <h1 class="text-center fw-bold">Thêm dữ liệu</h1>
+        <h1 class="text-center fw-bold">Sửa dữ liệu</h1>
     </div>
     <div class="display-highcharts m30t">
-        <form action="{{ route(ADMIN_SURVEY_STORE) }}" method="POST">
+        <form action="{{ route(ADMIN_SURVEY_UPDATE, $survey->id) }}" method="POST">
             @csrf
             <div class="row m0">
                 <div class="col-12 bg-white" style="padding: 30px;">
@@ -13,7 +13,7 @@
                             <label class="col-2" for="">Tên khảo sát <span class="text-danger">&nbsp;*</span></label>
                             <div class="col-8">
                                 <input type="text" name="name" class="form-control @error('name') input-error @enderror"
-                                       style="width: 500px;" placeholder="Tên đợt khảo sát" value="{{ old('name') }}">
+                                       style="width: 500px;" placeholder="Tên đợt khảo sát" value="{{ isset($survey) ? $survey->name : old('name') }}">
                                 @error('name')<div class="m5t"></div><span class="text-danger" data-error="name">{{ $message }}</span>@enderror
                             </div>
                         </div>
