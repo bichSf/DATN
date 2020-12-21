@@ -8,7 +8,7 @@
                     <li class="nav-item menu-simulation-item  @if($routeIndex == ADMIN_MANAGER_USER) active @endif">
                         <a class="fs16" href="{{ route(ADMIN_MANAGER_USER) }}"><i class="fa fa-glass"></i>Quản lý nhân sự </a>
                     </li>
-                    <li class="nav-item menu-simulation-item  @if($routeIndex == ADMIN_MANAGER_SURVEY) active @endif">
+                    <li class="nav-item menu-simulation-item  @if(in_array($routeIndex, [ADMIN_MANAGER_SURVEY, ADMIN_SURVEY_CREATE, ADMIN_SURVEY_EDIT])) active @endif">
                         <a class="fs16" href="{{ route(ADMIN_MANAGER_SURVEY) }}"><i class="fa fa-glass"></i>Quản lý đợt khảo sát</a>
                     </li>
                 @else

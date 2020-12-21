@@ -13,7 +13,7 @@
                             <label class="col-2" for="">Tên khảo sát <span class="text-danger">&nbsp;*</span></label>
                             <div class="col-8">
                                 <input type="text" name="name" class="form-control @error('name') input-error @enderror"
-                                       style="width: 500px;" placeholder="Tên đợt khảo sát" value="{{ isset($survey) ? $survey->name : old('name') }}">
+                                       style="width: 500px;" placeholder="Tên đợt khảo sát" value="{{ old('name', $survey->name) }}">
                                 @error('name')<div class="m5t"></div><span class="text-danger" data-error="name">{{ $message }}</span>@enderror
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                                 <select name="area_id" class="form-control @error('year') input-error @enderror"
                                         style="width: 200px;">
                                     @foreach(AREAS as $key => $value)
-                                        <option value="{{ $key }}" {{ old('area_id')== $key ? 'selected' : ''  }}>{{ $value }}</option>
+                                        <option value="{{ $key }}" {{ old('area_id', $survey->area_id)== $key ? 'selected' : ''  }}>{{ $value }}</option>
                                     @endforeach
                                 </select>
                                 @error('area_id')<div class="m5t"></div><span class="text-danger" data-error="area_id">{{ $message }}</span>@enderror
@@ -37,7 +37,7 @@
                                 <select name="year" class="form-control @error('year') input-error @enderror"
                                         style="width: 200px;">
                                     @foreach(dateYear() as $key => $year)
-                                        <option value="{{ $year }}" {{ old('year')== $year ? 'selected' : ''  }}>{{ $year }}</option>
+                                        <option value="{{ $year }}" {{ old('year', $survey->year)== $year ? 'selected' : ''  }}>{{ $year }}</option>
                                     @endforeach
                                 </select>
                                 @error('year')<div class="m5t"></div><span class="text-danger" data-error="year">{{ $message }}</span>@enderror
@@ -50,7 +50,7 @@
                                 <select name="month" id="" class="form-control @error('month') input-error @enderror"
                                         style="width: 200px;">
                                     @for($month=1; $month<=12; $month++)
-                                        <option value="{{ $month }}" {{ old('month')== $month ? 'selected' : ''  }}>{{ $month }}</option>
+                                        <option value="{{ $month }}" {{ old('month', $survey->month)== $month ? 'selected' : ''  }}>{{ $month }}</option>
                                     @endfor
                                 </select>
                                 @error('month')<div class="m5t"></div><span class="text-danger" data-error="month">{{ $message }}</span>@enderror
@@ -62,8 +62,9 @@
 
             <div class="row m0 p30t" style="justify-content: flex-end">
                 <div class="text-right">
-                    <button type="submit" class="btn custom-btn-success fs15 btn-submit-summary btn-essential-submit" style="min-width: 100px">Lưu</button>
+                    <button type="submit" class="btn custom-btn-success fs15 btn-submit-summary btn-submit" style="min-width: 100px">Lưu</button>
                 </div>
             </div>
         </form>
+    </div>
 @endsection

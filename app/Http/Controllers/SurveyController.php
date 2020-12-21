@@ -36,13 +36,20 @@ class SurveyController extends Controller
 
     public function edit($id)
     {
+        abort_if(empty(Survey::find($id)), 404);
         return view('admin.survey.edit', [
             'survey' => Survey::find($id)
         ]);
     }
 
-    public function update()
+    public function update(SurveyRequest $request, $id)
     {
+        abort_if(empty(Survey::find($id)), 404);
+        if (Survey::where('id', $id)->update($request->except('_token'))) {
+            return redirect()->route(ADMIN_MANAGER_SURVEY)->with(STR_SUCCESS_FLASH, 'Chỉnh sửa thành công.');
+        } else {
+            return redirect()->back()->with(STR_ERROR_FLASH, 'Chỉnh sửa thất bại.');
+        }
     }
 
     public function destroy()
