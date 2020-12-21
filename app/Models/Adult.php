@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Survey extends Model
+class Adult extends Model
 {
     use HasFactory;
 
-    protected $table = 'serveys';
+    protected $table = 'adults_20_60';
 
     /**
      * The attributes that are mass assignable.
@@ -17,9 +17,11 @@ class Survey extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'area_id',
-        'year',
-        'month',
+        'weight',
+        'height',
+        'arm_circumference',
+        'biceps_skinfold',
+        'fat_percentage',
+        'survey_id',
     ];
 }
