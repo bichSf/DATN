@@ -4,103 +4,6 @@
         <h1 class="text-center fw-bold">Thêm dữ liệu</h1>
     </div>
     <div class="display-highcharts m30t">
-        <div class="row m0">
-            <div class="col-12 bg-white" style="padding: 30px;">
-                <div class="content-wrapper" style="background-color: white;">
-                    <div class="row m0 m30b">
-                        <select name="" id="" class="form-control" style="width: 200px;">
-                            @foreach(TYPE_POPULATION_NAME as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
-                        <input type="text" class="form-control m20l" style="width: 500px;" placeholder="example.csv">
-                        <button class="btn btn-success m20l">Chọn file</button>
-                    </div>
-                    <table class="table table-bordered table-striped border-0 m0">
-                        <thead>
-                        <tr>
-                            <td>....</td>
-                            <td>....</td>
-                            <td>....</td>
-                            <td>....</td>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row m0 p30t" style="justify-content: flex-end">
-            <div class="text-right">
-                <a href="" class="btn btn-primary">
-                    Lưu
-                </a>
-            </div>
-        </div>
-    <div class="display-highcharts m30t">
         <form action="">
             <div class="row m0">
                 <div class="col-12 bg-white" style="padding: 30px;">
@@ -221,6 +124,104 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div class="display-highcharts m30t">
+        <div class="row m0">
+            <div class="col-12 bg-white" style="padding: 30px;">
+                <div class="content-wrapper" style="background-color: white;">
+                    <div class="row m0 m30b">
+                        <select name="" id="" class="form-control" style="width: 200px;">
+                            @foreach(TYPE_POPULATION_NAME as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                        <input type="text" class="form-control m20l" style="width: 500px;" placeholder="example.csv">
+                        <button class="btn btn-success m20l">Chọn file</button>
+                    </div>
+                    <table class="table table-bordered table-striped border-0 m0">
+                        <thead>
+                        <tr>
+                            <td>....</td>
+                            <td>....</td>
+                            <td>....</td>
+                            <td>....</td>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row m0 p30t" style="justify-content: flex-end">
+            <div class="text-right">
+                <a href="" class="btn btn-primary">
+                    Lưu
+                </a>
+            </div>
+        </div>
     </div>
 @endsection
 @section('js')

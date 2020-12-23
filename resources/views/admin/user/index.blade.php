@@ -26,75 +26,40 @@
                         <table class="table table-bordered table-striped border-0 m0">
                             <thead>
                             <tr>
-                                <td>....</td>
-                                <td>....</td>
-                                <td>....</td>
-                                <td>....</td>
+                                <td class="w-4">STT</td>
+                                <td>Ảnh</td>
+                                <td>Email</td>
+                                <td>Họ tên</td>
+                                <td>Giới tính</td>
+                                <td>Ngày sinh</td>
+                                <td>Địa chỉ</td>
+                                <td>Ngày tạo</td>
+                                <td></td>
 
                             </tr>
                             </thead>
                             <tbody>
+                            @forelse($listUser as $key => $value)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $key+1 }}</td>
+                                <td>
+                                    <div>
+                                        <img src="{{ asset( PATH_AVATAR_USER . $value['avatar'] )  }}" alt="" style="object-fit: cover; width: 40px; height: 40px">
+                                    </div>
+                                </td>
+                                <td>{{ $value['email'] }}</td>
+                                <td>{{ $value['name'] }}</td>
+                                <td>{{ GENDER_NAME[$value['gender']] }}</td>
+                                <td>{{ date('d/m/Y', strtotime($value['birthday'])) }}</td>
+                                <td>{{ $value['address'] }}</td>
+                                <td>{{ date('d/m/Y', strtotime($value['created_at'])) }}</td>
                                 <td></td>
                             </tr>
+                            @empty
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td colspan="9" class="text-center"> Không có dữ liệu</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-
+                            @endforelse
                             </tbody>
                         </table>
                     </div>

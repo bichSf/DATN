@@ -31,7 +31,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect(route(ADMIN_MANAGER_USER));
+            return Auth::user()->role == ADMIN ? redirect(route(ADMIN_MANAGER_USER)) : redirect(route(USER_STATISTICAL));
         }
         return redirect(route(USER_LOGIN))->withInput($request->input())->with(STR_ERROR_FLASH, 'Email hoặc mật khẩu không trùng khớp.');
     }
