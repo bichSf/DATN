@@ -43,7 +43,25 @@ const GENDER_NAME = [
     WOMAN => 'Nữ',
 ];
 
+const INFANTS = 'infants_0_0';
+const TODDLER = 'toddlers_1_60';
+const CHILDREN = 'children_5_11';
+const TEENS = 'teens_11_20';
+const ADULTS = 'adults_20_60';
+const SENIORS = 'seniors_60_100';
+
+const ATTRIBUTE_DATA = [
+    INFANTS => ['weight', 'height', 'head_circumference'],
+    TODDLER => ['weight', 'height', 'biceps_skinfold', 'arm_circumference'],
+    CHILDREN => ['weight', 'height', 'biceps_skinfold', 'arm_circumference', 'head_circumference', 'chest_circumference'],
+    TEENS => ['weight', 'height', 'biceps_skinfold', 'fat_percentage'],
+    ADULTS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'fat_percentage'],
+    SENIORS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'knee_height', 'stomach_feet'],
+];
+
 const PATH_AVATAR_USER = '/storage/imagesProfileUser/';
+
+
 
 const TYPE_POPULATION_NAME = [
     'infants_0_0' => 'Trẻ sơ sinh',

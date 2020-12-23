@@ -35,6 +35,7 @@
     </div>
 </div>
 </body>
+<script src="{{ asset('js/cleave.js')}}"></script>
 <script src="{{ asset('js/custom/common.js')}}"></script>
 <script>
     $(function () {

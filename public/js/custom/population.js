@@ -77,6 +77,44 @@ let populationFunction = (function () {
         });
     }
 
+    modules.saveData = function () {
+        let data = new FormData($('#form-create-data')[0]);
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        Common.convertNumeralForForm(data);
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: window.origin + '/statistical/store',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            // window.location.href = '/user';
+        });
+
+        submitAjax.fail(function (response) {
+            let messageList = response.responseJSON.errors;
+            modules.showMessageValidate(messageList);
+            $('#btn-create-data').prop("disabled", false);
+        })
+    }
+
+    modules.showMessageValidate = function (messageList) {
+        $('body').find('p.error-message').css('padding-top', 0).hide();
+        $("body").find('input').removeClass('input-error');
+        $("body").find('select').parent().removeClass('input-error');
+        $.each(messageList, function (key, value) {
+            $('p.error-message[data-error=' + key + ']').text(value).css('padding-top', 4).show();
+            $('input[name=' + key + ']').addClass('input-error');
+            $('select[name=' + key + ']').parent().addClass('input-error');
+        });
+        $('html, body').animate({
+            scrollTop: (
+                $(document).find('p.error-message[data-error=' + Object.keys(messageList)[0] + ']').offset().top - 300
+            )
+        }, 0);
+    };
 
     return modules;
 }(window.jQuery, window, document));
@@ -92,4 +130,9 @@ $(document).ready(function () {
     $('select[name=provincial]').on('change', function () {
         populationFunction.setSelectDistrict();
     });
+
+    $('#btn-create-data').on('click', function () {
+        $(this).attr("disabled", true);
+        populationFunction.saveData();
+    })
 })
