@@ -131,6 +131,10 @@ html, body  {
     padding-right: 0;
     width: 40px;
 }
+.a-disabled {
+    pointer-events: none;
+    cursor: default;
+}
 
 td.td-table-teacher {
     word-break: break-all !important;

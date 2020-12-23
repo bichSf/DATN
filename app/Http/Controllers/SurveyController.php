@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SurveyRequest;
 use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SurveyController extends Controller
 {
@@ -16,7 +17,7 @@ class SurveyController extends Controller
     public function index()
     {
         return view('admin.survey.index', [
-            'listSurvey' => Survey::paginate(PAGINATE)
+            'listSurvey' => Survey::orderByDesc('id')->paginate(PAGINATE)
         ]);
     }
 
@@ -52,8 +53,12 @@ class SurveyController extends Controller
         }
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $survey = Survey::find($id);
+        abort_if(empty($survey), 404);
+        $survey && $survey->delete() ? Session::flash(STR_SUCCESS_FLASH, 'Xoá thành công.') : Session::flash(STR_ERROR_FLASH, 'Xoá thất bại.');
+        return redirect()->back();
     }
 }
 

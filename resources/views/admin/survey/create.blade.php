@@ -37,7 +37,7 @@
                                 <select name="year" class="form-control @error('year') input-error @enderror"
                                         style="width: 200px;">
                                     @foreach(dateYear() as $key => $year)
-                                        <option value="{{ $year }}" {{ old('year')== $year ? 'selected' : ''  }}>{{ $year }}</option>
+                                        <option value="{{ $year }}" {{ date('Y') == $year ? 'selected' : (old('year') == $year ? 'selected' : '') }}>{{ $year }}</option>
                                     @endforeach
                                 </select>
                                 @error('year')<div class="m5t"></div><span class="text-danger" data-error="year">{{ $message }}</span>@enderror
@@ -50,7 +50,7 @@
                                 <select name="month" id="" class="form-control @error('month') input-error @enderror"
                                         style="width: 200px;">
                                     @for($month=1; $month<=12; $month++)
-                                        <option value="{{ $month }}" {{ old('month')== $month ? 'selected' : ''  }}>{{ $month }}</option>
+                                        <option value="{{ $month }}" {{ date('m') == $month ? 'selected' : (old('month')== $month ? 'selected' : '')  }}>{{ $month }}</option>
                                     @endfor
                                 </select>
                                 @error('month')<div class="m5t"></div><span class="text-danger" data-error="month">{{ $message }}</span>@enderror

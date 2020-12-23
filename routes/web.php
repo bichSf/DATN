@@ -35,6 +35,7 @@ Route::middleware('auth.admin')->group(function () {
             Route::post('/store', 'SurveyController@store')->name(ADMIN_SURVEY_STORE);
             Route::get('/edit/{id}', 'SurveyController@edit')->name(ADMIN_SURVEY_EDIT);
             Route::post('/update/{id}', 'SurveyController@update')->name(ADMIN_SURVEY_UPDATE);
+            Route::delete('/delete/{id}', 'SurveyController@destroy')->name(ADMIN_SURVEY_DESTROY);
         });
     });
 
