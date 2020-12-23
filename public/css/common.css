@@ -79,7 +79,6 @@ html, body  {
 
 .error-message {
     color: red;
-    font-size: 13px;
 }
 
 .input-error {
@@ -130,6 +129,10 @@ html, body  {
     padding-left: 0;
     padding-right: 0;
     width: 40px;
+}
+.a-disabled {
+    pointer-events: none;
+    cursor: default;
 }
 
 td.td-table-teacher {

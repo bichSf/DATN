@@ -16,9 +16,11 @@ const ADMIN_SURVEY_CREATE = 'admin.survey_create';
 const ADMIN_SURVEY_STORE = 'admin.survey_store';
 const ADMIN_SURVEY_EDIT = 'admin.survey_edit';
 const ADMIN_SURVEY_UPDATE = 'admin.survey_update';
+const ADMIN_SURVEY_DESTROY = 'admin.survey_destroy';
 
 const USER_FORGET_PASSWORD_INDEX = 'user.forget_password.index';
 const USER_RESET_PASSWORD_INDEX = 'user.reset_password.index';
+const USER_RESET_PASSWORD = 'user.reset_password';
 const USER_STATISTICAL = 'user.statistical';
 const USER_STATISTICAL_POPULATION = 'user.statistical.population';
 const USER_STATISTICAL_CREATE = 'user.statistical.create';
