@@ -37,6 +37,16 @@ const ROLES = [
     ADMIN => 'admin'
 ];
 
+const MAN = 0;
+const WOMAN = 1;
+
+const GENDER_NAME = [
+    MAN => 'Nam',
+    WOMAN => 'Nữ',
+];
+
+const PATH_AVATAR_USER = '/storage/imagesProfileUser/';
+
 const TYPE_POPULATION_NAME = [
     'infants_0_0' => 'Trẻ sơ sinh',
     'toddlers_1_60' => '1 đến 60 tháng tuổi',

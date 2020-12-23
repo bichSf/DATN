@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index');
+        $listUser = $this->user->getAllUser();
+        return view('admin.user.index', compact('listUser'));
     }
 
     public function create()
@@ -33,9 +35,11 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         if ($this->user->createUser($request->all())) {
-            return redirect()->route(ADMIN_MANAGER_USER);
+            Session::flash(STR_SUCCESS_FLASH, 'Thêm thành công.');
+            return response()->json(['save' => true]);
         } else {
-            return redirect()->back()->with(STR_ERROR_FLASH, 'Thêm thất bại.');
+            Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
+            return response()->json(['save' => false]);
         }
     }
 

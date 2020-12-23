@@ -15,22 +15,11 @@ let Profile = (function () {
         });
 
         submitAjax.done(function (response) {
-            // if (response && response.save == true) {
-            //     if (response.updateEmail) {
-            //         modules.showModalEditEmail();
-            //     } else {
-            //         window.location.href = '/home';
-            //     }
-            // } else {
-            //     window.location.reload(true);
-            // }
+            window.location.href = '/user';
         });
 
         submitAjax.fail(function (response) {
-            // $("#update-info").html('プロフィールを更新する');
-            // $('#update-info').attr("disabled", false);
-            // let messageList = response.responseJSON.errors;
-            // modules.showMessageValidate(messageList);
+            window.location.href = '/user';
         })
     }
 

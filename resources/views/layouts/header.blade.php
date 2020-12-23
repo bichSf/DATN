@@ -14,8 +14,8 @@
                             <a class="btn nav-link text-white h-100 center-vertically" href="{{ route(LOGOUT) }}"
                                id="navbardrop" data-toggle="tooltip" data-placement="bottom" title="Đăng xuất"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <img class="img-user w50" style="border-radius: 50%" src="{{ asset('images/admin.jpeg') }}">
-                                <span class="name-user text-center m10l text-black">{{ $currentUser->profile['user_name'] ?? 'Default' }}</span>
+                                <img class="img-user w50 h50" style="border-radius: 50%" src="{{ asset(PATH_AVATAR_USER . $currentUser->avatar) }}">
+                                <span class="name-user text-center m10l text-black">{{ $currentUser->name ?? 'Default' }}</span>
                             </a>
 
                             <form id="logout-form" action="{{ route(LOGOUT) }}" method="POST" style="display: none;">

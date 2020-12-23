@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Mockery\Exception;
 
 class User extends Authenticatable
 {
@@ -24,6 +26,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birthday',
+        'gender',
+        'phone',
+        'address',
+        'avatar',
+        'department',
+        'part',
+        'branch',
+        'role',
+        'note',
     ];
 
     /**
@@ -55,11 +67,26 @@ class User extends Authenticatable
         return $this->getAttribute('role') == ADMIN;
     }
 
+    public function getAllUser()
+    {
+        $listUser = $this->where('role', USER)->get();
+        return empty($listUser) ? [] : $listUser->toArray();
+    }
+
     public function createUser($data)
     {
-        if (isset($data['avatar'])) {
-            dd($this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE));
+        try {
+            if (isset($data['avatar'])) {
+                $data['avatar'] = $this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE);
+            }
+            $data['password'] = Hash::make('12345678');
+            $this->create($data);
+            return true;
+        } catch (Exception $exception) {
+            report($exception);
+            return false;
         }
+
     }
 
     public function updateUser($data)
