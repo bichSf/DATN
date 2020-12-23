@@ -47,12 +47,13 @@ Route::middleware('auth.admin')->group(function () {
             Route::post('/create', 'StatisticController@store')->name(USER_STATISTICAL_STORE);
         });
 
+        Route::prefix('change-password')->group(function () {
+            Route::get('/', 'ChangePasswordController@index')->name(USER_RESET_PASSWORD_INDEX);
+            Route::post('/update', 'ChangePasswordController@update')->name(USER_RESET_PASSWORD);
+        });
+
         Route::get('/profile', function () {
             return view('user.profiles.index');
         })->name(USER_PROFILE);
-
-        Route::get('/pass-reset', function () {
-            return view('auth.passwords.reset');
-        })->name(USER_RESET_PASSWORD_INDEX);
     });
 });
