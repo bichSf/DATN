@@ -113,6 +113,16 @@
                             </div>
                             <div class="col-6">
                                 <div class="row m10b">
+                                    <div class="col-4 d-flex align-items-center"><span>Đợt khảo sát</span></div>
+                                    <div class="col-8">
+                                        <select class="form-control" name="survey_id">
+                                            @foreach($listSurvey as $survey)
+                                                <option value="{{ $survey['id'] }}">{{ $survey['name'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Năm thống kê</span></div>
                                     <div class="col-8">
                                         <select class="form-control" name="year">
