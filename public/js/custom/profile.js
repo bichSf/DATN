@@ -19,9 +19,14 @@ let Profile = (function () {
         });
 
         submitAjax.fail(function (response) {
-            window.location.href = '/user';
+            if (response.status === 422) {
+                $('.btn-profile-create').attr("disabled", false);
+                Common.showMessage($('#form-create-user'), response.responseJSON.errors);
+            } else {
+                window.location.reload()
+            }
         })
-    }
+    };
 
     modules.prevent = function (event) {
         event.preventDefault();
@@ -44,6 +49,7 @@ let Profile = (function () {
 $(document).ready(function () {
     $('.btn-profile-create').on('click', function () {
         $(this).attr("disabled", true);
+        Common.clearData($('#form-create-user'));
         Profile.saveData();
     });
 
@@ -53,5 +59,9 @@ $(document).ready(function () {
 
     $('input[name=avatar]').on('change', function (event) {
         Profile.fileSelectHandler(event, false);
+    });
+
+    $('#delete-user').on('click', function () {
+        $('#form-delete-user').attr('action', window.location.origin + '/user/delete/' + $(this).data('id'));
     })
 });

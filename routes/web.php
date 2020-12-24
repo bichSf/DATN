@@ -27,6 +27,9 @@ Route::middleware('auth.admin')->group(function () {
             Route::get('/', 'UserController@index')->name(ADMIN_MANAGER_USER);
             Route::get('/create', 'UserController@create')->name(ADMIN_USER_CREATE);
             Route::post('/store', 'UserController@store')->name(ADMIN_USER_STORE);
+            Route::get('/edit/{id}', 'UserController@edit')->name(ADMIN_USER_EDIT);
+            Route::post('/update/{id}', 'UserController@update')->name(ADMIN_USER_UPDATE);
+            Route::delete('/delete/{id}', 'UserController@destroy')->name(ADMIN_USER_DESTROY);
         });
 
         Route::prefix('survey')->group(function () {

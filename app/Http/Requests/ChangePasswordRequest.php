@@ -26,7 +26,7 @@ class ChangePasswordRequest extends FormRequest
         return [
             'old_password' => ['required'],
             'password' => ['required', 'min:8', 'max:12'],
-            'password_confirm' => 'same:password'
+            'password_confirm' => ['required', 'same:password']
         ];
     }
 
@@ -38,7 +38,7 @@ class ChangePasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Trường bắt buộc.',
+            'required' => 'Trường này không được để trống',
             'password.min'   => 'Password cần từ 8 - 12 kí tự.',
             'password.max'   => 'Password cần từ 8 - 12 kí tự.',
             'password_confirm.same'   => 'Không trùng với password mới nhập.',

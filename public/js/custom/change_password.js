@@ -28,21 +28,9 @@ let changePassword = (function () {
         submitAjax.fail(function (response) {
             if (response.status === 422) {
                 $('#btn-change-password').attr("disabled", false);
-                modules.showMessage($('#form-change-password'), response.responseJSON.errors);
+                Common.showMessage($('#form-change-password'), response.responseJSON.errors);
             }
         });
-    };
-
-    modules.showMessage = function ($form, errors) {
-        $.each(errors, function (key, value) {
-            $form.find(`[data-error='${key}']`).text(value);
-            $form.find(`[name='${key}']`).addClass('input-error');
-        })
-    };
-
-    modules.clearData = function () {
-        $('#form-change-password').find('input').removeClass('input-error');
-        $('#form-change-password').find($('.error-message')).text('');
     };
 
     return modules;
@@ -51,7 +39,7 @@ let changePassword = (function () {
 $(document).ready(function(){
     $('#btn-change-password').on('click', function () {
         $('#btn-change-password').attr("disabled", true);
-        changePassword.clearData();
+        Common.clearData($('#form-change-password'));
         changePassword.saveData();
     })
 });

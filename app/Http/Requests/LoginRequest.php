@@ -32,7 +32,7 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            "required" => "Trường bắt buộc.",
+            "required" => "Trường này không được để trống",
         ];
     }
 }

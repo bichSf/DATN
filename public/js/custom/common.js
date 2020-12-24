@@ -31,6 +31,18 @@ let Common = (function () {
         });
     };
 
+    modules.showMessage = function ($form, errors) {
+        $.each(errors, function (key, value) {
+            $form.find(`[data-error='${key}']`).text(value);
+            $form.find(`[name='${key}']`).addClass('input-error');
+        })
+    };
+
+    modules.clearData = function ($form) {
+        $form.find('input').removeClass('input-error');
+        $form.find('select').removeClass('input-error');
+        $form.find($('.error-message')).text('');
+    };
 
     return modules;
 }(window.jQuery, window, document));

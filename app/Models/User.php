@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
@@ -13,6 +14,7 @@ use Mockery\Exception;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use SoftDeletes;
 
     const FOLDER_IMAGES_PROFILE = 'imagesProfileUser';
 
@@ -79,7 +81,7 @@ class User extends Authenticatable
             if (isset($data['avatar'])) {
                 $data['avatar'] = $this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE);
             }
-            $data['password'] = Hash::make('12345678');
+            $data['password'] = Hash::make($data['password']);
             $this->create($data);
             return true;
         } catch (Exception $exception) {

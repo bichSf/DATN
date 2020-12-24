@@ -1,13 +1,14 @@
 @extends('layouts.base')
 @section('content')
     <div class="head">
-        <h1 class="text-center fw-bold">Thêm nhân viên khảo sát</h1>
+        <h1 class="text-center fw-bold">Chỉnh sửa nhân viên khảo sát</h1>
     </div>
 
     <div class="display-highcharts m30t">
         <div class="row m0 bg-white" style="padding: 30px 15px;">
             <div class="col-12 col-xl-8">
                 <form id="form-create-user" action="">
+                    <input type="hidden" name="id" value="{{ $user->id }}">
                     <table class="table table-bordered">
                     <tr>
                         <td class="label-info">
@@ -32,7 +33,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="name" value="" class="form-control fs13" placeholder="Họ tên">
+                                    <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control fs13" placeholder="Họ tên">
                                     <p class="error-message p5t m0" data-error="name"></p>
                                 </div>
                             </div>
@@ -55,7 +56,7 @@
                                 </div>
 
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="birthday" id="date-picker" class="date-time form-control fs13"  placeholder="1970-01-01">
+                                    <input type="text" name="birthday" id="date-picker" class="date-time form-control fs13" value="{{ old('birthday', $user->birthday) }}" placeholder="1970-01-01">
                                     <p class="error-message p5t m0" data-error="birthday"></p>
                                 </div>
                             </div>
@@ -69,7 +70,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="email" value="" class="form-control fs13"  placeholder="abc@gmail.com">
+                                    <input type="text" name="email" value="{{ old('email', $user->email) }}" class="form-control fs13"  placeholder="abc@gmail.com">
                                     <p class="error-message p5t m0" data-error="email"></p>
                                 </div>
                             </div>
@@ -83,8 +84,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="phone" class="form-control fs13"
-                                           value="" placeholder="01683024581">
+                                    <input type="text" name="phone" class="form-control fs13" value="{{ old('phone', $user->phone) }}" placeholder="01683024581">
                                     <p class="error-message p5t m0" data-error="phone"></p>
                                 </div>
                             </div>
@@ -93,7 +93,6 @@
                     <tr>
                         <td class="label-info">
                             <span>Mật khẩu</span>
-                            <label class="label-required float-md-right">Bắt buộc</label>
                         </td>
                         <td>
                             <div class="row p20l">
@@ -107,7 +106,6 @@
                     <tr>
                         <td class="label-info">
                             <span>Xác nhận mật khẩu</span>
-                            <label class="label-required float-md-right">Bắt buộc</label>
                         </td>
                         <td>
                             <div class="row p20l">
@@ -125,7 +123,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="department" class="form-control fs13">
+                                    <input type="text" name="department" class="form-control fs13" value="{{ old('department', $user->department) }}">
                                     <p class="error-message p5t m0" data-error="department"></p>
                                 </div>
                             </div>
@@ -138,7 +136,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="part" class="form-control fs13">
+                                    <input type="text" name="part" class="form-control fs13" value="{{ old('part', $user->part) }}">
                                 </div>
                                 <p class="error-message p5t m0" data-error="part"></p>
                             </div>
@@ -151,7 +149,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="branch" class="form-control fs13">
+                                    <input type="text" name="branch" class="form-control fs13" value="{{ old('branch', $user->branch) }}">
                                 </div>
                                 <p class="error-message p5t m0" data-error="branch"></p>
                             </div>
@@ -164,7 +162,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="address" class="form-control fs13">
+                                    <input type="text" name="address" class="form-control fs13" value="{{ old('address', $user->address) }}">
                                     <p class="error-message p5t m0" data-error="address"></p>
                                 </div>
                             </div>
@@ -177,7 +175,7 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <textarea name="memo" class="form-control" rows="5" placeholder=""></textarea>
+                                    <textarea name="memo" class="form-control" rows="5">{{ old('memo', $user->memo) }}</textarea>
                                     <p class="error-message p5t m0" data-error="memo"></p>
                                 </div>
                             </div>

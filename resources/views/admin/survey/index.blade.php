@@ -75,7 +75,7 @@
                             <p>Bạn muốn xoá đợt khảo sát này?</p>
                         </div>
                         <div class="modal-footer centered">
-                            <button type="submit" class="btn btn-danger text-white w-25" >Ok</button>
+                            <button type="submit" class="btn btn-danger text-white w-25 mr-4" >Ok</button>
                             <button type="button" class="btn button-cancel-modal btn-success w-25" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>

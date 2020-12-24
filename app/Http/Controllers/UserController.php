@@ -10,10 +10,7 @@ class UserController extends Controller
 {
     private $user;
 
-    public function __construct(
-        User $user
-    )
-    {
+    public function __construct(User $user ) {
         $this->user = $user;
     }
     /**
@@ -43,8 +40,13 @@ class UserController extends Controller
         }
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $user = $this->user->find($id);
+        abort_if(!$user, 404);
+        return view('admin.user.edit', [
+            'user' => $user
+        ]);
     }
 
     public function update(UserRequest $request)
@@ -52,8 +54,12 @@ class UserController extends Controller
         $this->user->updateUser($request->all());
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $user = $this->user->find($id);
+        abort_if(empty($user), 404);
+        $user && $user->delete() ? Session::flash(STR_SUCCESS_FLASH, 'Xoá thành công.') : Session::flash(STR_ERROR_FLASH, 'Xoá thất bại.');
+        return redirect()->back();
     }
 }
 
