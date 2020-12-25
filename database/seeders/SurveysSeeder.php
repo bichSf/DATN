@@ -17,14 +17,15 @@ class SurveysSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         for ($year = 2000; $year < 2019; $year++) {
-            $month = $faker->numberBetween(1, 12);
-            $name = "Khảo sát dinh dưỡng tháng " . $month ."/" . $year;
-            DB::table('surveys')->insert([
-                'name' => $name,
-                'year' => $year,
-                'month' => $month,
-                'area_id' => $faker->numberBetween(1, 10),
-            ]);
+            for ($month = 1; $month < 12; $month += 3) {
+                $name = "Khảo sát dinh dưỡng tháng " . $month ."/" . $year;
+                DB::table('surveys')->insert([
+                    'name' => $name,
+                    'year' => $year,
+                    'month' => $month,
+                    'area_id' => $faker->numberBetween(1, 10),
+                ]);
+            }
         }
     }
 }

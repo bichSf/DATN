@@ -23,7 +23,8 @@ class ToddlerSeeder extends Seeder
                 'height' => $height,
                 'is_infant' => $height < 75,
                 'biceps_skinfold' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0.1, $max = 0.5),
-                'arm_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 10.0, $max = 15.0)
+                'arm_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 10.0, $max = 15.0),
+                'survey_id' => $faker->numberBetween(1, 76)
             ]);
         }
     }

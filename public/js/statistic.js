@@ -65,77 +65,6 @@ var demoChart = (function () {
             }]
         });
 
-        Highcharts.chart('id-chart-2', {
-
-            chart: {
-                type: 'spline'
-            },
-
-            title: {
-                text: 'Đường cong phân bố cân-theo-cao z-score'
-            },
-
-            yAxis: {
-                title: {
-                    text: 'Tỷ lệ (%)'
-                }
-            },
-
-            xAxis: {
-                categories: [-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7],
-            },
-            exporting: {
-                enabled: false
-            },
-            credits: {
-                enabled: false
-            },
-            legend: {
-                // layout: 'vertical',
-                // align: 'right',
-                // verticalAlign: 'middle'
-            },
-
-            plotOptions: {
-                spline: {
-                    lineWidth: 4,
-                    states: {
-                        hover: {
-                            lineWidth: 5
-                        }
-                    },
-                    marker: {
-                        enabled: false
-                    }
-                }
-            },
-
-            series: [{
-                name: '2017',
-                data: [0,0,0,1,2,3,4,6,5,4,3,2,1,0,0]
-            },{
-                name: '2018',
-                data: [0,0.5,1,1.5,2,2.5,3,3.5,3,2.5,2,1.5,1,0.5,0]
-            },{
-                name: '2019',
-                data: [0,0,0,0,1.2,2.5,3,4,3,2.5,2.1,1.1,0,0,0]
-            }],
-
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
-            }
-        });
 
 
         Highcharts.chart('id-chart-3', {
@@ -343,9 +272,33 @@ var demoChart = (function () {
         });
     };
 
+    modules.buildLineChart = function () {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: '/statistical/get-zscore',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            Common.buildLineChart('id-chart-2', response.data);
+        });
+
+        submitAjax.fail(function (response) {
+            // $("#import-info").html('プロフィールを保存する');
+            // $('#import-info').attr("disabled", false);
+            // let messageList = response.responseJSON.errors;
+            // profileUser.showMessageValidate(messageList);
+        });
+    }
     return modules;
 }(window.jQuery, window, document));
 
 $(document).ready(function () {
     demoChart.buildChart();
+
+    demoChart.buildLineChart();
 });

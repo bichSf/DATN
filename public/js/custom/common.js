@@ -44,6 +44,71 @@ let Common = (function () {
         $form.find($('.error-message')).text('');
     };
 
+    modules.buildLineChart = function (idDiv, data) {
+        Highcharts.chart(idDiv, {
+
+            chart: {
+                type: 'spline'
+            },
+
+            title: {
+                text: 'Đường cong phân bố cân-theo-cao z-score'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Tỷ lệ (%)'
+                }
+            },
+
+            xAxis: {
+
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                // layout: 'vertical',
+                // align: 'right',
+                // verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                spline: {
+                    lineWidth: 4,
+                    states: {
+                        hover: {
+                            lineWidth: 5
+                        }
+                    },
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+
+            series: data,
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    }
+
     return modules;
 }(window.jQuery, window, document));
 

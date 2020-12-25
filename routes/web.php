@@ -48,6 +48,7 @@ Route::middleware('auth.admin')->group(function () {
             Route::get('/population', 'StatisticController@showPopulation')->name(USER_STATISTICAL_POPULATION);
             Route::get('/create', 'StatisticController@create')->name(USER_STATISTICAL_CREATE);
             Route::post('/store', 'StatisticController@store')->name(USER_STATISTICAL_STORE);
+            Route::post('/get-zscore', 'StatisticController@getZscore');
         });
 
         Route::prefix('change-password')->group(function () {

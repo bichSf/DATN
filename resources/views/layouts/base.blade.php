@@ -20,6 +20,8 @@
     <script src="{{ asset('js/datepicker.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js')}}"></script>
     <script src="{{ asset('js/highcharts/highstock.js')}}"></script>
+    <script src="{{ asset('js/cleave.js')}}"></script>
+    <script src="{{ asset('js/custom/common.js')}}"></script>
     @yield('script-files')
 </head>
 <body>
@@ -35,8 +37,6 @@
     </div>
 </div>
 </body>
-<script src="{{ asset('js/cleave.js')}}"></script>
-<script src="{{ asset('js/custom/common.js')}}"></script>
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()

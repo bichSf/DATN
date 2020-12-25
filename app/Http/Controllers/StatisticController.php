@@ -17,13 +17,16 @@ use Mockery\Exception;
 class StatisticController extends Controller
 {
     private $survey;
+    private $infant;
 
     public function __construct
     (
-        Survey $survey
+        Survey $survey,
+    Infant $infant
     )
     {
         $this->survey = $survey;
+        $this->infant = $infant;
     }
     /**
      * Show top site
@@ -39,6 +42,15 @@ class StatisticController extends Controller
     {
         $listSurvey = $this->survey->getAllRecords();
         return view('user.statistic.create', compact('listSurvey'));
+    }
+
+    public function getZscore()
+    {
+        $data = [
+            'name' => '2001',
+            'data' => $this->infant->getZcore()
+        ];
+        return response()->json(['data' => [$data]]);
     }
 
     public function store(DataRequest $request)

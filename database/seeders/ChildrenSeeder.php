@@ -23,7 +23,8 @@ class ChildrenSeeder extends Seeder
                 'arm_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 18.0, $max = 20.0),
                 'head_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 40.0),
                 'chest_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 50.0, $max = 70.0),
-                'biceps_skinfold' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0.5, $max = 0.8)
+                'biceps_skinfold' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0.5, $max = 0.8),
+                'survey_id' => $faker->numberBetween(1, 76)
             ]);
         }
     }

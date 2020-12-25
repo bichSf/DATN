@@ -23,7 +23,8 @@ class SeniorSeeder extends Seeder
                 'arm_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 20.0, $max = 30.0),
                 'biceps_skinfold' => $faker->randomFloat($nbMaxDecimals = 1, $min = 0.5, $max = 0.8),
                 'knee_height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 20.0, $max = 50.0),
-                'stomach_feet' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 50.0)
+                'stomach_feet' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 50.0),
+                'survey_id' => $faker->numberBetween(1, 76)
             ]);
         }
     }
