@@ -27,19 +27,19 @@
                     <table class="table table-bordered table-striped border-0 m0">
                         <thead>
                         <tr>
-                            <td class="w-4">STT</td>
-                            <td>Ảnh</td>
-                            <td>Email</td>
-                            <td>Họ tên</td>
-                            <td>SDT</td>
-                            <td>Giới tính</td>
-                            <td>Ngày sinh</td>
-                            <td>Bộ phận</td>
-                            <td>Chức vụ</td>
-                            <td>Chi nhánh</td>
-                            <td>Địa chỉ</td>
-                            <td>Ngày tạo</td>
-                            <td></td>
+                            <th class="text-center w-4">STT</th>
+                            <th class="text-center">Ảnh</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Họ tên</th>
+                            <th class="text-center">SDT</th>
+                            <th class="text-center">Giới tính</th>
+                            <th class="text-center">Ngày sinh</th>
+                            <th class="text-center">Bộ phận</th>
+                            <th class="text-center">Chức vụ</th>
+                            <th class="text-center">Chi nhánh</th>
+                            <th class="text-center">Địa chỉ</th>
+                            <th class="text-center">Ngày tạo</th>
+                            <th></th>
 
                         </tr>
                         </thead>

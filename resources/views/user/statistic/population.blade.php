@@ -45,10 +45,10 @@
                         <table class="table table-bordered table-striped border-0 m0">
                             <thead>
                             <tr>
-                                <td>Cân nặng (kg)</td>
-                                <td>Chiều cao (cm)</td>
-                                <td>....</td>
-                                <td>....</td>
+                                <th class="text-center">Cân nặng (kg)</th>
+                                <th class="text-center">Chiều cao (cm)</th>
+                                <th class="text-center">....</th>
+                                <th class="text-center">....</th>
 
                             </tr>
                             </thead>

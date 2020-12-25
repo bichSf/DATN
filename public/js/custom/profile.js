@@ -62,7 +62,7 @@ $(document).ready(function () {
     $('.btn-my-profile-update').on('click', function () {
         $(this).attr("disabled", true);
         Common.clearData($('#form-update-profile'));
-        Profile.saveData($('#form-update-profile'), '/profile/update', '/profile', $(this));
+        Profile.saveData($('#form-update-profile'), '/profile/update', '/statistical', $(this));
     });
 
     $('#image-avatar').on('click', function () {
