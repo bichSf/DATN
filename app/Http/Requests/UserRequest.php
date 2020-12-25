@@ -31,7 +31,7 @@ class UserRequest extends FormRequest
             'gender' => 'required',
             'birthday' => 'required',
             'email' => ['required', 'email', 'unique:users,email' . (empty($id) ? '' : ',' . $id)],
-            'phone' => ['required', 'unique:users,phone' . (empty($id) ? '' : ',' . $id)]
+            'phone' => ['required', 'numeric', 'digits_between:10,14', 'unique:users,phone' . (empty($id) ? '' : ',' . $id)]
         ];
         if ($request->id) {
             $role['password'] = ['nullable', 'min:8', 'max:12'];
@@ -49,6 +49,8 @@ class UserRequest extends FormRequest
             "required" => "Trường này không được để trống",
             "email.unique" => "Email này đã tồn tại.",
             "phone.unique" => "Số điện thoại này đã tồn tại.",
+            "phone.numeric" => "Không đúng định dạng số điện thoại.",
+            "phone.digits_between" => "Không đúng định dạng số điện thoại.",
             "password_confirm.same" => "Không trùng với password mới nhập.",
             'password.min'   => 'Password cần từ 8 - 12 kí tự.',
             'password.max'   => 'Password cần từ 8 - 12 kí tự.',

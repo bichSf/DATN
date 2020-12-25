@@ -51,7 +51,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-danger border-0">No data</td>
+                                <td colspan="5" class="text-danger border-0 text-center">Không có dữ liệu</td>
                             </tr>
                         @endforelse
                         </tbody>

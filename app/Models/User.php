@@ -93,8 +93,8 @@ class User extends Authenticatable
     {
         try {
             if (isset($data['avatar'])) {
-                $this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE);
-                $this->removeImagesInFolder('/public/' . self::FOLDER_IMAGES_PROFILE, $this->find($data['id'], true)->avatar);
+                $data['avatar'] = $this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE);
+                $this->removeImagesInFolder('/public/' . self::FOLDER_IMAGES_PROFILE, $this->find($id)->avatar);
             }
             if(empty($data['password'])) {
                 unset($data['password']);
