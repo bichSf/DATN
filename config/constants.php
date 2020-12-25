@@ -55,6 +55,8 @@ const TEENS = 'teens_11_20';
 const ADULTS = 'adults_20_60';
 const SENIORS = 'seniors_60_100';
 
+const ARRAY_CHILDREN = ['infants_0_0', 'toddlers_1_60', 'children_5_11'];
+
 const ATTRIBUTE_DATA = [
     INFANTS => ['weight', 'height', 'head_circumference'],
     TODDLER => ['weight', 'height', 'biceps_skinfold', 'arm_circumference'],
@@ -65,8 +67,6 @@ const ATTRIBUTE_DATA = [
 ];
 
 const PATH_AVATAR_USER = '/storage/imagesProfileUser/';
-
-
 
 const TYPE_POPULATION_NAME = [
     'infants_0_0' => 'Trẻ sơ sinh',
@@ -91,4 +91,6 @@ const AREAS = [
     SOUTH => 'Miền Nam',
     CENTRAL => 'Miền Trung'
 ];
+
+const LIM_SDD = -0.4;
 

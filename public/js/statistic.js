@@ -64,9 +64,6 @@ var demoChart = (function () {
                 }]
             }]
         });
-
-
-
         Highcharts.chart('id-chart-3', {
 
             chart: {
@@ -135,82 +132,6 @@ var demoChart = (function () {
                 }]
             }
 
-        });
-
-        Highcharts.chart('id-chart-4', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: ' Tỷ lệ SDD thể thấp còi của trẻ dưới 5 tuổi theo vùng sinh thái'
-            },
-            accessibility: {
-                announceNewData: {
-                    enabled: true
-                }
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
-                title: {
-                    text: 'Tỷ lệ (%)'
-                }
-
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.1f}%'
-                    }
-                }
-            },
-
-            tooltip: {
-                headerFormat: '',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b>'
-            },
-
-            series: [
-                {
-                    colorByPoint: true,
-                    data: [
-                        {
-                            name: "Toàn quốc",
-                            y: 62.74,
-                        },
-                        {
-                            name: "Đông bằng sông Hồng",
-                            y: 10.57,
-                        },
-                        {
-                            name: "Vùng núi và cao nguyên phía Bắc",
-                            y: 7.23,
-                        },
-                        {
-                            name: "Bắc miền Trung và ven biển miền Trung",
-                            y: 5.58,
-                        },
-                        {
-                            name: "Tây Nguyên",
-                            y: 4.02,
-                        },
-                        {
-                            name: "Đông Nam Bộ",
-                            y: 1.92,
-                        },
-                        {
-                            name: "Đông bằng sông Cửu Long",
-                            y: 7.62,
-                        }
-                    ]
-                }
-            ]
         });
 
         Highcharts.chart('id-chart-5', {
@@ -294,6 +215,30 @@ var demoChart = (function () {
             // profileUser.showMessageValidate(messageList);
         });
     }
+
+    modules.buildColumnChart = function () {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("table_type", $('#select-column-chart').val());
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: '/statistical/get-column-chart',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            Common.buildColumnChart('id-chart-4', response.data);
+        });
+
+        submitAjax.fail(function (response) {
+            // $("#import-info").html('プロフィールを保存する');
+            // $('#import-info').attr("disabled", false);
+            // let messageList = response.responseJSON.errors;
+            // profileUser.showMessageValidate(messageList);
+        });
+    }
     return modules;
 }(window.jQuery, window, document));
 
@@ -301,4 +246,9 @@ $(document).ready(function () {
     demoChart.buildChart();
 
     demoChart.buildLineChart();
+    demoChart.buildColumnChart();
+
+    $('#select-column-chart').on('change', function () {
+        demoChart.buildColumnChart();
+    })
 });

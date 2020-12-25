@@ -18,15 +18,21 @@ class StatisticController extends Controller
 {
     private $survey;
     private $infant;
+    private $toddler;
+    private $children;
 
     public function __construct
     (
         Survey $survey,
-    Infant $infant
+        Infant $infant,
+        Toddler $toddler,
+        Children $children
     )
     {
         $this->survey = $survey;
         $this->infant = $infant;
+        $this->toddler = $toddler;
+        $this->children = $children;
     }
     /**
      * Show top site
@@ -51,6 +57,20 @@ class StatisticController extends Controller
             'data' => $this->infant->getZcore()
         ];
         return response()->json(['data' => [$data]]);
+    }
+
+    public function getColumnChart(Request $request)
+    {
+        $tableType = $request->table_type ?? INFANTS;
+        switch ($tableType) {
+            case INFANTS:
+                return response()->json(['data' => $this->infant->getDataColumnChart()]);
+            case TODDLER:
+                return response()->json(['data' => $this->toddler->getDataColumnChart()]);
+            case CHILDREN:
+                return response()->json(['data' => $this->children->getDataColumnChart()]);
+        }
+
     }
 
     public function store(DataRequest $request)

@@ -109,6 +109,55 @@ let Common = (function () {
         });
     }
 
+    modules.buildColumnChart = function (idDiv, data) {
+        Highcharts.chart(idDiv, {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ' Tỷ lệ suy dinh dưỡng qua các năm gần đây'
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Tỷ lệ (%)'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b>'
+            },
+
+            series: [
+                {
+                    colorByPoint: true,
+                    data: data
+                }
+            ]
+        });
+    }
+
     return modules;
 }(window.jQuery, window, document));
 

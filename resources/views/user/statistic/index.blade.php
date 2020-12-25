@@ -52,6 +52,21 @@
                 <div class="item-block-property m15l">
                     <div class="m0 m30b diagram-analysisu">
                         <div class="col-12 p30 m25b diagram-block bg-white">
+                            <div id="block-status" class="row spBlock m0l m30r w-auto h-100 p10b">
+                                <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                                    <label class="m0 text-white fs16">Độ tuổi</label>
+                                </div>
+                                <div class="centered p0 bg-white">
+                                    <select id="select-column-chart" class="form-control" name="table_type">
+                                        @foreach(TYPE_POPULATION_NAME as $key => $value)
+                                            @if(in_array($key, ARRAY_CHILDREN))
+                                                <option value="{{ $key }}">{{ $value }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div id="id-chart-4"></div>
                         </div>
                     </div>
