@@ -90,7 +90,7 @@ let populationFunction = (function () {
         });
 
         submitAjax.done(function (response) {
-            // window.location.href = '/user';
+            window.location.reload();
         });
 
         submitAjax.fail(function (response) {

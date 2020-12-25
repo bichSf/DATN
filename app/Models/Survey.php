@@ -9,7 +9,7 @@ class Survey extends Model
 {
     use HasFactory;
 
-    protected $table = 'serveys';
+    protected $table = 'surveys';
 
     /**
      * The attributes that are mass assignable.
@@ -22,4 +22,9 @@ class Survey extends Model
         'year',
         'month',
     ];
+
+    public function getAllRecords()
+    {
+        return $this->get()->toArray();
+    }
 }
