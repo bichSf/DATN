@@ -3,7 +3,7 @@ let $imageAvatar = $('#image-avatar');
 let Profile = (function () {
     let modules = {};
 
-    modules.saveData = function ($form, url, $btn) {
+    modules.saveData = function ($form, url, urlSuccess, $btn) {
         let data = new FormData($form[0]);
         data.append("_token", $('meta[name="csrf-token"]').attr('content'));
         let submitAjax = $.ajax({
@@ -15,7 +15,7 @@ let Profile = (function () {
         });
 
         submitAjax.done(function (response) {
-            window.location.href = '/user';
+            window.location.href = urlSuccess;
         });
 
         submitAjax.fail(function (response) {
@@ -50,13 +50,19 @@ $(document).ready(function () {
     $('.btn-profile-create').on('click', function () {
         $(this).attr("disabled", true);
         Common.clearData($('#form-create-user'));
-        Profile.saveData($('#form-create-user'), '/user/store', $(this));
+        Profile.saveData($('#form-create-user'), '/user/store', '/user', $(this));
     });
 
     $('.btn-profile-update').on('click', function () {
         $(this).attr("disabled", true);
         Common.clearData($('#form-update-user'));
-        Profile.saveData($('#form-update-user'), '/user/update/' + $('input[name=id]').val(), $(this));
+        Profile.saveData($('#form-update-user'), '/user/update/' + $('input[name=id]').val(), '/user', $(this));
+    });
+
+    $('.btn-my-profile-update').on('click', function () {
+        $(this).attr("disabled", true);
+        Common.clearData($('#form-update-profile'));
+        Profile.saveData($('#form-update-profile'), '/profile/update', '/profile', $(this));
     });
 
     $('#image-avatar').on('click', function () {

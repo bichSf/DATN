@@ -55,8 +55,9 @@ Route::middleware('auth.admin')->group(function () {
             Route::post('/update', 'ChangePasswordController@update')->name(USER_RESET_PASSWORD);
         });
 
-        Route::get('/profile', function () {
-            return view('user.profiles.index');
-        })->name(USER_PROFILE);
+        Route::prefix('profile')->group(function () {
+            Route::get('/', 'ProfileController@index')->name(USER_PROFILE);
+            Route::post('/update', 'ProfileController@update')->name(USER_RESET_PASSWORD);
+        });
     });
 });

@@ -78,7 +78,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="13" class="text-center"> Không có dữ liệu</td>
+                                <td colspan="13" class="text-center text-danger"> Không có dữ liệu</td>
                             </tr>
                         @endforelse
                         </tbody>

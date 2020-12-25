@@ -62,10 +62,10 @@
                             </tr>
                             @empty
                                 <tr>
-                                    <td>Không có dữ liệu</td>
+                                    <td colspan="4" class="text-danger text-center">Không có dữ liệu</td>
                                 </tr>
                             @endforelse
-                                                       </tbody>
+                           </tbody>
                         </table>
                     </div>
             </div>
