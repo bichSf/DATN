@@ -6,7 +6,7 @@
 
     <div class="display-highcharts m30t">
         <div class="row m0 bg-white" style="padding: 30px 15px;">
-            <div class="col-12 col-xl-8">
+            <div class="col-12">
                 <form id="form-create-user" action="">
                     <table class="table table-bordered">
                     <tr>

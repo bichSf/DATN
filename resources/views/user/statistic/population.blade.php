@@ -25,12 +25,12 @@
                 <div class="col-6">
                     <div class="row m0" style="justify-content: flex-end">
                         <div class="text-right">
-                            <a href="/create" class="btn btn-success">
+                            <a href="/create" class="btn custom-btn-success">
                                 Xuất file
                             </a>
                         </div>
                         <div class="text-right m10l">
-                            <a href="{{ route(USER_STATISTICAL_CREATE) }}" class="btn btn-success">
+                            <a href="{{ route(USER_STATISTICAL_CREATE) }}" class="btn custom-btn-success">
                                 Thêm bản ghi
                             </a>
                         </div>

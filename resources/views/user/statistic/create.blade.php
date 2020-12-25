@@ -9,7 +9,7 @@
                 <div class="col-12 bg-white" style="padding: 30px;">
                     <div class="content-wrapper" style="background-color: white;">
                         <div class="row m0">
-                            <div class="col-6">
+                            <div class="col-5 p0 p20r">
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Độ tuổi</span></div>
                                     <div class="col-8">
@@ -111,11 +111,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-7 p-0 p40l">
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Đợt khảo sát</span></div>
                                     <div class="col-8">
                                         <select class="form-control" name="survey_id">
+                                            <option value="">Chọn đợt khảo sát</option>
                                             @foreach($listSurvey as $survey)
                                                 <option value="{{ $survey['id'] }}">{{ $survey['name'] }}</option>
                                             @endforeach
@@ -125,11 +126,19 @@
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Năm thống kê</span></div>
                                     <div class="col-8">
-                                        <select class="form-control" name="year">
-                                            @for($year = date('Y'); $year > 1999; $year--)
-                                                <option value="{{ $year }}">{{ $year }}</option>
-                                            @endfor
-                                        </select>
+                                        <input type="text" class="form-control text-right" name="year" disabled>
+                                    </div>
+                                </div>
+                                <div class="row m10b">
+                                    <div class="col-4 d-flex align-items-center"><span>Tháng thống kê</span></div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control text-right" name="month" disabled>
+                                    </div>
+                                </div>
+                                <div class="row m10b">
+                                    <div class="col-4 d-flex align-items-center"><span>Khu vực thống kê</span></div>
+                                    <div class="col-8">
+                                        <input type="text" class="form-control text-right" name="area" disabled>
                                     </div>
                                 </div>
                                 <div class="row m10b">
@@ -155,7 +164,7 @@
             </div>
             <div class="row m0 p30t" style="justify-content: flex-end">
                 <div class="text-right">
-                    <button id="btn-create-data" type="button" class="btn btn-primary">
+                    <button id="btn-create-data" type="button" class="btn custom-btn-primary">
                         Lưu
                     </button>
                 </div>
@@ -167,13 +176,17 @@
             <div class="col-12 bg-white" style="padding: 30px;">
                 <div class="content-wrapper" style="background-color: white;">
                     <div class="row m0 m30b">
-                        <select name="" id="" class="form-control" style="width: 200px;">
-                            @foreach(TYPE_POPULATION_NAME as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
-                        <input type="text" class="form-control m20l" style="width: 500px;" placeholder="example.csv">
-                        <button class="btn btn-success m20l">Chọn file</button>
+                        <div class="col-4 p0">
+                            <select name="" id="" class="form-control" style="width: 200px;">
+                                @foreach(TYPE_POPULATION_NAME as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <input type="text" class="form-control col-8" style="width: 500px;" placeholder="example.csv">
+                    </div>
+                    <div class="row m0 m30b" style="float: right">
+                        <button class="btn custom-btn-success">Chọn file</button>
                     </div>
                     <table class="table table-bordered table-striped border-0 m0">
                         <thead>
@@ -254,7 +267,7 @@
         </div>
         <div class="row m0 p30t" style="justify-content: flex-end">
             <div class="text-right">
-                <a href="" class="btn btn-primary">
+                <a href="" class="btn custom-btn-primary">
                     Lưu
                 </a>
             </div>

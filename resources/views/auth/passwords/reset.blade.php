@@ -1,13 +1,13 @@
 @extends('layouts.base')
-@section('styles')
-@endsection
 @section('content')
-    <div class="container-fluid container-wrapper p0 p30t bg-white">
-        <div class="container container-info">
-            <div class="head">
-                <h1 class="text-center fw-bold">Thay đổi mật khẩu</h1>
-            </div>
-            <form id="form-change-password">
+    <div class="head">
+        <h1 class="text-center fw-bold">Thay đổi mật khẩu</h1>
+    </div>
+
+    <div class="display-highcharts m30t">
+        <div class="row m0 bg-white" style="padding: 30px 15px;">
+            <div class="col-12">
+            <form id="form-change-password" class="p60b" style="border: 1px solid #dee2e6;">
                 @csrf
                 <div class="row m0 m10t">
                     <label class="offset-4 fs12-sp m5t" for="password_old">Old password
@@ -40,12 +40,12 @@
                     <p class="offset-4 col-5 p0l error-message" data-error="password_confirm"></p>
                 </div>
             </form>
-
-            <div class="row p15r p15l">
-                <div class="col-12 text-right">
-                    <button type="submit" id="btn-change-password" class="btn custom-btn-success">
-                        Thay đổi mật khẩu
-                    </button>
+            </div>
+        </div>
+        <div class="m30t">
+            <div class="row m0">
+                <div class="col-12 p0r text-right">
+                    <button type="submit" id="btn-change-password" class="btn custom-btn-success" style="min-width: 100px">Thay đổi mật khẩu</button>
                 </div>
             </div>
         </div>
