@@ -176,17 +176,17 @@
             <div class="col-12 bg-white" style="padding: 30px;">
                 <div class="content-wrapper" style="background-color: white;">
                     <div class="row m0 m30b">
-                        <div class="col-4 p0">
+                        <div class="col-3 p0">
                             <select name="" id="" class="form-control" style="width: 200px;">
                                 @foreach(TYPE_POPULATION_NAME as $key => $value)
                                     <option value="{{ $key }}">{{ $value }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <input type="text" class="form-control col-8" style="width: 500px;" placeholder="example.csv">
-                    </div>
-                    <div class="row m0 m30b" style="float: right">
-                        <button class="btn custom-btn-success">Chọn file</button>
+                        <div class="col-9 p0 display-flex justify-content-end">
+                            <input type="text" class="form-control" style="width: 500px;" placeholder="example.csv">
+                            <button class="btn custom-btn-success m20l">Chọn file</button>
+                        </div>
                     </div>
                     <table class="table table-bordered table-striped border-0 m0">
                         <thead>
