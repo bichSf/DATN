@@ -71,8 +71,7 @@ class User extends Authenticatable
 
     public function getAllUser()
     {
-        $listUser = $this->where('role', USER)->get();
-        return empty($listUser) ? [] : $listUser->toArray();
+        return $this->where('role', USER)->orderByDesc('id')->paginate(PAGINATE);
     }
 
     public function createUser($data)
@@ -88,14 +87,27 @@ class User extends Authenticatable
             report($exception);
             return false;
         }
-
     }
 
-    public function updateUser($data)
+    public function updateUser($id, $data)
     {
-        if (isset($data['avatar'])) {
-            $this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE);
-            $this->removeImagesInFolder('/public/' . self::FOLDER_IMAGES_PROFILE, $this->find($data['id'], true)->avatar);
+        try {
+            if (isset($data['avatar'])) {
+                $this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE);
+                $this->removeImagesInFolder('/public/' . self::FOLDER_IMAGES_PROFILE, $this->find($data['id'], true)->avatar);
+            }
+            if(empty($data['password'])) {
+                unset($data['password']);
+            } else {
+                $data['password'] = Hash::make($data['password']);
+            }
+            unset($data['_token']);
+            unset($data['password_confirm']);
+            $this->where('id', $id)->update($data);
+            return true;
+        } catch (Exception $exception) {
+            report($exception);
+            return false;
         }
     }
 

@@ -7,7 +7,7 @@
     <div class="display-highcharts m30t">
         <div class="row m0 bg-white" style="padding: 30px 15px;">
             <div class="col-12 col-xl-8">
-                <form id="form-create-user" action="">
+                <form id="form-update-user" action="">
                     <input type="hidden" name="id" value="{{ $user->id }}">
                     <table class="table table-bordered">
                     <tr>
@@ -16,7 +16,7 @@
                         </td>
                         <td>
                             <div class="row p20l">
-                                <img id="image-avatar" class="avatar essential-icon-img pointer" style="object-fit: contain">
+                                <img id="image-avatar" class="avatar essential-icon-img pointer"  @if($user->avatar) src="{{ old('avatar', asset( PATH_AVATAR_USER . $user->avatar )) }}" @endif style="object-fit: contain">
                                 <div class="centered-vertical p20l" style="width: 60%">
                                     <p class="fs-16 fw-bold m5b">Chọn tệp để tải lên</p>
                                 </div>
@@ -48,9 +48,9 @@
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
                                     <select name="gender" class="form-control m5b fs13">
-                                        <option value="" selected>Chọn giới tính</option>
-                                        <option value="0">Nam</option>
-                                        <option value="1">Nữ</option>
+                                        <option value="">Chọn giới tính</option>
+                                        <option value="0" @if($user->gender == 0) selected @endif>Nam</option>
+                                        <option value="1" @if($user->gender == 1) selected @endif>Nữ</option>
                                     </select>
                                     <p class="error-message" data-error="gender"></p>
                                 </div>
@@ -175,8 +175,8 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <textarea name="memo" class="form-control" rows="5">{{ old('memo', $user->memo) }}</textarea>
-                                    <p class="error-message p5t m0" data-error="memo"></p>
+                                    <textarea name="note" class="form-control" rows="5">{{ old('note', $user->note) }}</textarea>
+                                    <p class="error-message p5t m0" data-error="note"></p>
                                 </div>
                             </div>
                         </td>
@@ -188,7 +188,7 @@
         <div class="m30t">
             <div class="row m0">
                 <div class="col-12 p0r text-right">
-                    <button type="button" class="btn custom-btn-success fs15 btn-submit-summary btn-profile-create" style="min-width: 100px">Lưu</button>
+                    <button type="button" class="btn custom-btn-success fs15 btn-submit-summary btn-profile-update" style="min-width: 100px">Lưu</button>
                 </div>
             </div>
         </div>

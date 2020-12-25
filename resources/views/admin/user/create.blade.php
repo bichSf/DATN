@@ -177,8 +177,8 @@
                         <td>
                             <div class="row p20l">
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <textarea name="memo" class="form-control" rows="5" placeholder=""></textarea>
-                                    <p class="error-message p5t m0" data-error="memo"></p>
+                                    <textarea name="note" class="form-control" rows="5" placeholder=""></textarea>
+                                    <p class="error-message p5t m0" data-error="note"></p>
                                 </div>
                             </div>
                         </td>

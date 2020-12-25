@@ -69,7 +69,7 @@
                                        class="btn btn-success border-0 btn-topic-custom btn-accept-topic-student mb-4 text-white"
                                        data-toggle="tooltip" data-placement="top" title="Chỉnh sửa"><i
                                             class="fa fa-edit"></i></a>
-                                    <button id="delete-user" class="btn btn-danger border-0 btn-topic-custom" data-toggle="modal" data-target="#modal-delete" data-id="{{ $value['id'] }}">
+                                    <button class="delete-user btn btn-danger border-0 btn-topic-custom" data-toggle="modal" data-target="#modal-delete" data-id="{{ $value['id'] }}">
                                         <a class="text-white" data-toggle="tooltip" data-placement="top" title="Xoá">
                                             <i class="fa fa-trash-alt"></i>
                                         </a>

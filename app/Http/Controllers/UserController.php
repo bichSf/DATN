@@ -49,9 +49,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UserRequest $request)
+    public function update(UserRequest $request, $id)
     {
-        $this->user->updateUser($request->all());
+        abort_if(!$this->user->find($id), 404);
+        if ($this->user->updateUser($id, $request->all())) {
+            Session::flash(STR_SUCCESS_FLASH, 'Chỉnh sửa thành công.');
+            return response()->json(['save' => true]);
+        } else {
+            Session::flash(STR_ERROR_FLASH, 'Chỉnh sửa thất bại.');
+            return response()->json(['save' => false]);
+        }
     }
 
     public function destroy($id)

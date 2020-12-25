@@ -20,16 +20,18 @@ class UserRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     * @param Request $request
      * @return array
      */
     public function rules(Request $request)
     {
+        $id = $request->id;
         $role = [
             'name' => 'required',
             'gender' => 'required',
             'birthday' => 'required',
-            'email' => ['required', 'unique:users,email,'.$request->id],
-            'phone' => ['required', 'unique:users,phone'.$request->id],
+            'email' => ['required', 'email', 'unique:users,email' . (empty($id) ? '' : ',' . $id)],
+            'phone' => ['required', 'unique:users,phone' . (empty($id) ? '' : ',' . $id)]
         ];
         if ($request->id) {
             $role['password'] = ['nullable', 'min:8', 'max:12'];

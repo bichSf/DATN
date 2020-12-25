@@ -3,12 +3,12 @@ let $imageAvatar = $('#image-avatar');
 let Profile = (function () {
     let modules = {};
 
-    modules.saveData = function () {
-        let data = new FormData($('#form-create-user')[0]);
+    modules.saveData = function ($form, url, $btn) {
+        let data = new FormData($form[0]);
         data.append("_token", $('meta[name="csrf-token"]').attr('content'));
         let submitAjax = $.ajax({
             type: "POST",
-            url: window.origin + '/user/store',
+            url: url,
             data: data,
             processData: false,
             contentType: false,
@@ -20,8 +20,8 @@ let Profile = (function () {
 
         submitAjax.fail(function (response) {
             if (response.status === 422) {
-                $('.btn-profile-create').attr("disabled", false);
-                Common.showMessage($('#form-create-user'), response.responseJSON.errors);
+                $btn.attr("disabled", false);
+                Common.showMessage($form, response.responseJSON.errors);
             } else {
                 window.location.reload()
             }
@@ -50,7 +50,13 @@ $(document).ready(function () {
     $('.btn-profile-create').on('click', function () {
         $(this).attr("disabled", true);
         Common.clearData($('#form-create-user'));
-        Profile.saveData();
+        Profile.saveData($('#form-create-user'), '/user/store', $(this));
+    });
+
+    $('.btn-profile-update').on('click', function () {
+        $(this).attr("disabled", true);
+        Common.clearData($('#form-update-user'));
+        Profile.saveData($('#form-update-user'), '/user/update/' + $('input[name=id]').val(), $(this));
     });
 
     $('#image-avatar').on('click', function () {
@@ -61,7 +67,7 @@ $(document).ready(function () {
         Profile.fileSelectHandler(event, false);
     });
 
-    $('#delete-user').on('click', function () {
+    $('.delete-user').on('click', function () {
         $('#form-delete-user').attr('action', window.location.origin + '/user/delete/' + $(this).data('id'));
     })
 });
