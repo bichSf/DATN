@@ -1,9 +1,11 @@
 let defaultData = [0,0,0,0,0,0];
-
+var chartWeight;
+var chartHeight;
+var chartSdd;
 var demoChart = (function () {
     let modules = {};
 
-    modules.buildChart = function () {
+    modules.buildChart2 = function () {
         Highcharts.chart('id-chart', {
             chart: {
                 plotBackgroundColor: null,
@@ -63,75 +65,6 @@ var demoChart = (function () {
                     y: 7.05
                 }]
             }]
-        });
-        Highcharts.chart('id-chart-3', {
-
-            chart: {
-                polar: true,
-                type: 'line'
-            },
-
-            title: {
-                text: 'Hiện trạng & Trung bình',
-                // x: -80
-            },
-
-            pane: {
-                size: '80%'
-            },
-
-            xAxis: {
-                categories: ['Chiều cao', 'Cân nặng', 'Vòng cánh tay', 'Vòng đầu',
-                    'Vòng ngực', 'Nếp gấp da ở cơ tam đầu'],
-                tickmarkPlacement: 'on',
-                lineWidth: 0
-            },
-
-            yAxis: {
-                gridLineInterpolation: 'polygon',
-                lineWidth: 0,
-                min: 0
-            },
-
-            tooltip: {
-                shared: true,
-                pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
-            },
-
-            legend: {
-                align: 'right',
-                verticalAlign: 'middle',
-                layout: 'vertical'
-            },
-
-            series: [{
-                name: 'Trung bình',
-                data: [43000, 19000, 60000, 35000, 17000, 10000],
-                pointPlacement: 'on'
-            }, {
-                name: 'Hiện trạng',
-                data: [50000, 39000, 42000, 31000, 26000, 14000],
-                pointPlacement: 'on'
-            }],
-
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            align: 'center',
-                            verticalAlign: 'bottom',
-                            layout: 'horizontal'
-                        },
-                        pane: {
-                            size: '70%'
-                        }
-                    }
-                }]
-            }
-
         });
 
         Highcharts.chart('id-chart-5', {
@@ -193,6 +126,12 @@ var demoChart = (function () {
         });
     };
 
+    modules.buildChart = function () {
+        modules.buildLineChart();
+        modules.buildColumnChart();
+        modules.buildLineChartWeight();
+    }
+
     modules.buildLineChart = function () {
         let data = new FormData();
         data.append("_token", $('meta[name="csrf-token"]').attr('content'));
@@ -229,25 +168,55 @@ var demoChart = (function () {
         });
 
         submitAjax.done(function (response) {
-            Common.buildColumnChart('id-chart-4', response.data);
+            chartSdd = Common.buildColumnChart('id-chart-sdd', response.data);
         });
 
         submitAjax.fail(function (response) {
-            // $("#import-info").html('プロフィールを保存する');
-            // $('#import-info').attr("disabled", false);
-            // let messageList = response.responseJSON.errors;
-            // profileUser.showMessageValidate(messageList);
         });
     }
+
+    modules.buildLineChartWeight = function () {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("type", 'weight');
+        let submitAjax = $.ajax({
+            type: "GET",
+            url: '/statistical/get-avg-weight-height',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            chartWeight = Common.buildLineChartWeight('id-chart-weight', 'Cân nặng trung bình (kg) người trưởng thành qua các năm',
+                'Cân nặng trung bình', response.weight, 'kg');
+            chartHeight = Common.buildLineChartWeight('id-chart-height', 'Chiều cao trung bình (cm) người trưởng thành qua các năm',
+                'Chiều cao trung bình', response.height, 'cm');
+        });
+
+        submitAjax.fail(function (response) {
+        });
+
+        setTimeout(modules.liveDataWeightHeightChart, 2000)
+    }
+
+    modules.liveDataWeightHeightChart =  async function() {
+        const result = await fetch(window.origin + '/statistical/get-avg-weight-height');
+        if (result.ok) {
+            const data = await result.json();
+            chartWeight.series[0].setData(data['weight']['data'][0]['data']);
+            chartWeight.series[1].setData(data['weight']['data'][1]['data']);
+            chartHeight.series[0].setData(data['height']['data'][0]['data']);
+            chartHeight.series[1].setData(data['height']['data'][1]['data']);
+            setTimeout(modules.liveDataWeightHeightChart, 3000);
+        }
+    }
+
     return modules;
 }(window.jQuery, window, document));
 
 $(document).ready(function () {
     demoChart.buildChart();
-
-    demoChart.buildLineChart();
-    demoChart.buildColumnChart();
-
     $('#select-column-chart').on('change', function () {
         demoChart.buildColumnChart();
     })

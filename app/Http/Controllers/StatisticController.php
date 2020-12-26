@@ -20,19 +20,22 @@ class StatisticController extends Controller
     private $infant;
     private $toddler;
     private $children;
+    private $adult;
 
     public function __construct
     (
         Survey $survey,
         Infant $infant,
         Toddler $toddler,
-        Children $children
+        Children $children,
+        Adult $adult
     )
     {
         $this->survey = $survey;
         $this->infant = $infant;
         $this->toddler = $toddler;
         $this->children = $children;
+        $this->adult = $adult;
     }
     /**
      * Show top site
@@ -62,14 +65,25 @@ class StatisticController extends Controller
     public function getColumnChart(Request $request)
     {
         $tableType = $request->table_type ?? INFANTS;
+        $year = 2018;
         switch ($tableType) {
             case INFANTS:
-                return response()->json(['data' => $this->infant->getDataColumnChart()]);
+                return response()->json(['data' => $this->infant->getDataColumnChart($year)]);
             case TODDLER:
-                return response()->json(['data' => $this->toddler->getDataColumnChart()]);
+                return response()->json(['data' => $this->toddler->getDataColumnChart($year)]);
             case CHILDREN:
-                return response()->json(['data' => $this->children->getDataColumnChart()]);
+                return response()->json(['data' => $this->children->getDataColumnChart($year)]);
         }
+
+    }
+
+    public function getAvgWeightHeight(Request $request)
+    {
+       $year = 2018;
+        return response()->json([
+            'weight' => $this->adult->getAvgWeightHeight('weight', $year),
+            'height' => $this->adult->getAvgWeightHeight('height', $year),
+        ]);
 
     }
 

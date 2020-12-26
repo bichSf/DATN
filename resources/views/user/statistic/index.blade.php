@@ -66,8 +66,28 @@
                                     </select>
                                 </div>
                             </div>
+                            <div id="id-chart-sdd"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            <div id="id-chart-4"></div>
+        <div class="row m0">
+            <div class="col-6 col-lg-6 p0">
+                <div class="item-block-property m15r">
+                    <div class="m0 m30b diagram-analysisu">
+                        <div class="col-12 p30 m25b diagram-block bg-white">
+                            <div id="id-chart-weight"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-6 p0">
+                <div class="item-block-property m15r">
+                    <div class="m0 m30b diagram-analysisu">
+                        <div class="col-12 p30 m25b diagram-block bg-white">
+                            <div id="id-chart-height"></div>
                         </div>
                     </div>
                 </div>

@@ -50,6 +50,7 @@ Route::middleware('auth.admin')->group(function () {
             Route::post('/store', 'StatisticController@store')->name(USER_STATISTICAL_STORE);
             Route::post('/get-zscore', 'StatisticController@getZscore');
             Route::post('/get-column-chart', 'StatisticController@getColumnChart');
+            Route::get('/get-avg-weight-height', 'StatisticController@getAvgWeightHeight');
         });
 
         Route::prefix('change-password')->group(function () {

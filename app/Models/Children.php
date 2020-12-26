@@ -46,10 +46,10 @@ class Children extends Model
 
     }
 
-    public function getDataColumnChart()
+    public function getDataColumnChart($yearTo)
     {
         $dataReturn = [];
-        for ($year = 2018; $year >= 2015; $year--) {
+        for ($year = $yearTo - 4; $year <= $yearTo; $year++) {
             $data = $this->getZcore($year);
             $div2 = array_filter($data, function($item) {
                 // condition which makes a result belong to div2.

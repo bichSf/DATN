@@ -110,7 +110,7 @@ let Common = (function () {
     }
 
     modules.buildColumnChart = function (idDiv, data) {
-        Highcharts.chart(idDiv, {
+        return Highcharts.chart(idDiv, {
             chart: {
                 type: 'column'
             },
@@ -155,6 +155,71 @@ let Common = (function () {
                     data: data
                 }
             ]
+        });
+    }
+
+    modules.buildLineChartWeight = function (idDiv, title, titleY, data, donvi) {
+        return Highcharts.chart(idDiv, {
+            chart: {
+                polar: true,
+                type: 'line'
+            },
+
+            title: {
+                text: title,
+                // x: -80
+            },
+
+            pane: {
+                size: '80%'
+            },
+
+            xAxis: {
+                categories: data.categories,
+                tickmarkPlacement: 'on',
+                lineWidth: 0
+            },
+
+            yAxis: {
+                title: {
+                    text: titleY
+                },
+                gridLineInterpolation: 'polygon',
+                lineWidth: 0,
+                min: 0
+            },
+
+            tooltip: {
+                shared: true,
+                pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f} ('+donvi+')</b><br/>'
+            },
+
+            legend: {
+                align: 'right',
+                verticalAlign: 'middle',
+                layout: 'vertical'
+            },
+
+            series: data.data,
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            align: 'center',
+                            verticalAlign: 'bottom',
+                            layout: 'horizontal'
+                        },
+                        pane: {
+                            size: '70%'
+                        }
+                    }
+                }]
+            }
+
         });
     }
 
