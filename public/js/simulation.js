@@ -4,66 +4,6 @@ var simulation = (function () {
     let modules = {};
 
     modules.buildChart = function () {
-        // Highcharts.chart('id-chart', {
-        //     chart: {
-        //         plotBackgroundColor: null,
-        //         plotBorderWidth: null,
-        //         plotShadow: false,
-        //         type: 'pie'
-        //     },
-        //     title: {
-        //         text: 'Biểu đồ cân nặng theo tuổi'
-        //     },
-        //     tooltip: {
-        //         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        //     },
-        //     accessibility: {
-        //         point: {
-        //             valueSuffix: '%'
-        //         }
-        //     },
-        //     exporting: {
-        //         enabled: false
-        //     },
-        //     credits: {
-        //         enabled: false
-        //     },
-        //     plotOptions: {
-        //         pie: {
-        //             allowPointSelect: true,
-        //             cursor: 'pointer',
-        //             dataLabels: {
-        //                 enabled: false
-        //             },
-        //             showInLegend: true
-        //         }
-        //     },
-        //     series: [{
-        //         name: 'Tỷ lệ',
-        //         colorByPoint: true,
-        //         data: [{
-        //             name: 'Phát triển bình thường',
-        //             y: 61.41,
-        //             sliced: true,
-        //             selected: true
-        //         }, {
-        //             name: 'Suy dinh dưỡng độ I',
-        //             y: 11.84
-        //         }, {
-        //             name: 'Suy dinh dưỡng độ II',
-        //             y: 10.85
-        //         }, {
-        //             name: 'Suy dinh dưỡng độ III',
-        //             y: 4.67
-        //         }, {
-        //             name: 'Thừa cân độ I',
-        //             y: 4.18
-        //         }, {
-        //             name: 'Thừa cân độ II',
-        //             y: 7.05
-        //         }]
-        //     }]
-        // });
         Highcharts.chart('id-chart-3', {
 
             chart: {
@@ -133,8 +73,6 @@ var simulation = (function () {
             }
 
         });
-
-
         Highcharts.chart('id-chart-5', {
             chart: {
                 type: 'column'

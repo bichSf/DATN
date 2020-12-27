@@ -5,7 +5,7 @@
     </div>
 
     <div class="row m0 m30t m30b">
-        <div class="col-8 col-lg-8 p0">
+        <form class="col-8 col-lg-8 p0">
             <div class="item-block-property m15r h-100">
                 <div class="m0 diagram-analysisu h-100">
                     <div class="row m0 col-12 p30 m25b diagram-block bg-white h-100">
@@ -97,26 +97,26 @@
                                 </div>
                             </div>
                             <div class="row m10b">
-                                <div class="col-4 d-flex align-items-center"><span>Tỉnh / Thành Phố</span></div>
+                                <div class="col-4 d-flex align-items-center"><span>Khu vực</span></div>
                                 <div class="col-8">
                                     <select class="form-control" name="provincial" id="">
-                                        <option value="">Tỉnh/ Thành phố</option>
+                                        @foreach(AREAS as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="row m10b">
-                                <div class="col-4 d-flex align-items-center"><span>Quận / Huyện</span></div>
-                                <div class="col-8">
-                                    <select class="form-control" name="district" id="">
-                                        <option value="">Quận/ Huyện</option>
-                                    </select>
-                                </div>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-end">
+                            <div>
+                                <button type="button" class="btn btn-primary">ok</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
 
         <div class="col-4 col-lg-4 p0">
             <div class="item-block-property m15l h-100">
