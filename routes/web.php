@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@index')->name(HOME);
+Route::post('/data-chart-', 'HomeController@index')->name(HOME);
 
 Route::get('/login', 'LoginController@index')->name(USER_LOGIN);
 Route::post('/login', 'LoginController@login')->name(LOGIN);

@@ -33,14 +33,26 @@
                                         @endfor
                                     </select>
                                 </div>
-                                <div class="centered p0 bg-white">
+                                <div class="centered p0 bg-white m10r">
                                     <select class="form-control change-zscore" name="year_2">
                                         @for($i = 2018; $i > 1999; $i--)
                                             <option value="{{ $i }}" @if($i == 2018) selected @endif>{{ $i }}</option>
                                         @endfor
                                     </select>
                                 </div>
+                                <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                                    <label class="m0 text-white fs16">Khu vực</label>
+                                </div>
+                                <div class="centered p0 bg-white">
+                                    <select class="form-control change-zscore" name="area">
+                                        <option value="">Toàn quốc</option>
+                                        @foreach(AREAS as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
+
                             <div id="id-chart-zscore"></div>
                         </div>
                     </div>

@@ -44,7 +44,7 @@ class Toddler extends Model
         return array_column($data, 'zscore');
 
     }
-    public function getZcoreCanTheoCao($year1, $year2)
+    public function getZcoreCanTheoCao($year1, $year2, $area)
     {
         $categories = [];
         for ($i = -7; $i <= 7; $i+=0.25) {
@@ -53,27 +53,30 @@ class Toddler extends Model
         $dataReturn = [
             'categories' => $categories,
             'data' => [
-                $this->makeDataZcore($year1, 'blue'),
-                $this->makeDataZcore($year2, 'red'),
+                $this->makeDataZcore($year1, $area, 'blue'),
+                $this->makeDataZcore($year2, $area, 'red'),
             ]
         ];
         return $dataReturn;
     }
 
-    public function makeDataZcore($year, $color)
+    public function makeDataZcore($year, $area, $color)
     {
-        $avg = $this->selectRaw('avg(weight / height)')->whereHas('survey', function ($query) use ($year) {
-            return $query->where('year', $year);
+        $avg = $this->selectRaw('avg(weight / height)')->whereHas('survey', function ($query) use ($year, $area) {
+            return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
+                return $query->where('area_id', $area);
+            });
         })->first()->toArray()['avg'];
         $avg = round($avg, 2);
-        $data = $this->selectRaw('round(CAST(FLOAT8 (weight/height - '.$avg.') / '.DO_LECH_QUAN_THE.' AS NUMERIC), 2) as zscore')->whereHas('survey', function ($query) use ($year) {
-            return $query->where('year', $year);
+        $data = $this->selectRaw('round(CAST(FLOAT8 (weight/height - '.$avg.') / '.DO_LECH_QUAN_THE.' AS NUMERIC), 2) as zscore')->whereHas('survey', function ($query) use ($year, $area) {
+            return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
+                return $query->where('area_id', $area);
+            });
         })->orderBy('weight')->get()->toArray();
         $data = array_column($data, 'zscore');
         $array = [];
         for ($i = -7; $i <= 7; $i+=0.25) {
             $div2 = array_filter($data, function($item) use ($i) {
-                // condition which makes a result belong to div2.
                 return $item > $i && $item < $i + 0.25;
             });
             array_push($array, round(count($div2) / count($data) * 100, 2));

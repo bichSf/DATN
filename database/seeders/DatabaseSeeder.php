@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-//            AdminSeeder::class,
-//            SurveysSeeder::class,
+            AdminSeeder::class,
+            SurveysSeeder::class,
             InfantSeeder::class,
             ToddlerSeeder::class,
             ChildrenSeeder::class,

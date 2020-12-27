@@ -44,6 +44,7 @@ var demoChart = (function () {
         data.append("table_type", $('#select-zcore-chart').val());
         data.append("year_1", $('select[name=year_1]').val());
         data.append("year_2", $('select[name=year_2]').val());
+        data.append("area", $('select[name=area]').val());
         let submitAjax = $.ajax({
             type: "POST",
             url: '/statistical/get-zscore',
@@ -51,20 +52,16 @@ var demoChart = (function () {
             processData: false,
             contentType: false,
         });
-
         submitAjax.done(function (response) {
             chartZscore = Common.buildLineChart('id-chart-zscore', response.data);
         });
-
         submitAjax.fail(function (response) {
         });
-
         modules.liveDataZscoreChart();
-
     }
 
     modules.liveDataZscoreChart =  async function() {
-        const result = await fetch(window.origin + '/statistical/get-zscore?table_type=' + $('#select-zcore-chart').val() + '&year_1=' + $('select[name=year_1]').val() + '&year_2=' + $('select[name=year_2]').val());
+        const result = await fetch(window.origin + '/statistical/get-zscore?table_type=' + $('#select-zcore-chart').val() + '&year_1=' + $('select[name=year_1]').val() + '&year_2=' + $('select[name=year_2]').val() + '&area=' + $('select[name=area]').val());
         if (result.ok) {
             const data = await result.json();
             chartZscore.series[0].setData(data['data']['data']['0']['data']);

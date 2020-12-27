@@ -23,9 +23,22 @@ class SurveysSeeder extends Seeder
                     'name' => $name,
                     'year' => $year,
                     'month' => $month,
-                    'area_id' => $faker->numberBetween(1, 10),
+                    'area_id' => 1,
+                ]);
+                DB::table('surveys')->insert([
+                    'name' => $name,
+                    'year' => $year,
+                    'month' => $month,
+                    'area_id' => 2,
+                ]);
+                DB::table('surveys')->insert([
+                    'name' => $name,
+                    'year' => $year,
+                    'month' => $month,
+                    'area_id' => 3,
                 ]);
             }
         }
+
     }
 }

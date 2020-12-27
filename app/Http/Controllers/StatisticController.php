@@ -58,14 +58,15 @@ class StatisticController extends Controller
         $tableType = $request->table_type ?? INFANTS;
         $year1 = $request->year_1 ?? 2008;
         $year2 = $request->year_2 ?? 2018;
+        $area = $request->area;
         switch ($tableType) {
             case INFANTS:
             default:
-                return response()->json(['data' => $this->infant->getZcoreCanTheoCao($year1, $year2)]);
+                return response()->json(['data' => $this->infant->getZcoreCanTheoCao($year1, $year2, $area)]);
             case TODDLER:
-                return response()->json(['data' => $this->toddler->getZcoreCanTheoCao($year1, $year2)]);
+                return response()->json(['data' => $this->toddler->getZcoreCanTheoCao($year1, $year2, $area)]);
             case CHILDREN:
-                return response()->json(['data' => $this->children->getZcoreCanTheoCao($year1, $year2)]);
+                return response()->json(['data' => $this->children->getZcoreCanTheoCao($year1, $year2, $area)]);
         }
     }
 
