@@ -94,3 +94,15 @@ const AREAS = [
 
 const LIM_SDD = -0.4;
 
+const DO_LECH_QUAN_THE = 0.014;
+
+const BMI_RATE = [
+    'Gầy độ 3' => [0, 16],
+    'Gầy độ 2' => [16, 16.99],
+    'Gầy độ 1' => [17, 18.49],
+    'Bình thường' => [18.5, 24.99],
+    'Thừa cân độ 1' => [25, 29.99],
+    'Thừa cân độ 2' => [30, 39.99],
+    'Thừa cân độ 3' => [40, 100]
+];
+

@@ -2,139 +2,48 @@ let defaultData = [0,0,0,0,0,0];
 var chartWeight;
 var chartHeight;
 var chartSdd;
+var chartZscore;
+var zscoreTimeOut;
 var demoChart = (function () {
     let modules = {};
 
     modules.buildChart2 = function () {
-        Highcharts.chart('id-chart', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'Biểu đồ cân nặng theo tuổi'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
-                }
-            },
-            exporting: {
-                enabled: false
-            },
-            credits: {
-                enabled: false
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                name: 'Tỷ lệ',
-                colorByPoint: true,
-                data: [{
-                    name: 'Phát triển bình thường',
-                    y: 61.41,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: 'Suy dinh dưỡng độ I',
-                    y: 11.84
-                }, {
-                    name: 'Suy dinh dưỡng độ II',
-                    y: 10.85
-                }, {
-                    name: 'Suy dinh dưỡng độ III',
-                    y: 4.67
-                }, {
-                    name: 'Thừa cân độ I',
-                    y: 4.18
-                }, {
-                    name: 'Thừa cân độ II',
-                    y: 7.05
-                }]
-            }]
-        });
 
-        Highcharts.chart('id-chart-5', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: ' Tỷ lệ SDD của trẻ dưới 5 tuổi qua các năm'
-            },
-            // subtitle: {
-            //     text: 'Source: WorldClimate.com'
-            // },
-            xAxis: {
-                categories: ['SDD thấp còi', 'SDD nhẹ cân', 'SDD gày còm'],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Tỷ lệ (%)'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                // column: {
-                //     pointPadding: 0.2,
-                //     borderWidth: 0
-                // }
-            },
-            series: [{
-                name: '2000',
-                data: [50, 45, 40],
-                color:'#0066ff'
-
-            }, {
-                name: '2002',
-                data: [40, 32, 28],
-                color:'#3385ff'
-            }, {
-                name: '2005',
-                data: [38, 30, 25],
-                color:'#66a3ff'
-            }, {
-                name: '2008',
-                data: [35, 28, 23],
-                color:'#99c2ff'
-            }, {
-                name: '2010',
-                data: [32, 24, 18],
-                color:'#cce0ff'
-            }]
-        });
     };
 
     modules.buildChart = function () {
         modules.buildLineChart();
+        modules.buildPieChart();
         modules.buildColumnChart();
         modules.buildLineChartWeight();
     }
 
+    modules.buildPieChart = function () {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("year", $('#change-pie').val());
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: '/statistical/get-data-bmi',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            Common.buildPieChart('id-chart-pie', 'Phân loại tình trạng cân nặng theo BMI', response.data)
+        });
+
+        submitAjax.fail(function (response) {
+
+        });
+    }
     modules.buildLineChart = function () {
         let data = new FormData();
         data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("table_type", $('#select-zcore-chart').val());
+        data.append("year_1", $('select[name=year_1]').val());
+        data.append("year_2", $('select[name=year_2]').val());
         let submitAjax = $.ajax({
             type: "POST",
             url: '/statistical/get-zscore',
@@ -144,15 +53,24 @@ var demoChart = (function () {
         });
 
         submitAjax.done(function (response) {
-            Common.buildLineChart('id-chart-2', response.data);
+            chartZscore = Common.buildLineChart('id-chart-zscore', response.data);
         });
 
         submitAjax.fail(function (response) {
-            // $("#import-info").html('プロフィールを保存する');
-            // $('#import-info').attr("disabled", false);
-            // let messageList = response.responseJSON.errors;
-            // profileUser.showMessageValidate(messageList);
         });
+
+        modules.liveDataZscoreChart();
+
+    }
+
+    modules.liveDataZscoreChart =  async function() {
+        const result = await fetch(window.origin + '/statistical/get-zscore?table_type=' + $('#select-zcore-chart').val() + '&year_1=' + $('select[name=year_1]').val() + '&year_2=' + $('select[name=year_2]').val());
+        if (result.ok) {
+            const data = await result.json();
+            chartZscore.series[0].setData(data['data']['data']['0']['data']);
+            chartZscore.series[1].setData(data['data']['data']['1']['data']);
+            zscoreTimeOut = setTimeout(modules.liveDataZscoreChart, 3000);
+        }
     }
 
     modules.buildColumnChart = function () {
@@ -197,7 +115,7 @@ var demoChart = (function () {
         submitAjax.fail(function (response) {
         });
 
-        setTimeout(modules.liveDataWeightHeightChart, 2000)
+        modules.liveDataWeightHeightChart();
     }
 
     modules.liveDataWeightHeightChart =  async function() {
@@ -219,5 +137,14 @@ $(document).ready(function () {
     demoChart.buildChart();
     $('#select-column-chart').on('change', function () {
         demoChart.buildColumnChart();
+    });
+
+    $('.change-zscore').on('change', function () {
+        clearTimeout(zscoreTimeOut);
+        demoChart.buildLineChart();
+    });
+
+    $('#change-pie').on('change', function () {
+        demoChart.buildPieChart();
     })
 });

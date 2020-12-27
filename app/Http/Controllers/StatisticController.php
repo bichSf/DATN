@@ -53,13 +53,26 @@ class StatisticController extends Controller
         return view('user.statistic.create', compact('listSurvey'));
     }
 
-    public function getZscore()
+    public function getZscore(Request $request)
     {
-        $data = [
-            'name' => '2001',
-            'data' => $this->infant->getZcore()
-        ];
-        return response()->json(['data' => [$data]]);
+        $tableType = $request->table_type ?? INFANTS;
+        $year1 = $request->year_1 ?? 2008;
+        $year2 = $request->year_2 ?? 2018;
+        switch ($tableType) {
+            case INFANTS:
+            default:
+                return response()->json(['data' => $this->infant->getZcoreCanTheoCao($year1, $year2)]);
+            case TODDLER:
+                return response()->json(['data' => $this->toddler->getZcoreCanTheoCao($year1, $year2)]);
+            case CHILDREN:
+                return response()->json(['data' => $this->children->getZcoreCanTheoCao($year1, $year2)]);
+        }
+    }
+
+    public function getDataBmi(Request $request)
+    {
+        $year = $request->year ?? 2018;
+        return response()->json(['data' => $this->adult->getBMI($year)]);
     }
 
     public function getColumnChart(Request $request)

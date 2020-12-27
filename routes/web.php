@@ -49,8 +49,10 @@ Route::middleware('auth.admin')->group(function () {
             Route::get('/create', 'StatisticController@create')->name(USER_STATISTICAL_CREATE);
             Route::post('/store', 'StatisticController@store')->name(USER_STATISTICAL_STORE);
             Route::post('/get-zscore', 'StatisticController@getZscore');
+            Route::get('/get-zscore', 'StatisticController@getZscore');
             Route::post('/get-column-chart', 'StatisticController@getColumnChart');
             Route::get('/get-avg-weight-height', 'StatisticController@getAvgWeightHeight');
+            Route::post('/get-data-bmi', 'StatisticController@getDataBmi');
         });
 
         Route::prefix('change-password')->group(function () {

@@ -21,7 +21,7 @@
         <form class="form-login text-center" method="post" {{ route(LOGIN) }}>
             @csrf
             <div class="form-group">
-                <input type="text" name="email" value="@if(old('email')) {{ old('email') }} @endif" class="form-control" placeholder="email">
+                <input type="text" name="email" value="@if(old('email')) {{ old('email') }} @endif" class="form-control" placeholder="Email">
                 @if ($errors->has('email'))
                     <p class="text-error-login text-left" role="alert">
                         {{ $errors->first('email') }}
@@ -29,7 +29,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="password">
+                <input type="password" name="password" class="form-control" placeholder="Password">
                 @if ($errors->has('password'))
                     <p class="text-error-login text-left" role="alert">
                         {{ $errors->first('password') }}

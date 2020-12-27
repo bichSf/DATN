@@ -45,7 +45,7 @@ let Common = (function () {
     };
 
     modules.buildLineChart = function (idDiv, data) {
-        Highcharts.chart(idDiv, {
+        return Highcharts.chart(idDiv, {
 
             chart: {
                 type: 'spline'
@@ -62,7 +62,7 @@ let Common = (function () {
             },
 
             xAxis: {
-
+                categories: data.categories,
             },
             exporting: {
                 enabled: false
@@ -90,7 +90,7 @@ let Common = (function () {
                 }
             },
 
-            series: data,
+            series: data.data,
 
             responsive: {
                 rules: [{
@@ -115,12 +115,18 @@ let Common = (function () {
                 type: 'column'
             },
             title: {
-                text: ' Tỷ lệ suy dinh dưỡng qua các năm gần đây'
+                text: ' Tỷ lệ suy dinh dưỡng của trẻ qua các năm gần đây'
             },
             accessibility: {
                 announceNewData: {
                     enabled: true
                 }
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
             },
             xAxis: {
                 type: 'category'
@@ -164,22 +170,24 @@ let Common = (function () {
                 polar: true,
                 type: 'line'
             },
-
             title: {
                 text: title,
                 // x: -80
             },
-
+            exporting: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
             pane: {
                 size: '80%'
             },
-
             xAxis: {
                 categories: data.categories,
                 tickmarkPlacement: 'on',
                 lineWidth: 0
             },
-
             yAxis: {
                 title: {
                     text: titleY
@@ -188,20 +196,16 @@ let Common = (function () {
                 lineWidth: 0,
                 min: 0
             },
-
             tooltip: {
                 shared: true,
                 pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f} ('+donvi+')</b><br/>'
             },
-
             legend: {
                 align: 'right',
                 verticalAlign: 'middle',
                 layout: 'vertical'
             },
-
             series: data.data,
-
             responsive: {
                 rules: [{
                     condition: {
@@ -223,6 +227,48 @@ let Common = (function () {
         });
     }
 
+    modules.buildPieChart = function (idDiv, title, data) {
+        return Highcharts.chart(idDiv, {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: title
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            exporting: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Tỷ lệ',
+                colorByPoint: true,
+                data: data
+            }]
+        });
+    }
     return modules;
 }(window.jQuery, window, document));
 

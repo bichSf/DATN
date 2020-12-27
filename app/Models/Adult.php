@@ -73,4 +73,24 @@ class Adult extends Model
         }
         return $data;
     }
+
+    public function getBMI($year)
+    {
+        $data = $this->selectRaw('weight / (height*height/10000) as bmi')->whereHas('survey', function ($query) use ($year) {
+            return $query->where('year', $year);
+        })->get()->toArray();
+        $data = array_column($data, 'bmi');
+        $dataReturn = [];
+        foreach (BMI_RATE as $key => $value) {
+            $div2 = array_filter($data, function($item) use ($value) {
+                // condition which makes a result belong to div2.
+                return $item >= $value[0] && $item < $value[1];
+            });
+            array_push($dataReturn, [
+                'name' => $key,
+                'y' => round(count($div2) / count($data) * 100, 2)
+            ]);
+        }
+        return $dataReturn;
+    }
 }
