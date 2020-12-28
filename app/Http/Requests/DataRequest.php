@@ -57,7 +57,7 @@ class DataRequest extends FormRequest
         $listAttr = ATTRIBUTE_DATA[$type];
         $rules = [];
         foreach ($listAttr as $item) {
-            $rules[$item] = ['bail', 'numeric', 'between: 10,1000'];
+            $rules[$item] = ['bail', 'numeric', 'between: 1,1000'];
         }
         return $rules;
     }

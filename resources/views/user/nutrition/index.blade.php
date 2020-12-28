@@ -73,5 +73,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js/custom/list_population.js')}}"></script>
+    <script src="{{ asset('js/custom/nutrition.js')}}"></script>
 @endsection

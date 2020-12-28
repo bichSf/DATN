@@ -43,11 +43,15 @@ Route::middleware('auth.admin')->group(function () {
     });
 
     Route::middleware('role:user')->group(function () {
-        Route::prefix('statistical')->group(function () {
-            Route::get('/', 'NutritionController@index')->name(USER_STATISTICAL);
-            Route::get('/population', 'NutritionController@showPopulation')->name(USER_STATISTICAL_POPULATION);
+        Route::prefix('nutrition')->group(function () {
+            Route::get('/', 'NutritionController@showPopulation')->name(USER_STATISTICAL_POPULATION);
+            Route::post('/get-survey', 'NutritionController@getSurvey');
             Route::get('/create', 'NutritionController@create')->name(USER_STATISTICAL_CREATE);
             Route::post('/store', 'NutritionController@store')->name(USER_STATISTICAL_STORE);
+        });
+
+        Route::prefix('statistical')->group(function () {
+            Route::get('/', 'NutritionController@index')->name(USER_STATISTICAL);
             Route::post('/get-zscore', 'NutritionController@getZscore');
             Route::get('/get-zscore', 'NutritionController@getZscore');
             Route::post('/get-column-chart', 'NutritionController@getColumnChart');

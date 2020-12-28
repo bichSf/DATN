@@ -176,5 +176,5 @@
 @section('js')
     <script src="{{ asset('js/simulation.js')}}"></script>
     <script src="{{ asset('js/custom/address.js')}}"></script>
-    <script src="{{ asset('js/custom/population.js')}}"></script>
+    <script src="{{ asset('js/custom/statistic_nutrition.js')}}"></script>
 @endsection

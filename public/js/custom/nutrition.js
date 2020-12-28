@@ -1,4 +1,4 @@
-let listPopulationFunction = (function () {
+let nutritionFunction = (function () {
     let modules = {};
 
 
@@ -9,4 +9,4 @@ $(document).ready(function () {
     $('select[name=table_type]').on('change', function () {
         $('#form-statistical-population').submit();
     })
-})
+});

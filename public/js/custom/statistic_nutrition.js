@@ -17,9 +17,10 @@ let rowInputChestCircumference = inputChestCircumference.parent().parent().paren
 let rowInputFatPercentage = inputFatPercentage.parent().parent().parent();
 let rowInputKneeHeight = inputKneeHeight.parent().parent().parent();
 let rowInputStomachFeet = inputStomachFeet.parent().parent().parent();
+let areaName = {1: 'Miền Bắc', 2: 'Miền Nam', 3: 'Miền Trung'};
 
 let arrayInput = ['weight', 'height', 'head_circumference', 'biceps_skinfold', 'arm_circumference', 'chest_circumference', 'fat_percentage', 'knee_height', 'stomach_feet'];
-let populationFunction = (function () {
+let statisticNutritionFunction = (function () {
     let modules = {};
 
     modules.showInput = function () {
@@ -55,27 +56,21 @@ let populationFunction = (function () {
                 $('input[name='+value+']').parent().parent().parent().hide();
             }
         })
-    }
+    };
 
     modules.setSelectProvincial = function () {
         $.each(c, function (key, value) {
-           $('select[name=provincial]').append(`
-                <option value="`+key+`">`+value+`</option>
-           `);
+           $('select[name=provincial]').append(`<option value="`+key+`">`+value+`</option>`);
         });
-    }
+    };
 
     modules.setSelectDistrict = function () {
         let idProvincial = $('select[name=provincial]').val();
-        $('select[name=district]').html(`
-                  <option value="">Quận/ Huyện</option>
-           `);
+        $('select[name=district]').html(`<option value="">Quận/ Huyện</option>`);
         $.each(arr[idProvincial], function (key, value) {
-            $('select[name=district]').append(`
-                <option value="`+key+`">`+value+`</option>
-           `);
+            $('select[name=district]').append(`<option value="`+key+`">`+value+`</option>`);
         });
-    }
+    };
 
     modules.saveData = function () {
         let data = new FormData($('#form-create-data')[0]);
@@ -83,7 +78,7 @@ let populationFunction = (function () {
         Common.convertNumeralForForm(data);
         let submitAjax = $.ajax({
             type: "POST",
-            url: window.origin + '/statistical/store',
+            url: window.origin + '/nutrition/store',
             data: data,
             processData: false,
             contentType: false,
@@ -98,7 +93,7 @@ let populationFunction = (function () {
             modules.showMessageValidate(messageList);
             $('#btn-create-data').prop("disabled", false);
         })
-    }
+    };
 
     modules.showMessageValidate = function (messageList) {
         $('body').find('p.error-message').css('padding-top', 0).hide();
@@ -116,23 +111,46 @@ let populationFunction = (function () {
         }, 0);
     };
 
+    modules.getSurvey = function () {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("survey_id", $('select[name=survey_id]').val());
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: window.origin + '/nutrition/get-survey',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            $('input[name=year]').val(response.data.year);
+            $('input[name=month]').val(response.data.month);
+            $('input[name=area]').val(areaName[response.data.area_id]);
+        });
+    };
+
     return modules;
 }(window.jQuery, window, document));
 
 $(document).ready(function () {
-    populationFunction.showInput();
-    populationFunction.setSelectProvincial();
+    statisticNutritionFunction.showInput();
+    statisticNutritionFunction.setSelectProvincial();
 
     $('select[name=table_type]').on('change', function () {
-        populationFunction.showInput();
+        statisticNutritionFunction.showInput();
     });
 
     $('select[name=provincial]').on('change', function () {
-        populationFunction.setSelectDistrict();
+        statisticNutritionFunction.setSelectDistrict();
     });
 
     $('#btn-create-data').on('click', function () {
         $(this).attr("disabled", true);
-        populationFunction.saveData();
+        statisticNutritionFunction.saveData();
+    });
+
+    $('select[name=survey_id]').on('change', function () {
+        statisticNutritionFunction.getSurvey();
     })
-})
+});

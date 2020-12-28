@@ -29,14 +29,14 @@ class NutritionController extends Controller
         Toddler $toddler,
         Children $children,
         Adult $adult
-    )
-    {
+    ) {
         $this->survey = $survey;
         $this->infant = $infant;
         $this->toddler = $toddler;
         $this->children = $children;
         $this->adult = $adult;
     }
+
     /**
      * Show top site
      *
@@ -44,13 +44,13 @@ class NutritionController extends Controller
      */
     public function index()
     {
-        return view('user.statistic.index');
+        return view('user.nutrition.statistic');
     }
 
     public function create()
     {
         $listSurvey = $this->survey->getAllRecords();
-        return view('user.statistic.create', compact('listSurvey'));
+        return view('user.nutrition.create', compact('listSurvey'));
     }
 
     public function store(DataRequest $request)
@@ -127,7 +127,7 @@ class NutritionController extends Controller
 
     public function getAvgWeightHeight(Request $request)
     {
-       $year = 2018;
+        $year = 2018;
         return response()->json([
             'weight' => $this->adult->getAvgWeightHeight('weight', $year),
             'height' => $this->adult->getAvgWeightHeight('height', $year),
@@ -159,6 +159,12 @@ class NutritionController extends Controller
                 $data = Senior::get()->toArray();
                 break;
         }
-        return view('user.statistic.population', compact('params', 'data'));
+        return view('user.nutrition.index', compact('params', 'data'));
+    }
+
+    public function getSurvey(Request $request)
+    {
+        $survey = $this->survey->find($request->survey_id) ?? $this->survey->get()->last();
+        return response()->json(['data' => $survey->toArray()]);
     }
 }

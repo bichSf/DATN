@@ -126,19 +126,19 @@
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Năm thống kê</span></div>
                                     <div class="col-8">
-                                        <input type="text" class="form-control text-right" name="year" disabled>
+                                        <input type="text" class="form-control" name="year" disabled>
                                     </div>
                                 </div>
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Tháng thống kê</span></div>
                                     <div class="col-8">
-                                        <input type="text" class="form-control text-right" name="month" disabled>
+                                        <input type="text" class="form-control" name="month" disabled>
                                     </div>
                                 </div>
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Khu vực thống kê</span></div>
                                     <div class="col-8">
-                                        <input type="text" class="form-control text-right" name="area" disabled>
+                                        <input type="text" class="form-control" name="area" disabled>
                                     </div>
                                 </div>
                                 <div class="row m10b">
@@ -276,5 +276,5 @@
 @endsection
 @section('js')
     <script src="{{ asset('js/custom/address.js')}}"></script>
-    <script src="{{ asset('js/custom/population.js')}}"></script>
+    <script src="{{ asset('js/custom/statistic_nutrition.js')}}"></script>
 @endsection
