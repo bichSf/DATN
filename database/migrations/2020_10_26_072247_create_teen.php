@@ -16,9 +16,9 @@ class CreateTeen extends Migration
         Schema::create('teens_11_20', function (Blueprint $table) {
             $table->id();
             $table->float('weight', 4, 1)->comment('kg');
-            $table->float('height', 3, 1)->comment('cm');
-            $table->float('biceps_skinfold', 2, 1)->comment('cm');
-            $table->float('fat_percentage', 2, 1)->comment('%');
+            $table->float('height', 4, 1)->comment('cm');
+            $table->float('biceps_skinfold', 4, 1)->comment('cm');
+            $table->float('fat_percentage', 4, 1)->comment('%');
             $table->timestamps();
             $table->softDeletes();
         });

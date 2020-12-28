@@ -15,7 +15,6 @@ class SurveysSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
         for ($year = 2000; $year < 2019; $year++) {
             for ($month = 1; $month < 12; $month += 3) {
                 $name = "Khảo sát dinh dưỡng tháng " . $month ."/" . $year;

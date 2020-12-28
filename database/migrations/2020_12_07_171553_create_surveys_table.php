@@ -13,7 +13,7 @@ class CreateSurveysTable extends Migration
      */
     public function up()
     {
-        Schema::create('serveys', function (Blueprint $table) {
+        Schema::create('surveys', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('area_id');
@@ -31,6 +31,6 @@ class CreateSurveysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manager_survey');
+        Schema::dropIfExists('surveys');
     }
 }

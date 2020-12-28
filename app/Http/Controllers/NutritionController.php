@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Mockery\Exception;
 
-class StatisticController extends Controller
+class NutritionController extends Controller
 {
     private $survey;
     private $infant;
@@ -53,54 +53,6 @@ class StatisticController extends Controller
         return view('user.statistic.create', compact('listSurvey'));
     }
 
-    public function getZscore(Request $request)
-    {
-        $tableType = $request->table_type ?? INFANTS;
-        $year1 = $request->year_1 ?? 2008;
-        $year2 = $request->year_2 ?? 2018;
-        $area = $request->area;
-        switch ($tableType) {
-            case INFANTS:
-            default:
-                return response()->json(['data' => $this->infant->getZcoreCanTheoCao($year1, $year2, $area)]);
-            case TODDLER:
-                return response()->json(['data' => $this->toddler->getZcoreCanTheoCao($year1, $year2, $area)]);
-            case CHILDREN:
-                return response()->json(['data' => $this->children->getZcoreCanTheoCao($year1, $year2, $area)]);
-        }
-    }
-
-    public function getDataBmi(Request $request)
-    {
-        $year = $request->year ?? 2018;
-        return response()->json(['data' => $this->adult->getBMI($year)]);
-    }
-
-    public function getColumnChart(Request $request)
-    {
-        $tableType = $request->table_type ?? INFANTS;
-        $year = 2018;
-        switch ($tableType) {
-            case INFANTS:
-                return response()->json(['data' => $this->infant->getDataColumnChart($year)]);
-            case TODDLER:
-                return response()->json(['data' => $this->toddler->getDataColumnChart($year)]);
-            case CHILDREN:
-                return response()->json(['data' => $this->children->getDataColumnChart($year)]);
-        }
-
-    }
-
-    public function getAvgWeightHeight(Request $request)
-    {
-       $year = 2018;
-        return response()->json([
-            'weight' => $this->adult->getAvgWeightHeight('weight', $year),
-            'height' => $this->adult->getAvgWeightHeight('height', $year),
-        ]);
-
-    }
-
     public function store(DataRequest $request)
     {
         try {
@@ -132,6 +84,54 @@ class StatisticController extends Controller
             Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
             return response()->json(['save' => false]);
         }
+
+    }
+
+    public function getZscore(Request $request)
+    {
+        $tableType = $request->table_type ?? INFANTS;
+        $year1 = $request->year_1 ?? 2008;
+        $year2 = $request->year_2 ?? 2018;
+        $area = $request->area;
+        switch ($tableType) {
+            case INFANTS:
+            default:
+                return response()->json(['data' => $this->infant->getZScoreWH($year1, $year2, $area)]);
+            case TODDLER:
+                return response()->json(['data' => $this->toddler->getZScoreWH($year1, $year2, $area)]);
+            case CHILDREN:
+                return response()->json(['data' => $this->children->getZScoreWH($year1, $year2, $area)]);
+        }
+    }
+
+    public function getDataBmi(Request $request)
+    {
+        $year = $request->year ?? 2018;
+        return response()->json(['data' => $this->adult->getBMI($year)]);
+    }
+
+    public function getColumnChart(Request $request)
+    {
+        $tableType = $request->table_type ?? INFANTS;
+        $year = 2018;
+        switch ($tableType) {
+            case INFANTS:
+                return response()->json(['data' => $this->infant->getDataColumnChart($year)]);
+            case TODDLER:
+                return response()->json(['data' => $this->toddler->getDataColumnChart($year)]);
+            case CHILDREN:
+                return response()->json(['data' => $this->children->getDataColumnChart($year)]);
+        }
+
+    }
+
+    public function getAvgWeightHeight(Request $request)
+    {
+       $year = 2018;
+        return response()->json([
+            'weight' => $this->adult->getAvgWeightHeight('weight', $year),
+            'height' => $this->adult->getAvgWeightHeight('height', $year),
+        ]);
 
     }
 

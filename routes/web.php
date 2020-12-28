@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@index')->name(HOME);
-Route::post('/data-chart-', 'HomeController@index')->name(HOME);
 
 Route::get('/login', 'LoginController@index')->name(USER_LOGIN);
 Route::post('/login', 'LoginController@login')->name(LOGIN);
@@ -45,15 +44,15 @@ Route::middleware('auth.admin')->group(function () {
 
     Route::middleware('role:user')->group(function () {
         Route::prefix('statistical')->group(function () {
-            Route::get('/', 'StatisticController@index')->name(USER_STATISTICAL);
-            Route::get('/population', 'StatisticController@showPopulation')->name(USER_STATISTICAL_POPULATION);
-            Route::get('/create', 'StatisticController@create')->name(USER_STATISTICAL_CREATE);
-            Route::post('/store', 'StatisticController@store')->name(USER_STATISTICAL_STORE);
-            Route::post('/get-zscore', 'StatisticController@getZscore');
-            Route::get('/get-zscore', 'StatisticController@getZscore');
-            Route::post('/get-column-chart', 'StatisticController@getColumnChart');
-            Route::get('/get-avg-weight-height', 'StatisticController@getAvgWeightHeight');
-            Route::post('/get-data-bmi', 'StatisticController@getDataBmi');
+            Route::get('/', 'NutritionController@index')->name(USER_STATISTICAL);
+            Route::get('/population', 'NutritionController@showPopulation')->name(USER_STATISTICAL_POPULATION);
+            Route::get('/create', 'NutritionController@create')->name(USER_STATISTICAL_CREATE);
+            Route::post('/store', 'NutritionController@store')->name(USER_STATISTICAL_STORE);
+            Route::post('/get-zscore', 'NutritionController@getZscore');
+            Route::get('/get-zscore', 'NutritionController@getZscore');
+            Route::post('/get-column-chart', 'NutritionController@getColumnChart');
+            Route::get('/get-avg-weight-height', 'NutritionController@getAvgWeightHeight');
+            Route::post('/get-data-bmi', 'NutritionController@getDataBmi');
         });
 
         Route::prefix('change-password')->group(function () {

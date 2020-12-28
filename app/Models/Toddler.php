@@ -44,7 +44,8 @@ class Toddler extends Model
         return array_column($data, 'zscore');
 
     }
-    public function getZcoreCanTheoCao($year1, $year2, $area)
+
+    public function getZScoreWH($year1, $year2, $area)
     {
         $categories = [];
         for ($i = -7; $i <= 7; $i+=0.25) {
@@ -68,7 +69,7 @@ class Toddler extends Model
             });
         })->first()->toArray()['avg'];
         $avg = round($avg, 2);
-        $data = $this->selectRaw('round(CAST(FLOAT8 (weight/height - '.$avg.') / '.DO_LECH_QUAN_THE.' AS NUMERIC), 2) as zscore')->whereHas('survey', function ($query) use ($year, $area) {
+        $data = $this->selectRaw('round((weight/height - '.$avg.') / '.STANDARD_DEVIATION.', 2) as zscore')->whereHas('survey', function ($query) use ($year, $area) {
             return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
                 return $query->where('area_id', $area);
             });

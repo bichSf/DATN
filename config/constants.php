@@ -94,7 +94,8 @@ const AREAS = [
 
 const LIM_SDD = -0.4;
 
-const DO_LECH_QUAN_THE = 0.014;
+// Độ lệch chuẩn của quần thể tham chiếu
+const STANDARD_DEVIATION = 0.014;
 
 const BMI_RATE = [
     'Gầy độ 3' => [0, 16],

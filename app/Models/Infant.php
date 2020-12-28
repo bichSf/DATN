@@ -33,16 +33,16 @@ class Infant extends Model
 
     public function getZcore($year = 2000)
     {
-        $avg = $this->selectRaw('avg(weight)')->whereHas('survey', function ($query) use ($year) {
+        $avg = $this->selectRaw('avg(weight) as avg')->whereHas('survey', function ($query) use ($year) {
             return $query->where('year', $year);
         })->first()->toArray()['avg'];
-        $data = $this->selectRaw('round(CAST(FLOAT8 (infants_0_0.weight - '.$avg.') / 3.5 AS NUMERIC), 2) as zscore')->whereHas('survey', function ($query) use ($year) {
+        $data = $this->selectRaw('round((infants_0_0.weight - '.$avg.') / '.STANDARD_DEVIATION.', 2) as zscore')->whereHas('survey', function ($query) use ($year) {
             return $query->where('year', $year);
         })->orderBy('weight')->get()->toArray();
         return array_column($data, 'zscore');
     }
 
-    public function getZcoreCanTheoCao($year1, $year2, $area = null)
+    public function getZScoreWH($year1, $year2, $area = null)
     {
         $categories = [];
         for ($i = -7; $i <= 7; $i+=0.25) {
@@ -60,13 +60,13 @@ class Infant extends Model
 
     public function makeDataZcore($year, $area, $color)
     {
-        $avg = $this->selectRaw('avg(weight / height)')->whereHas('survey', function ($query) use ($year, $area) {
+        $avg = $this->selectRaw('avg(weight / height) as avg')->whereHas('survey', function ($query) use ($year, $area) {
             return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
                 return $query->where('area_id', $area);
             });
         })->first()->toArray()['avg'];
         $avg = round($avg, 2);
-        $data = $this->selectRaw('round(CAST(FLOAT8 (weight/height - '.$avg.') / '.DO_LECH_QUAN_THE.' AS NUMERIC), 2) as zscore')->whereHas('survey', function ($query) use ($year, $area) {
+        $data = $this->selectRaw('round((weight/height - '.$avg.') / '.STANDARD_DEVIATION.', 2) as zscore')->whereHas('survey', function ($query) use ($year, $area) {
             return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
                 return $query->where('area_id', $area);
             });

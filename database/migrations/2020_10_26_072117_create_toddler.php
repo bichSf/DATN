@@ -16,10 +16,10 @@ class CreateToddler extends Migration
         Schema::create('toddlers_1_60', function (Blueprint $table) {
             $table->id();
             $table->float('weight', 4, 1)->comment('kg');
-            $table->float('height', 2, 1)->comment('cm');
+            $table->float('height', 4, 1)->comment('cm');
             $table->boolean('is_infant')->nullable()->default(true)->comment('< 24 months');
-            $table->float('biceps_skinfold', 2, 1)->comment('cm');
-            $table->float('arm_circumference', 2, 1)->comment('cm');
+            $table->float('biceps_skinfold', 4, 1)->comment('cm');
+            $table->float('arm_circumference', 4, 1)->comment('cm');
             $table->timestamps();
             $table->softDeletes();
         });
