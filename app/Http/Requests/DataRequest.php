@@ -45,6 +45,7 @@ class DataRequest extends FormRequest
             'fat_percentage.between' => 'Số liệu không hợp lệ',
             'knee_height.between' => 'Số liệu không hợp lệ',
             'stomach_feet.between' => 'Số liệu không hợp lệ',
+            "required" => "Trường này không được để trống",
         ];
     }
 
@@ -57,8 +58,9 @@ class DataRequest extends FormRequest
         $listAttr = ATTRIBUTE_DATA[$type];
         $rules = [];
         foreach ($listAttr as $item) {
-            $rules[$item] = ['bail', 'numeric', 'between: 1,1000'];
+            $rules[$item] = ['bail', 'required', 'numeric', 'between: 1,1000'];
         }
+        $rules['survey_id'] = 'required';
         return $rules;
     }
 }

@@ -6,7 +6,7 @@ let nutritionFunction = (function () {
 }(window.jQuery, window, document));
 
 $(document).ready(function () {
-    $('select[name=table_type]').on('change', function () {
+    $('select[name=table_type], select[name=survey_id]').on('change', function () {
         $('#form-statistical-population').submit();
     })
 });

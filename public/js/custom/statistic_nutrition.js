@@ -85,7 +85,7 @@ let statisticNutritionFunction = (function () {
         });
 
         submitAjax.done(function (response) {
-            window.location.reload();
+            window.location.href = window.origin + '/nutrition';
         });
 
         submitAjax.fail(function (response) {
@@ -102,7 +102,7 @@ let statisticNutritionFunction = (function () {
         $.each(messageList, function (key, value) {
             $('p.error-message[data-error=' + key + ']').text(value).css('padding-top', 4).show();
             $('input[name=' + key + ']').addClass('input-error');
-            $('select[name=' + key + ']').parent().addClass('input-error');
+            $('select[name=' + key + ']').addClass('input-error');
         });
         $('html, body').animate({
             scrollTop: (

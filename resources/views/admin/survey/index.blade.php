@@ -60,6 +60,13 @@
             </div>
         </div>
 
+        <div class="group-end d-flex mt-3 justify-content-between">
+            @if($listSurvey->total() > 0)
+                <span>{{ $listSurvey->firstItem() }} ~ {{ $listSurvey->lastItem() }} / {{ $listSurvey->total() }} bản ghi</span>
+            @endif
+            {{ $listSurvey->links('partials.paginate', ['paginator' => $listSurvey]) }}
+        </div>
+
         <div class="modal" id="modal-delete">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <form id="form-delete-survey" method="POST" class="form-data-submit w-100">

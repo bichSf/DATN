@@ -23,11 +23,10 @@
         <div class="row m0">
             <div class="col-12 bg-white" style="padding: 30px;">
                 <div class="content-wrapper"
-                     style="background-color: white; background-color: white; overflow: auto; max-height: 1000px;">
+                     style="background-color: white; background-color: white; overflow-x: auto;">
                     <table class="table table-bordered table-striped border-0 m0">
                         <thead>
                         <tr>
-                            <th class="text-center w-4">STT</th>
                             <th class="text-center">Ảnh</th>
                             <th class="text-center">Email</th>
                             <th class="text-center">Họ tên</th>
@@ -46,7 +45,6 @@
                         <tbody>
                         @forelse($listUser as $key => $value)
                             <tr>
-                                <td>{{ $key+1 }}</td>
                                 <td>
                                     <div>
                                         <img
@@ -85,6 +83,13 @@
                     </table>
                 </div>
             </div>
+        </div>
+
+        <div class="group-end d-flex mt-3 justify-content-between">
+            @if($listUser->total() > 0)
+                <span>{{ $listUser->firstItem() }} ~ {{ $listUser->lastItem() }} / {{ $listUser->total() }} bản ghi</span>
+            @endif
+            {{ $listUser->links('partials.paginate', ['paginator' => $listUser]) }}
         </div>
 
         <div class="modal" id="modal-delete">

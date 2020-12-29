@@ -3,7 +3,6 @@
  * Define const for route name
  */
 const HOME = 'home';
-const USER_TOP = 'user.top';
 const USER_LOGIN = 'user.login';
 const LOGIN = 'login';
 const LOGOUT = 'logout';
@@ -29,7 +28,7 @@ const USER_STATISTICAL_POPULATION = 'user.statistical.population';
 const USER_STATISTICAL_CREATE = 'user.statistical.create';
 const USER_STATISTICAL_STORE = 'user.statistical.store';
 const USER_PROFILE = 'user.profile';
-const USER_POPULATION = 'user.population';
+
 /**
  *  Define role value
  */
@@ -58,12 +57,12 @@ const SENIORS = 'seniors_60_100';
 const ARRAY_CHILDREN = ['infants_0_0', 'toddlers_1_60', 'children_5_11'];
 
 const ATTRIBUTE_DATA = [
-    INFANTS => ['weight', 'height', 'head_circumference'],
-    TODDLER => ['weight', 'height', 'biceps_skinfold', 'arm_circumference'],
-    CHILDREN => ['weight', 'height', 'biceps_skinfold', 'arm_circumference', 'head_circumference', 'chest_circumference'],
-    TEENS => ['weight', 'height', 'biceps_skinfold', 'fat_percentage'],
-    ADULTS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'fat_percentage'],
-    SENIORS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'knee_height', 'stomach_feet'],
+    INFANTS => ['weight', 'height', 'head_circumference', 'survey_id'],
+    TODDLER => ['weight', 'height', 'biceps_skinfold', 'arm_circumference', 'survey_id'],
+    CHILDREN => ['weight', 'height', 'biceps_skinfold', 'arm_circumference', 'head_circumference', 'chest_circumference', 'survey_id'],
+    TEENS => ['weight', 'height', 'biceps_skinfold', 'fat_percentage', 'survey_id'],
+    ADULTS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'fat_percentage', 'survey_id'],
+    SENIORS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'knee_height', 'stomach_feet', 'survey_id'],
 ];
 
 const PATH_AVATAR_USER = '/storage/imagesProfileUser/';

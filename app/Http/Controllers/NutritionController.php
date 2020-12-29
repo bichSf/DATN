@@ -141,25 +141,42 @@ class NutritionController extends Controller
         $tableType = (isset($params['table_type']) && in_array($params['table_type'], array_keys(TYPE_POPULATION_NAME))) ? $params['table_type'] : INFANTS;
         switch ($tableType) {
             case INFANTS:
-                $data = Infant::get()->toArray();
+                $data = Infant::when(isset($params['survey_id']), function ($query) use ($params) {
+                    return $query->where('survey_id', $params['survey_id']);
+                })->orderByDesc('id')->paginate(PAGINATE);
                 break;
             case TODDLER:
-                $data = Toddler::get()->toArray();
+                $data = Toddler::when(isset($params['survey_id']), function ($query) use ($params) {
+                    return $query->where('survey_id', $params['survey_id']);
+                })->orderByDesc('id')->paginate(PAGINATE);
                 break;
             case CHILDREN:
-                $data = Children::get()->toArray();
+                $data = Children::when(isset($params['survey_id']), function ($query) use ($params) {
+                    return $query->where('survey_id', $params['survey_id']);
+                })->orderByDesc('id')->paginate(PAGINATE);
                 break;
             case TEENS:
-                $data = Teen::get()->toArray();
+                $data = Teen::when(isset($params['survey_id']), function ($query) use ($params) {
+                    return $query->where('survey_id', $params['survey_id']);
+                })->orderByDesc('id')->paginate(PAGINATE);
                 break;
             case ADULTS:
-                $data = Adult::get()->toArray();
+                $data = Adult::when(isset($params['survey_id']), function ($query) use ($params) {
+                    return $query->where('survey_id', $params['survey_id']);
+                })->orderByDesc('id')->paginate(PAGINATE);
                 break;
             case SENIORS:
-                $data = Senior::get()->toArray();
+                $data = Senior::when(isset($params['survey_id']), function ($query) use ($params) {
+                    return $query->where('survey_id', $params['survey_id']);
+                })->orderByDesc('id')->paginate(PAGINATE);
                 break;
         }
-        return view('user.nutrition.index', compact('params', 'data'));
+        return view('user.nutrition.index', [
+            'params' => $params,
+            'data' => $data,
+            'tableType' => $tableType,
+            'surveys' => $this->survey->get()->toArray(),
+        ]);
     }
 
     public function getSurvey(Request $request)

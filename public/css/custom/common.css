@@ -1660,129 +1660,13 @@
 }
 
 /*====Begin custom large screen col-bootstrap css=====*/
-.col-1500-4, .col-1500-8 {
-    position: relative;
-    width: 100%;
-    padding-right: 7.5px;
-    padding-left: 7.5px;
+.pagination .page-item.active .page-link {
+    color: white !important;
+    background-color: #2E9FBD !important;
+    border-color: #2E9FBD !important;
 }
 
-@media (min-width: 1500px) {
-    .col-1500-4 {
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
-    }
-
-    .col-1500-8 {
-        flex: 0 0 66.666666%;
-        max-width: 66.666666%;
-    }
-}
-
-/*====end custom =====*/
-
-@media (max-width: 1410px){
-    .container-wrapper-annual .group-status-top {
-        width: 100% !important;
-    }
-
-    .media-1410-m10t {
-        margin-top: 10px !important;
-    }
-}
-
-@media (max-width: 1199px) {
-    .m30t-sp {
-        margin-top: 30px !important;
-    }
-}
-
-@media (max-width: 1024px){
-    .container-wrapper-annual #form-condition-1 + .row .w-65, .container-wrapper-annual #form-condition-1 + .row .w-35 {
-        width: 100% !important;
-    }
-    .container-wrapper-annual .group-status-top #block-status {
-        margin-top: 10px !important;
-    }
-
-}
-
-
-@media (max-width: 767px) {
-    .container-padding {
-        padding: 45px 20px 60px 20px !important;
-    }
-
-    .container-csv-download {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-
-    .pcH {
-        display: block;
-    }
-
-    .spH {
-        display: none;
-    }
-
-    #wrapper-master .content-wrapper {
-        margin: 0;
-    }
-
-    #wrapper-master .content-wrapper .container-wrapper {
-        padding-right: 0;
-        padding-left: 0;
-    }
-
-    #wrapper-master .content-wrapper .container-wrapper-add {
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-
-    .p15lr {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .w-auto {
-        width: 100% !important;
-    }
-}
-
-@media (max-width: 575px) {
-    .m0lr-sp {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    .m0t-sp {
-        margin-top: 0 !important;
-    }
-
-    .m0b-sp {
-        margin-bottom: 0 !important;
-    }
-
-    .m35t-sp {
-        margin-top: 35px !important;
-    }
-
-    .p0lr-sp {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .p15lr {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-}
-
-#property-results #table-property {
-    overflow: hidden !important;
-}
-
-.color-black {
-    color: #000000;
+.pagination .page-link {
+    padding: 6px 12px;
+    color: black;
 }

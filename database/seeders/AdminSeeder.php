@@ -23,13 +23,25 @@ class AdminSeeder extends Seeder
             'role' => ADMIN,
             'avatar' => 'admin.jpeg',
         ]);
+        $faker = Faker\Factory::create();
         DB::table('users')->insert([
-            'name' => 'User',
-            'email' => 'user@123',
+            'name' => 'Trần Bích',
+            'email' => 'tranbichbk@gmail.com',
             'password' => Hash::make('12345678'),
             'role' => USER,
-            'avatar' => 'admin.jpeg',
+            'avatar' => 'user_default.png',
             'gender' => WOMAN,
         ]);
+
+        for ($i = 0; $i < 100; $i++) {
+            DB::table('users')->insert([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => Hash::make('12345678'),
+                'role' => USER,
+                'avatar' => 'user_default.png',
+                'gender' => rand(MAN, WOMAN),
+            ]);
+        }
     }
 }
