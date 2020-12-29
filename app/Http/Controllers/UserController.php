@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -18,10 +19,14 @@ class UserController extends Controller
      *
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listUser = $this->user->getAllUser();
-        return view('admin.user.index', compact('listUser'));
+        $params = $request->all();
+        $listUser = $this->user->getAllUser($params);
+        return view('admin.user.index', [
+            'params' => $params,
+            'listUser' => $listUser
+        ]);
     }
 
     public function create()

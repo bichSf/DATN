@@ -42,7 +42,7 @@ class NutritionController extends Controller
      *
      * @return mixed
      */
-    public function index()
+    public function showStatistic()
     {
         return view('user.nutrition.statistic');
     }
@@ -204,7 +204,7 @@ class NutritionController extends Controller
 
     }
 
-    public function showPopulation(Request $request)
+    public function index(Request $request)
     {
         $params = $request->all();
         $tableType = (isset($params['table_type']) && in_array($params['table_type'], array_keys(TYPE_POPULATION_NAME))) ? $params['table_type'] : INFANTS;
