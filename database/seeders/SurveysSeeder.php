@@ -15,7 +15,7 @@ class SurveysSeeder extends Seeder
      */
     public function run()
     {
-        for ($year = 2000; $year < 2019; $year++) {
+        for ($year = 2000; $year <= 2020; $year++) {
             for ($month = 1; $month < 12; $month += 3) {
                 $name = "Khảo sát dinh dưỡng tháng " . $month ."/" . $year;
                 DB::table('surveys')->insert([

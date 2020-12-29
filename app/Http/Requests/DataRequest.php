@@ -24,7 +24,7 @@ class DataRequest extends FormRequest
     public function rules()
     {
         $data = $this->request->all();
-        $rules = $this->getRuleDataRequest($data['table_type']);
+        $rules = $this->getRuleDataRequest($data['table_type'], $data['simulation'] ?? '');
         return $rules;
     }
 
@@ -53,14 +53,18 @@ class DataRequest extends FormRequest
      * @param $type
      * @return array
      */
-    public function getRuleDataRequest($type)
+    public function getRuleDataRequest($type, $isSimulation)
     {
         $listAttr = ATTRIBUTE_DATA[$type];
         $rules = [];
         foreach ($listAttr as $item) {
             $rules[$item] = ['bail', 'required', 'numeric', 'between: 1,1000'];
         }
-        $rules['survey_id'] = 'required';
+        if ($isSimulation == 'simulation') {
+            unset($rules['survey_id']);
+        } else {
+            $rules['survey_id'] = 'required';
+        }
         return $rules;
     }
 }

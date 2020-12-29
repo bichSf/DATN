@@ -24,7 +24,7 @@ class ToddlerSeeder extends Seeder
                 'is_infant' => $height < 75,
                 'biceps_skinfold' => $faker->randomFloat(1, 0.1, 0.5),
                 'arm_circumference' => $faker->randomFloat(1, 10.0, 15.0),
-                'survey_id' => $faker->numberBetween(1, 228),
+                'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
                 'gender' => false
             ]);
             $height = $faker->randomFloat(1, 50.0, 120.0);
@@ -34,7 +34,7 @@ class ToddlerSeeder extends Seeder
                 'is_infant' => $height < 75,
                 'biceps_skinfold' => $faker->randomFloat(1,0.1, 0.5),
                 'arm_circumference' => $faker->randomFloat(1, 10.0, 15.0),
-                'survey_id' => $faker->numberBetween(1, 228),
+                'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
                 'gender' => true
             ]);
         }
