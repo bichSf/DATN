@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="{{asset('css/custom/common.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     @yield('styles')
+    <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/highcharts/highstock.js')}}"></script>
     <script src="{{ asset('js/highcharts/highcharts-more.js')}}"></script>
+    <script src="{{ asset('js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/cleave.js')}}"></script>
+    <script src="{{ asset('js/custom/common.js')}}"></script>
     @yield('script-files')
 </head>
 <body>

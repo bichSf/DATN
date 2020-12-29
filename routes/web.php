@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@index')->name(HOME);
+Route::get('/test', function () {
+    dd(getMaxYearSurvey());
+});
+Route::post('/see-results', 'HomeController@seeResults')->name(HOME);
 
 Route::get('/login', 'LoginController@index')->name(USER_LOGIN);
 Route::post('/login', 'LoginController@login')->name(LOGIN);

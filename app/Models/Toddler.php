@@ -32,4 +32,31 @@ class Toddler extends StatisticNutrition
     {
         return $this->belongsTo(Survey::class, 'survey_id', 'id');
     }
+
+    public function getDataSpiderChart($params)
+    {
+        return [
+            'categories' => ['Cân nặng','Chiều cao', 'Vòng cánh tay', 'Nếp gấp da ở cơ tam đầu'],
+            'data' => [
+                [
+                    'name' => 'Hiện trạng',
+                    'data' => [(float)$params['weight'], (float)$params['height'], (float)$params['arm_circumference'],  (float)$params['biceps_skinfold']]
+                ],
+                [
+                    'name' => 'Trung bình',
+                    'data' =>  $this->getAvgAttribute($params['year'], $params['area'])
+                ]
+            ]
+        ];
+    }
+
+    public function getAvgAttribute($year, $area)
+    {
+        $avg = $this->selectRaw('round(avg(weight), 2) as avg_weight, round(avg(height), 2) as avg_height, round(avg(arm_circumference), 2) as avg_arm_circumference, round(avg(biceps_skinfold), 2) as avg_biceps_skinfold')->whereHas('survey', function ($query) use ($year, $area) {
+            return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
+                return $query->where('area_id', $area);
+            });
+        })->first()->toArray();
+        return array_values($avg);
+    }
 }

@@ -27,4 +27,14 @@ class Survey extends Model
     {
         return $this->get()->toArray();
     }
+
+    public static function getMaxId()
+    {
+        return Survey::orderBy('id', 'desc')->take(1)->first()->toArray()['id'];
+    }
+
+    public static function getRangeYear()
+    {
+        return Survey::select('year')->groupBy('year')->orderBy('year', 'desc')->pluck('year')->toArray();
+    }
 }
