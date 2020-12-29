@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="row m-0">
-                <div class="offset-8 col-4 m30b">
+                <div class="offset-8 col-4 p-0 m30b">
                     <div class="row m0" style="justify-content: flex-end">
                         <div class="text-right">
                             <a href="/create" class="btn custom-btn-success">

@@ -12,21 +12,21 @@
                         <label class="m0 text-white fs16">Email</label>
                     </div>
                     <div class="centered p0 bg-white m30r">
-                        <input name="email" type="text" placeholder="abc@gmail.com" class="form-control rounded-0" value="{{ $params['email'] }}">
+                        <input name="email" type="text" placeholder="abc@gmail.com" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['email'] :'' }}">
                     </div>
 
                     <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 100px;">
                         <label class="m0 text-white fs16">Họ tên</label>
                     </div>
                     <div class="centered p0 bg-white m30r">
-                        <input name="name" type="text" placeholder="tran bich" class="form-control rounded-0" value="{{ $params['name'] }}">
+                        <input name="name" type="text" placeholder="tran bich" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['name'] : '' }}">
                     </div>
 
                     <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 80px;">
                         <label class="m0 text-white fs16">SDT</label>
                     </div>
                     <div class="centered p0 bg-white m20r">
-                        <input name="phone" type="text" placeholder="01683024581" class="form-control rounded-0" value="{{ $params['phone'] }}">
+                        <input name="phone" type="text" placeholder="01683024581" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['phone'] : '' }}">
                     </div>
 
                     <div class="centered-vertical">
