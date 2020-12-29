@@ -3,11 +3,11 @@
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="page-item page-back disabled" aria-disabled="true" aria-label="Trước">
-                <span class="page-link" aria-hidden="true"><<</span>
+                <span class="page-link" aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
             </li>
         @else
             <li class="page-item page-back">
-                <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="Trước"><<</a>
+                <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="Trước"><i class="fas fa-angle-double-left"></i></a>
             </li>
         @endif
         <?php
@@ -45,11 +45,11 @@
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
             <li class="page-item page-next">
-                <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="Tiếp">>></a>
+                <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="Tiếp"><i class="fas fa-angle-double-right"></i></a>
             </li>
         @else
             <li class="page-item page-next disabled" aria-disabled="true" aria-label="Tiếp">
-                <span class="page-link" aria-hidden="true">>></span>
+                <span class="page-link" aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
             </li>
         @endif
     </ul>

@@ -48,10 +48,12 @@ Route::middleware('auth.admin')->group(function () {
 
     Route::middleware('role:user')->group(function () {
         Route::prefix('nutrition')->group(function () {
-            Route::get('/', 'NutritionController@showPopulation')->name(USER_STATISTICAL_POPULATION);
+            Route::get('/', 'NutritionController@showPopulation')->name(USER_NUTRITION_INDEX);
             Route::post('/get-survey', 'NutritionController@getSurvey');
-            Route::get('/create', 'NutritionController@create')->name(USER_STATISTICAL_CREATE);
-            Route::post('/store', 'NutritionController@store')->name(USER_STATISTICAL_STORE);
+            Route::get('/create', 'NutritionController@create')->name(USER_NUTRITION_CREATE);
+            Route::post('/store', 'NutritionController@store')->name(USER_NUTRITION_STORE);
+            Route::delete('/delete/{id}', 'NutritionController@destroy')->name(USER_NUTRITION_DESTROY);
+            Route::post('/delete-multi', 'NutritionController@destroyMulti')->name(USER_NUTRITION_DESTROY_MULTI);
         });
 
         Route::prefix('statistical')->group(function () {

@@ -24,9 +24,11 @@ const USER_FORGET_PASSWORD_INDEX = 'user.forget_password.index';
 const USER_RESET_PASSWORD_INDEX = 'user.reset_password.index';
 const USER_RESET_PASSWORD = 'user.reset_password';
 const USER_STATISTICAL = 'user.statistical';
-const USER_STATISTICAL_POPULATION = 'user.statistical.population';
-const USER_STATISTICAL_CREATE = 'user.statistical.create';
-const USER_STATISTICAL_STORE = 'user.statistical.store';
+const USER_NUTRITION_INDEX = 'user.nutrition.index';
+const USER_NUTRITION_CREATE = 'user.nutrition.create';
+const USER_NUTRITION_STORE = 'user.nutrition.store';
+const USER_NUTRITION_DESTROY = 'user.nutrition.destroy';
+const USER_NUTRITION_DESTROY_MULTI = 'user.nutrition.destroy_multi';
 const USER_PROFILE = 'user.profile';
 
 /**

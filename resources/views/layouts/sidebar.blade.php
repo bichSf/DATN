@@ -15,8 +15,8 @@
                     <li class="nav-item menu-simulation-item @if($routeIndex == USER_STATISTICAL) active @endif">
                         <a class="fs16" href="{{ route(USER_STATISTICAL) }}"><i class="fa fa-glass"></i>Thống kê dinh dưỡng</a>
                     </li>
-                    <li class="nav-item menu-simulation-item @if(in_array($routeIndex, [USER_STATISTICAL_POPULATION, USER_STATISTICAL_CREATE])) active @endif">
-                        <a class="fs16" href="{{ route(USER_STATISTICAL_POPULATION) }}"><i class="fa fa-glass"></i>Khảo sát dinh dưỡng</a>
+                    <li class="nav-item menu-simulation-item @if(in_array($routeIndex, [USER_NUTRITION_INDEX, USER_NUTRITION_CREATE])) active @endif">
+                        <a class="fs16" href="{{ route(USER_NUTRITION_INDEX) }}"><i class="fa fa-glass"></i>Khảo sát dinh dưỡng</a>
                     </li>
                     <li class="nav-item menu-simulation-item @if($routeIndex == USER_PROFILE) active @endif">
                         <a class="fs16" href="{{ route(USER_PROFILE) }}"><i class="fa fa-glass"></i>Thông tin cá nhân</a>

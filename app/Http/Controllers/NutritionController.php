@@ -84,7 +84,76 @@ class NutritionController extends Controller
             Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
             return response()->json(['save' => false]);
         }
+    }
 
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $table_type = $request->table_type;
+            if (empty($table_type)) {
+                Session::flash(STR_ERROR_FLASH, 'Xoá thất bại.');
+                return redirect(route(USER_NUTRITION_INDEX));
+            }
+            switch ($table_type) {
+                case INFANTS:
+                    $item = Infant::findOrFail($id);
+                    break;
+                case TODDLER:
+                    $item = Toddler::findOrFail($id);
+                    break;
+                case CHILDREN:
+                    $item = Children::findOrFail($id);
+                    break;
+                case TEENS:
+                    $item = Teen::findOrFail($id);
+                    break;
+                case ADULTS:
+                    $item = Adult::findOrFail($id);
+                    break;
+                case SENIORS:
+                    $item = Senior::findOrFail($id);
+                    break;
+            }
+            $item && $item->delete() ? Session::flash(STR_SUCCESS_FLASH, 'Xoá thành công.') : Session::flash(STR_ERROR_FLASH, 'Xoá thất bại.');
+            return redirect(route(USER_NUTRITION_INDEX));
+        } catch (Exception $exception) {
+            report($exception);
+            Session::flash(STR_ERROR_FLASH, 'Xoá thất bại.');
+            return redirect(route(USER_NUTRITION_INDEX));
+        }
+    }
+
+    public function destroyMulti(Request $request)
+    {
+        try {
+            $table_type = $request->table_type;
+            switch ($table_type) {
+                case INFANTS:
+                    $count = Infant::destroy($request->ids);
+                    break;
+                case TODDLER:
+                    $count = Toddler::destroy($request->ids);
+                    break;
+                case CHILDREN:
+                    $count = Children::destroy($request->ids);
+                    break;
+                case TEENS:
+                    $count = Teen::destroy($request->ids);
+                    break;
+                case ADULTS:
+                    $count = Adult::destroy($request->ids);
+                    break;
+                case SENIORS:
+                    $count = Senior::destroy($request->ids);
+                    break;
+            }
+            if ($count != 0 ) {
+                return redirect(route(USER_NUTRITION_INDEX))->with(STR_SUCCESS_FLASH, 'Xoá thành công.');
+            }
+        } catch (\Exception $exception) {
+            report($exception);
+            return redirect(route(USER_NUTRITION_INDEX))->with(STR_ERROR_FLASH, 'Xoá thất bại.');
+        }
     }
 
     public function getZscore(Request $request)

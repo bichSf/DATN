@@ -1670,3 +1670,11 @@
     padding: 6px 12px;
     color: black;
 }
+
+.btn-delete-multi:focus {
+    outline: unset;
+}
+
+.table td, .table th {
+    vertical-align: middle !important;
+}
