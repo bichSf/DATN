@@ -282,7 +282,12 @@ let Common = (function () {
                 text: title,
                 // x: -80
             },
-
+            exporting: {
+                enabled: false
+            },
+            credits: {
+                enabled: false
+            },
             pane: {
                 size: '80%'
             },

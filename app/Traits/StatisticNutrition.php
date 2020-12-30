@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class StatisticNutrition extends Model
+trait StatisticNutrition
 {
     public function getZScore($year = 2000)
     {
@@ -18,7 +16,7 @@ class StatisticNutrition extends Model
         return array_column($data, 'zscore');
     }
 
-    public function getZScoreWH($year1, $year2, $area)
+    public function getDataZScoreWH($year1, $year2, $area)
     {
         $categories = [];
         for ($i = -7; $i <= 7; $i+=0.25) {
