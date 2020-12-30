@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\CommonFunction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Adult extends StatisticNutrition
+class Adult extends Model
 {
     use HasFactory;
+    use CommonFunction;
 
     protected $table = 'adults_20_60';
 
@@ -105,7 +108,7 @@ class Adult extends StatisticNutrition
                 ],
                 [
                     'name' => 'Trung bình',
-                    'data' =>  $this->getAvgAttribute($params['year'], $params['area'])
+                    'data' =>  $this->getAvgAttributeAdult($params['year'], $params['area'])
                 ]
             ],
             'data_detail' => [
@@ -117,7 +120,7 @@ class Adult extends StatisticNutrition
         ];
     }
 
-    private function getAvgAttribute($year, $area)
+    public function getAvgAttributeAdult($year, $area)
     {
         $avg = $this->selectRaw('round(avg(weight), 2) as avg_weight, round(avg(height), 2) as avg_height, round(avg(arm_circumference), 2) as avg_arm_circumference, round(avg(biceps_skinfold), 2) as avg_biceps_skinfold, round(avg(fat_percentage), 2) as avg_fat_percentage')->whereHas('survey', function ($query) use ($year, $area) {
             return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {

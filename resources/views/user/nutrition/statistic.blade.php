@@ -4,6 +4,7 @@
         <h1 class="text-center fw-bold">Thống kê dinh dưỡng</h1>
     </div>
 
+    @php($rangeYear = getRangeYearSurvey())
     <div class="display-highcharts m30t">
         <div class="row m0">
             <div class="col-12 col-lg-12 p0">
@@ -28,16 +29,16 @@
                                 </div>
                                 <div class="centered p0 bg-white">
                                     <select class="form-control change-zscore" name="year_1">
-                                        @for($i = 2018; $i > 1999; $i--)
-                                            <option value="{{ $i }}" @if($i == 2008) selected @endif>{{ $i }}</option>
-                                        @endfor
+                                        @foreach($rangeYear as $year)
+                                            <option value="{{ $year }}" @if($year == 2008) selected @endif>{{ $year }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="centered p0 bg-white m10r">
                                     <select class="form-control change-zscore" name="year_2">
-                                        @for($i = 2018; $i > 1999; $i--)
-                                            <option value="{{ $i }}" @if($i == 2018) selected @endif>{{ $i }}</option>
-                                        @endfor
+                                        @foreach($rangeYear as $year)
+                                            <option value="{{ $year }}" @if($year == 2018) selected @endif>{{ $year }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
@@ -71,9 +72,9 @@
                                 </div>
                                 <div class="centered p0 bg-white">
                                     <select id="change-pie" class="form-control change-pie" name="year">
-                                        @for($i = 2018; $i > 1999; $i--)
-                                            <option value="{{ $i }}" @if($i == 2018) selected @endif>{{ $i }}</option>
-                                        @endfor
+                                        @foreach($rangeYear as $year)
+                                            <option value="{{ $year }}" @if($year == 2018) selected @endif>{{ $year }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

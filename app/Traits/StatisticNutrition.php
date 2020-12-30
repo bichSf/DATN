@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class StatisticNutrition extends Model
+trait StatisticNutrition
 {
     public function getZScore($year = 2000)
     {
@@ -16,14 +14,6 @@ class StatisticNutrition extends Model
             return $query->where('year', $year);
         })->orderBy('weight')->get()->toArray();
         return array_column($data, 'zscore');
-    }
-
-    public function getZScoreWH($params)
-    {
-        $avg = $this->selectRaw('avg(weight / height) as avg')->whereHas('survey', function ($query) use ($params) {
-            return $query->where('year', $params['year']);
-        })->first()->toArray()['avg'];
-        return round((($params['weight'] / $params['height']) - $avg) / STANDARD_DEVIATION, 2);
     }
 
     public function getDataZScoreWH($year1, $year2, $area)

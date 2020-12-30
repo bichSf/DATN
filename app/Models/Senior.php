@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\CommonFunction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Senior extends StatisticNutrition
+class Senior extends Model
 {
     use HasFactory;
+    use CommonFunction;
 
     protected $table = 'seniors_60_100';
 
@@ -45,7 +48,7 @@ class Senior extends StatisticNutrition
                 ],
                 [
                     'name' => 'Trung bình',
-                    'data' =>  $this->getAvgAttribute($params['year'], $params['area'])
+                    'data' =>  $this->getAvgAttributeSenior($params['year'], $params['area'])
                 ]
             ],
             'data_detail' => [
@@ -57,7 +60,7 @@ class Senior extends StatisticNutrition
         ];
     }
 
-    private function getAvgAttribute($year, $area)
+    public function getAvgAttributeSenior($year, $area)
     {
         $avg = $this->selectRaw('round(avg(weight), 2) as avg_weight, round(avg(height), 2) as avg_height, round(avg(arm_circumference), 2) as avg_arm_circumference, round(avg(biceps_skinfold), 2) as avg_biceps_skinfold,
          round(avg(knee_height), 2) as avg_knee_height, round(avg(stomach_feet), 2) as avg_stomach_feet')->whereHas('survey', function ($query) use ($year, $area) {
