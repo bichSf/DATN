@@ -19,14 +19,14 @@
                         <label class="m0 text-white fs16">Họ tên</label>
                     </div>
                     <div class="centered p0 bg-white m30r">
-                        <input name="name" type="text" placeholder="tran bich" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['name'] : '' }}">
+                        <input name="name" type="text" placeholder="tran bich" class="form-control rounded-0" value="{{ isset($params['name']) ? $params['name'] : '' }}">
                     </div>
 
                     <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 80px;">
                         <label class="m0 text-white fs16">SDT</label>
                     </div>
                     <div class="centered p0 bg-white m20r">
-                        <input name="phone" type="text" placeholder="01683024581" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['phone'] : '' }}">
+                        <input name="phone" type="text" placeholder="01683024581" class="form-control rounded-0" value="{{ isset($params['phone']) ? $params['phone'] : '' }}">
                     </div>
 
                     <div class="centered-vertical">
@@ -67,7 +67,6 @@
                             <th class="text-center">Chức vụ</th>
                             <th class="text-center">Chi nhánh</th>
                             <th class="text-center">Địa chỉ</th>
-                            <th class="text-center">Ngày tạo</th>
                             <th></th>
 
                         </tr>
@@ -86,12 +85,11 @@
                                 <td>{{ $value['name'] }}</td>
                                 <td>{{ $value['phone'] }}</td>
                                 <td>{{ GENDER_NAME[$value['gender']] }}</td>
-                                <td>{{ date('d/m/Y', strtotime($value['birthday'])) }}</td>
+                                <td>{{ $value['birthday'] ? date('d/m/Y', strtotime($value['birthday'])) : '' }}</td>
                                 <td>{{ $value['department'] }}</td>
                                 <td>{{ $value['part'] }}</td>
                                 <td>{{ $value['branch'] }}</td>
                                 <td>{{ $value['address'] }}</td>
-                                <td>{{ date('d/m/Y', strtotime($value['created_at'])) }}</td>
                                 <td>
                                     <a href="{{ route(ADMIN_USER_EDIT, $value['id']) }}"
                                        class="btn btn-success border-0 btn-topic-custom btn-accept-topic-student mb-4 text-white"

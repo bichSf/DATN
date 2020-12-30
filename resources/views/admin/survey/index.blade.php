@@ -78,14 +78,13 @@
                                 <td class="w-25">{{ AREAS[$item->area_id] }}</td>
                                 <td class="w-30 text-center">{{ $item->month }} / {{ $item->year }}</td>
                                 <td>
-                                    @php($condition = $item->month >= date('m') && $item->year >= date('Y'))
-                                    <button class="btn btn-success border-0 btn-topic-custom btn-accept-topic-student mr-4" @if(!$condition) disabled @endif>
-                                        <a href="{{ route(ADMIN_SURVEY_EDIT, $item['id']) }}" class="text-white @if(!$condition) a-disabled @endif"
+                                    <button class="btn btn-success border-0 btn-topic-custom btn-accept-topic-student mr-4" @if($item->done == 1) disabled @endif>
+                                        <a href="{{ route(ADMIN_SURVEY_EDIT, $item['id']) }}" class="text-white @if($item->done == 1) a-disabled @endif"
                                            data-toggle="tooltip" data-placement="top" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
                                     </button>
-                                    <button id="delete-survey" @if($condition) data-toggle="modal" data-target="#modal-delete" @endif class="btn btn-danger border-0 btn-topic-custom"
-                                            @if(!$condition) disabled @endif data-id="{{ $item->id }}">
-                                        <a class="text-white @if(!$condition) a-disabled @endif" data-toggle="tooltip" data-placement="top" title="Xoá">
+                                    <button id="delete-survey" @if($item->done == 0) data-toggle="modal" data-target="#modal-delete" @endif class="btn btn-danger border-0 btn-topic-custom"
+                                            @if($item->done == 1) disabled @endif data-id="{{ $item->id }}">
+                                        <a class="text-white @if($item->done == 1) a-disabled @endif" data-toggle="tooltip" data-placement="top" title="Xoá">
                                             <i class="fa fa-trash-alt"></i>
                                         </a>
                                     </button>

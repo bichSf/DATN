@@ -25,7 +25,7 @@ class Survey extends Model
 
     public function getAllRecords()
     {
-        return $this->get()->toArray();
+        return $this->orderBy('id', 'desc')->get()->toArray();
     }
 
     public static function getMaxId()

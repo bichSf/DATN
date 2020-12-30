@@ -29,7 +29,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
                 @if ($errors->has('password'))
                     <p class="text-error-login text-left" role="alert">
                         {{ $errors->first('password') }}

@@ -3,7 +3,7 @@ let Common = (function () {
 
     modules.optionDateTime = function () {
         $('.date-time').datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             language: "vi",
             forceParse: true,
             useCurrent: false,

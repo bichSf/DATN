@@ -73,13 +73,13 @@ class User extends Authenticatable
     {
         return $this->where('role', USER)
             ->when(isset($params['email']), function ($q) use ($params) {
-                return $q->where('email', $params['email']);
+                return $q->where('email', 'like', '%'.$params['email'].'%');
             })
             ->when(isset($params['name']), function ($q) use ($params) {
-                return $q->where('name', $params['name']);
+                return $q->where('name', 'like', '%'.$params['name'].'%');
             })
             ->when(isset($params['phone']), function ($q) use ($params) {
-                return $q->where('phone', $params['phone']);
+                return $q->where('phone', 'like', '%'.$params['phone'].'%');
             })->orderByDesc('id')->paginate(PAGINATE);
     }
 
@@ -90,6 +90,7 @@ class User extends Authenticatable
                 $data['avatar'] = $this->saveImageInFolder($data['avatar'], self::FOLDER_IMAGES_PROFILE);
             }
             $data['password'] = Hash::make($data['password']);
+            $data['birthday'] = date('Y/m/d', strtotime($data['birthday']));
             $this->create($data);
             return true;
         } catch (Exception $exception) {
@@ -112,6 +113,7 @@ class User extends Authenticatable
             }
             unset($data['_token']);
             unset($data['password_confirm']);
+            $data['birthday'] = date('Y/m/d', strtotime($data['birthday']));
             $this->where('id', $id)->update($data);
             return true;
         } catch (Exception $exception) {

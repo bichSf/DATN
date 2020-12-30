@@ -29,7 +29,6 @@ class AdminSeeder extends Seeder
             'email' => 'tranbichbk@gmail.com',
             'password' => Hash::make('12345678'),
             'role' => USER,
-            'avatar' => 'user_default.png',
             'gender' => WOMAN,
         ]);
 
@@ -39,7 +38,6 @@ class AdminSeeder extends Seeder
                 'email' => $faker->email,
                 'password' => Hash::make('12345678'),
                 'role' => USER,
-                'avatar' => 'user_default.png',
                 'gender' => rand(MAN, WOMAN),
             ]);
         }

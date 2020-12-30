@@ -29,7 +29,16 @@ class SurveyController extends Controller
             return $q->where('month', $params['month']);
         })->when(isset($params['year']), function ($q) use ($params) {
             return $q->where('year', $params['year']);
-        })->orderByDesc('id')->paginate(PAGINATE);
+        })
+            ->selectRaw('*')
+            ->selectRaw('CASE WHEN (SELECT COUNT(survey_id) FROM adults_20_60 WHERE survey_id = surveys.id) = 0 
+            AND (SELECT COUNT(survey_id) FROM children_5_11 WHERE survey_id = surveys.id) = 0 
+            AND (SELECT COUNT(survey_id) FROM infants_0_0 WHERE survey_id = surveys.id) = 0 
+            AND (SELECT COUNT(survey_id) FROM seniors_60_100 WHERE survey_id = surveys.id) = 0 
+            AND (SELECT COUNT(survey_id) FROM teens_11_20 WHERE survey_id = surveys.id) = 0 
+            AND (SELECT COUNT(survey_id) FROM toddlers_1_60 WHERE survey_id = surveys.id) = 0 
+            THEN 0 ELSE 1 END as done')
+            ->orderByDesc('id')->paginate(PAGINATE);
 
         return view('admin.survey.index', [
             'params' => $params,

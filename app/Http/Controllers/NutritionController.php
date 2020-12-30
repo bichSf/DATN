@@ -244,7 +244,7 @@ class NutritionController extends Controller
             'params' => $params,
             'data' => $data,
             'tableType' => $tableType,
-            'surveys' => $this->survey->get()->toArray(),
+            'surveys' => $this->survey->getAllRecords(),
         ]);
     }
 

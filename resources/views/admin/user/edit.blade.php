@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div class="col-10 col-md-8 p0l p0r">
-                                    <input type="text" name="birthday" id="date-picker" class="date-time form-control fs13" value="{{ old('birthday', $user->birthday) }}" placeholder="1970-01-01">
+                                    <input type="text" name="birthday" id="date-picker" class="date-time form-control fs13" value="{{ old('birthday', $user->birthday ? date('d/m/Y', strtotime($user->birthday)) : '') }}" placeholder="01/01/1970">
                                     <p class="error-message p5t m0" data-error="birthday"></p>
                                 </div>
                             </div>
