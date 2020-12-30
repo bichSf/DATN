@@ -13,16 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@index')->name(HOME);
-Route::get('/test', function () {
-    dd(getMaxYearSurvey());
-});
-
 Route::get('/login', 'LoginController@index')->name(USER_LOGIN);
 Route::post('/login', 'LoginController@login')->name(LOGIN);
 Route::post('/logout', 'LoginController@logout')->name(LOGOUT);
-Route::get('/pass-reminder', function () {
-    return view('auth.passwords.step1');
-})->name(USER_FORGET_PASSWORD_INDEX);
 
 Route::middleware('auth.admin')->group(function () {
     Route::middleware('role:admin')->group(function () {

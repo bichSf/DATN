@@ -19,7 +19,7 @@
                                 <div class="centered-vertical p20l" style="width: 60%">
                                     <p class="fs-16 fw-bold m5b">Chọn tệp để tải lên</p>
                                 </div>
-                                <input name="avatar" type="file" style="display: none">
+                                <input name="avatar" type="file" style="display: none" accept="image/x-png,image/gif,image/jpeg">
                                 <p class="error-messages" data-error="avatar"></p>
                             </div>
                         </td>

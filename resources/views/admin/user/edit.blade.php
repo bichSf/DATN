@@ -16,11 +16,11 @@
                         </td>
                         <td>
                             <div class="row p20l">
-                                <img id="image-avatar" class="avatar essential-icon-img pointer"  @if($user->avatar) src="{{ old('avatar', asset( PATH_AVATAR_USER . $user->avatar )) }}" @endif style="object-fit: contain">
+                                <img id="image-avatar" class="avatar essential-icon-img pointer" @if($user->avatar) src="{{ old('avatar', asset( PATH_AVATAR_USER . $user->avatar )) }}" @endif style="object-fit: contain">
                                 <div class="centered-vertical p20l" style="width: 60%">
                                     <p class="fs-16 fw-bold m5b">Chọn tệp để tải lên</p>
                                 </div>
-                                <input name="avatar" type="file" style="display: none">
+                                <input name="avatar" type="file" accept="image/x-png,image/gif,image/jpeg" style="display: none">
                                 <p class="error-messages" data-error="avatar"></p>
                             </div>
                         </td>
