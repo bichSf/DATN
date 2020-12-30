@@ -58,7 +58,11 @@ class DataRequest extends FormRequest
         $listAttr = ATTRIBUTE_DATA[$type];
         $rules = [];
         foreach ($listAttr as $item) {
-            $rules[$item] = ['bail', 'required', 'numeric', 'between: 1,1000'];
+            if ($item == 'fat_percentage') {
+                $rules[$item] = ['bail', 'required', 'numeric', 'between: 0.01,99.99'];
+            } else {
+                $rules[$item] = ['bail', 'required', 'numeric', 'between: 1,1000'];
+            }
         }
         if ($isSimulation == 'simulation') {
             unset($rules['survey_id']);

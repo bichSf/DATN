@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teen extends Model
+class Teen extends StatisticNutrition
 {
     use HasFactory;
 
@@ -34,6 +34,7 @@ class Teen extends Model
 
     public function getDataSpiderChart($params)
     {
+        $bmi = getBMIPoint($params['weight'], $params['height']);
         return [
             'categories' => ['Cân nặng','Chiều cao', 'Nếp gấp da ở cơ tam đầu', 'Phần trăm mỡ của cơ thể'],
             'data' => [
@@ -45,6 +46,12 @@ class Teen extends Model
                     'name' => 'Trung bình',
                     'data' =>  $this->getAvgAttribute($params['year'], $params['area'])
                 ]
+            ],
+            'data_detail' => [
+                'z_score' => $this->getZScoreWH($params),
+                'bmi' => $bmi,
+                'z_bmi_status' => getStatusBMI($bmi),
+                'weight_ideal' => getWeightIdeal($params['height']),
             ]
         ];
     }

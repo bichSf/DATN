@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Adult extends Model
+class Adult extends StatisticNutrition
 {
     use HasFactory;
 
@@ -96,6 +95,7 @@ class Adult extends Model
 
     public function getDataSpiderChart($params)
     {
+        $bmi = getBMIPoint($params['weight'], $params['height']);
         return [
             'categories' => ['Cân nặng','Chiều cao', 'Vòng cánh tay', 'Nếp gấp da ở cơ tam đầu', 'Phần trăm mỡ của cơ thể'],
             'data' => [
@@ -107,11 +107,17 @@ class Adult extends Model
                     'name' => 'Trung bình',
                     'data' =>  $this->getAvgAttribute($params['year'], $params['area'])
                 ]
+            ],
+            'data_detail' => [
+                'z_score' => $this->getZScoreWH($params),
+                'bmi' => $bmi,
+                'z_bmi_status' => getStatusBMI($bmi),
+                'weight_ideal' => getWeightIdeal($params['height']),
             ]
         ];
     }
 
-    public function getAvgAttribute($year, $area)
+    private function getAvgAttribute($year, $area)
     {
         $avg = $this->selectRaw('round(avg(weight), 2) as avg_weight, round(avg(height), 2) as avg_height, round(avg(arm_circumference), 2) as avg_arm_circumference, round(avg(biceps_skinfold), 2) as avg_biceps_skinfold, round(avg(fat_percentage), 2) as avg_fat_percentage')->whereHas('survey', function ($query) use ($year, $area) {
             return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {

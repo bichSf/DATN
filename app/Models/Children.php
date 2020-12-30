@@ -36,6 +36,7 @@ class Children extends StatisticNutrition
 
     public function getDataSpiderChart($params)
     {
+        $bmi = getBMIPoint($params['weight'], $params['height']);
         return [
             'categories' => ['Cân nặng','Chiều cao', 'Vòng cánh tay', 'Vòng đầu', 'Vòng ngực', 'Nếp gấp da ở cơ tam đầu'],
             'data' => [
@@ -48,11 +49,17 @@ class Children extends StatisticNutrition
                     'name' => 'Trung bình',
                     'data' =>  $this->getAvgAttribute($params['year'], $params['area'])
                 ]
+            ],
+            'data_detail' => [
+                'z_score' => $this->getZScoreWH($params),
+                'bmi' => $bmi,
+                'z_bmi_status' => getStatusBMI($bmi),
+                'weight_ideal' => getWeightIdeal($params['height']),
             ]
         ];
     }
 
-    public function getAvgAttribute($year, $area)
+    private function getAvgAttribute($year, $area)
     {
         $avg = $this->selectRaw('round(avg(weight), 2) as avg_weight, round(avg(height), 2) as avg_height, round(avg(arm_circumference), 2) as avg_arm_circumference,
         round(avg(head_circumference), 2) as avg_head_circumference, round(avg(chest_circumference), 2) as avg_chest_circumference, round(avg(biceps_skinfold), 2) as avg_biceps_skinfold')

@@ -165,11 +165,11 @@ class NutritionController extends Controller
         switch ($tableType) {
             case INFANTS:
             default:
-                return response()->json(['data' => $this->infant->getZScoreWH($year1, $year2, $area)]);
+                return response()->json(['data' => $this->infant->getDataZScoreWH($year1, $year2, $area)]);
             case TODDLER:
-                return response()->json(['data' => $this->toddler->getZScoreWH($year1, $year2, $area)]);
+                return response()->json(['data' => $this->toddler->getDataZScoreWH($year1, $year2, $area)]);
             case CHILDREN:
-                return response()->json(['data' => $this->children->getZScoreWH($year1, $year2, $area)]);
+                return response()->json(['data' => $this->children->getDataZScoreWH($year1, $year2, $area)]);
         }
     }
 

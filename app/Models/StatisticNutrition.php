@@ -18,7 +18,15 @@ class StatisticNutrition extends Model
         return array_column($data, 'zscore');
     }
 
-    public function getZScoreWH($year1, $year2, $area)
+    public function getZScoreWH($params)
+    {
+        $avg = $this->selectRaw('avg(weight / height) as avg')->whereHas('survey', function ($query) use ($params) {
+            return $query->where('year', $params['year']);
+        })->first()->toArray()['avg'];
+        return round((($params['weight'] / $params['height']) - $avg) / STANDARD_DEVIATION, 2);
+    }
+
+    public function getDataZScoreWH($year1, $year2, $area)
     {
         $categories = [];
         for ($i = -7; $i <= 7; $i+=0.25) {

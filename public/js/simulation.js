@@ -128,7 +128,8 @@ var simulation = (function () {
             $('body').find('p.error-message').css('padding-top', 0).hide();
             $("body").find('input').removeClass('input-error');
             $("body").find('select').parent().removeClass('input-error');
-            Common.buildSpiderChart('id-spider-chart', 'Hiện trạng & trung bình', response)
+            Common.buildSpiderChart('id-spider-chart', 'Hiện trạng & trung bình', response);
+            modules.renderDataDetail(response.data_detail);
         });
 
         submitAjax.fail(function (response) {
@@ -153,6 +154,13 @@ var simulation = (function () {
             )
         }, 0);
     };
+
+    modules.renderDataDetail = function (data) {
+        $('#z-score').html(data.z_score);
+        $('#z-bmi-status').html(data.z_bmi_status);
+        $('#bmi').html(data.bmi);
+        $('#weight-ideal').html(data.weight_ideal.min + ' Kg ~ ' + data.weight_ideal.max + ' Kg');
+    }
 
     return modules;
 }(window.jQuery, window, document));
