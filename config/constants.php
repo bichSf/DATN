@@ -3,6 +3,7 @@
  * Define const for route name
  */
 const HOME = 'home';
+const SEE_RESULT = 'see.result';
 const USER_LOGIN = 'user.login';
 const LOGIN = 'login';
 const LOGOUT = 'logout';
