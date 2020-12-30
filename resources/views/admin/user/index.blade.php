@@ -5,20 +5,50 @@
         <h1 class="text-center fw-bold">Quản lý nhân sự</h1>
     </div>
     <div class="display-highcharts m30t">
-        <div class="row m0 m30b">
-            <div class="col-6">
+        <form id="form-statistical-population" action="{{ route(ADMIN_MANAGER_USER) }}" method="GET">
+            <div class="row m0 m30b">
+                <div id="block-status" class="row spBlock m0l w-auto h-100">
+                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 100px;">
+                        <label class="m0 text-white fs16">Email</label>
+                    </div>
+                    <div class="centered p0 bg-white m30r">
+                        <input name="email" type="text" placeholder="abc@gmail.com" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['email'] :'' }}">
+                    </div>
 
-            </div>
-            <div class="col-6">
-                <div class="row m0" style="justify-content: flex-end">
-                    <div class="text-right m10l">
-                        <a href="{{ route(ADMIN_USER_CREATE) }}" class="btn btn-success">
-                            Thêm bản ghi
-                        </a>
+                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 100px;">
+                        <label class="m0 text-white fs16">Họ tên</label>
+                    </div>
+                    <div class="centered p0 bg-white m30r">
+                        <input name="name" type="text" placeholder="tran bich" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['name'] : '' }}">
+                    </div>
+
+                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 80px;">
+                        <label class="m0 text-white fs16">SDT</label>
+                    </div>
+                    <div class="centered p0 bg-white m20r">
+                        <input name="phone" type="text" placeholder="01683024581" class="form-control rounded-0" value="{{ isset($params['email']) ? $params['phone'] : '' }}">
+                    </div>
+
+                    <div class="centered-vertical">
+                        <button type="submit" class="btn btn-search no-border custom-btn-primary h-100 btn-group-item border-0 fw500">
+                            <i aria-hidden="true" class="fas fa-search fa-lg text-white btn-action"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row m0 m30b">
+                <div class="col-6 offset-6 p-0">
+                    <div class="row m0" style="justify-content: flex-end">
+                        <div class="text-right m10l">
+                            <a href="{{ route(ADMIN_USER_CREATE) }}" class="btn custom-btn-success">
+                                Thêm bản ghi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <div class="row m0">
             <div class="col-12 bg-white" style="padding: 30px;">
@@ -89,7 +119,10 @@
             @if($listUser->total() > 0)
                 <span>{{ $listUser->firstItem() }} ~ {{ $listUser->lastItem() }} / {{ $listUser->total() }} bản ghi</span>
             @endif
-            {{ $listUser->links('partials.paginate', ['paginator' => $listUser]) }}
+            {{ $listUser->appends([
+                'area_id' => $params['area_id'] ?? '',
+                'month' => $params['month'] ?? '',
+                'year' => $params['year'] ?? ''])->links('partials.paginate', ['paginator' => $listUser]) }}
         </div>
 
         <div class="modal" id="modal-delete">

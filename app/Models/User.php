@@ -69,9 +69,18 @@ class User extends Authenticatable
         return $this->getAttribute('role') == ADMIN;
     }
 
-    public function getAllUser()
+    public function getAllUser($params)
     {
-        return $this->where('role', USER)->orderByDesc('id')->paginate(PAGINATE);
+        return $this->where('role', USER)
+            ->when(isset($params['email']), function ($q) use ($params) {
+                return $q->where('email', $params['email']);
+            })
+            ->when(isset($params['name']), function ($q) use ($params) {
+                return $q->where('name', $params['name']);
+            })
+            ->when(isset($params['phone']), function ($q) use ($params) {
+                return $q->where('phone', $params['phone']);
+            })->orderByDesc('id')->paginate(PAGINATE);
     }
 
     public function createUser($data)

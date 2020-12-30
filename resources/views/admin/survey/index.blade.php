@@ -5,17 +5,59 @@
         <h1 class="text-center fw-bold">Quản lý đợt khảo sát</h1>
     </div>
     <div class="display-highcharts m30t">
-        <div class="row m0 m30b">
-            <div class="col-6 offset-6">
-                <div class="row m0" style="justify-content: flex-end">
-                    <div class="text-right m10l">
-                        <a href="{{ route(ADMIN_SURVEY_CREATE) }}" class="btn custom-btn-success">
-                            Thêm bản ghi
-                        </a>
+        <form id="form-statistical-population" action="{{ route(ADMIN_MANAGER_SURVEY) }}" method="GET">
+            <div class="row m0 m30b">
+                <div id="block-status" class="row spBlock m0l w-auto h-100">
+                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 100px;">
+                        <label class="m0 text-white fs16">Khu vực</label>
+                    </div>
+                    <div class="centered p0 bg-white m30r">
+                        <select name="area_id" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 80px">
+                            <option value="" selected>Chọn khu vực khảo sát</option>
+                            @foreach(AREAS as $key => $value)
+                                <option value="{{ $key }}" @if(isset($params['area_id']) && $params['area_id'] == $key) selected @endif>{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 50px;">
+                        <label class="m0 text-white fs16">Tháng </label>
+                    </div>
+                    <div class="centered p0 bg-white m30r">
+                        <select name="month" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 80px">
+                            <option value="" selected>Chọn tháng khảo sát</option>
+                            @for($month=1; $month<=12; $month++)
+                                <option value="{{ $month }}" @if(isset($params['month']) && $params['month'] == $month) selected @endif>{{ $month }}</option>
+                            @endfor
+                        </select>
+                    </div>
+
+                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 50px;">
+                        <label class="m0 text-white fs16">Năm </label>
+                    </div>
+                    <div class="centered p0 bg-white">
+                        <select name="year" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 80px">
+                            <option value="" selected>Chọn năm khảo sát</option>
+                            @foreach(dateYear() as $key => $year)
+                                <option value="{{ $year }}" @if(isset($params['year']) && $params['year'] == $year) selected @endif>{{ $year }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row m0 m30b">
+                <div class="col-6 offset-6 p-0">
+                    <div class="row m0" style="justify-content: flex-end">
+                        <div class="text-right m10l">
+                            <a href="{{ route(ADMIN_SURVEY_CREATE) }}" class="btn custom-btn-success">
+                                Thêm bản ghi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <div class="row m0">
             <div class="col-12 bg-white" style="padding: 30px;">
@@ -64,7 +106,10 @@
             @if($listSurvey->total() > 0)
                 <span>{{ $listSurvey->firstItem() }} ~ {{ $listSurvey->lastItem() }} / {{ $listSurvey->total() }} bản ghi</span>
             @endif
-            {{ $listSurvey->links('partials.paginate', ['paginator' => $listSurvey]) }}
+            {{ $listSurvey->appends([
+                'area_id' => $params['area_id'] ?? '',
+                'month' => $params['month'] ?? '',
+                'year' => $params['year'] ?? ''])->links('partials.paginate', ['paginator' => $listSurvey]) }}
         </div>
 
         <div class="modal" id="modal-delete">

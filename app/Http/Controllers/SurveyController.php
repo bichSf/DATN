@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SurveyRequest;
 use App\Models\Survey;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class SurveyController extends Controller
@@ -19,10 +20,20 @@ class SurveyController extends Controller
      *
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
+        $params = $request->all();
+        $listSurvey = $this->survey->when(isset($params['area_id']), function ($q) use ($params) {
+            return $q->where('area_id', $params['area_id']);
+        })->when(isset($params['month']), function ($q) use ($params) {
+            return $q->where('month', $params['month']);
+        })->when(isset($params['year']), function ($q) use ($params) {
+            return $q->where('year', $params['year']);
+        })->orderByDesc('id')->paginate(PAGINATE);
+
         return view('admin.survey.index', [
-            'listSurvey' => $this->survey->orderByDesc('id')->paginate(PAGINATE)
+            'params' => $params,
+            'listSurvey' => $listSurvey
         ]);
     }
 
