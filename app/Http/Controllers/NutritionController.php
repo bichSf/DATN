@@ -83,6 +83,10 @@ class NutritionController extends Controller
         $data = array();
         if (($handle = fopen($_FILES['data_csv']['tmp_name'], 'r')) !== false) {
             while (($row = fgetcsv($handle, 1000)) !== false) {
+                if (count($arrayKey) !== count($row)) {
+                    Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
+                    return redirect()->back();
+                }
                 array_push($data, array_combine($arrayKey, $row));
             }
             fclose($handle);
