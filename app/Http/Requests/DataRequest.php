@@ -24,7 +24,7 @@ class DataRequest extends FormRequest
     public function rules()
     {
         $data = $this->request->all();
-        $rules = $this->getRuleDataRequest($data['table_type'], $data['simulation'] ?? '');
+        $rules = getRuleDataRequest($data['table_type'], $data['simulation'] ?? '');
         return $rules;
     }
 
@@ -47,28 +47,5 @@ class DataRequest extends FormRequest
             'stomach_feet.between' => 'Số liệu không hợp lệ',
             "required" => "Trường này không được để trống",
         ];
-    }
-
-    /**
-     * @param $type
-     * @return array
-     */
-    public function getRuleDataRequest($type, $isSimulation)
-    {
-        $listAttr = ATTRIBUTE_DATA[$type];
-        $rules = [];
-        foreach ($listAttr as $item) {
-            if ($item == 'fat_percentage') {
-                $rules[$item] = ['bail', 'required', 'numeric', 'between: 0.01,99.99'];
-            } else {
-                $rules[$item] = ['bail', 'required', 'numeric', 'between: 1,1000'];
-            }
-        }
-        if ($isSimulation == 'simulation') {
-            unset($rules['survey_id']);
-        } else {
-            $rules['survey_id'] = 'required';
-        }
-        return $rules;
     }
 }

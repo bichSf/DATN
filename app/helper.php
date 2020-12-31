@@ -109,3 +109,31 @@ if (!function_exists('getWeightIdeal')) {
         ];
     }
 }
+
+if (!function_exists('getRuleDataRequest')) {
+    /**
+     * @param $type
+     * @param $isSimulation
+     * @return array
+     */
+    function getRuleDataRequest($type, $isSimulation)
+    {
+        $listAttr = ATTRIBUTE_DATA[$type];
+        $rules = [];
+        foreach ($listAttr as $item) {
+            if ($item == 'fat_percentage') {
+                $rules[$item] = ['bail', 'required', 'numeric', 'between: 0.01,99.99'];
+            } elseif ($item == 'gender') {
+                $rules[$item] = ['bail', 'required', 'numeric', 'between: 0,1'];
+            } else {
+                $rules[$item] = ['bail', 'required', 'numeric', 'between: 1,1000'];
+            }
+        }
+        if ($isSimulation == 'simulation') {
+            unset($rules['survey_id']);
+        } else {
+            $rules['survey_id'] = 'required';
+        }
+        return $rules;
+    }
+}

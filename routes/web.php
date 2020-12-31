@@ -47,11 +47,15 @@ Route::middleware('auth.admin')->group(function () {
             Route::post('/store', 'NutritionController@store')->name(USER_NUTRITION_STORE);
             Route::delete('/delete/{id}', 'NutritionController@destroy')->name(USER_NUTRITION_DESTROY);
             Route::post('/delete-multi', 'NutritionController@destroyMulti')->name(USER_NUTRITION_DESTROY_MULTI);
+            Route::post('/check-csv', 'NutritionController@checkCsv');
+            Route::get('/down-csv', 'NutritionController@downCsv')->name(DOWN_CSV);
+            Route::post('/save-data-csv', 'NutritionController@saveDataCsv')->name(SAVE_DATA_CSV);
         });
 
         Route::prefix('statistical')->group(function () {
             Route::get('/', 'NutritionController@showStatistic')->name(USER_STATISTICAL);
             Route::post('/get-zscore', 'NutritionController@getZscore');
+            Route::get('/get-zscore', 'NutritionController@getZscore');
             Route::get('/get-zscore', 'NutritionController@getZscore');
             Route::post('/get-column-chart', 'NutritionController@getColumnChart');
             Route::get('/get-avg-weight-height', 'NutritionController@getAvgWeightHeight');

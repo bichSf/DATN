@@ -5,6 +5,7 @@ namespace App\Traits;
 
 trait StatisticNutrition
 {
+    // Lấy giá trị ZScore cân nặng theo năm.
     public function getZScore($year = 2000)
     {
         $avg = $this->selectRaw('avg(weight) as avg')->whereHas('survey', function ($query) use ($year) {
@@ -61,6 +62,7 @@ trait StatisticNutrition
         ];
     }
 
+    // Tính tỷ lệ Suy dinh dưỡng theo Zscore cân nặng
     public function getDataColumnChart($yearTo)
     {
         $dataReturn = [];

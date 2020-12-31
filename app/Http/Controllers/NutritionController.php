@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DataRequest;
+use App\Libraries\Export\TemplateCsv;
 use App\Models\Infant;
 use App\Models\Adult;
 use App\Models\Children;
@@ -12,6 +13,7 @@ use App\Models\Survey;
 use App\Models\Toddler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 use Mockery\Exception;
 
 class NutritionController extends Controller
@@ -21,6 +23,8 @@ class NutritionController extends Controller
     private $toddler;
     private $children;
     private $adult;
+    private $teen;
+    private $senior;
 
     public function __construct
     (
@@ -28,13 +32,17 @@ class NutritionController extends Controller
         Infant $infant,
         Toddler $toddler,
         Children $children,
-        Adult $adult
+        Adult $adult,
+        Teen $teen,
+        Senior $senior
     ) {
         $this->survey = $survey;
         $this->infant = $infant;
         $this->toddler = $toddler;
         $this->children = $children;
         $this->adult = $adult;
+        $this->teen = $teen;
+        $this->senior = $senior;
     }
 
     /**
@@ -51,6 +59,69 @@ class NutritionController extends Controller
     {
         $listSurvey = $this->survey->getAllRecords();
         return view('user.nutrition.create', compact('listSurvey'));
+    }
+
+    public function checkCsv(Request $request)
+    {
+        $data = array();
+        if (($handle = fopen($_FILES['data_csv']['tmp_name'], 'r')) !== false) {
+            while (($row = fgetcsv($handle, 1000)) !== false) {
+                array_push($data, $row);
+            }
+            fclose($handle);
+        }
+        $header = $data[0];
+        unset($data[0]);
+        return view('user.nutrition.form_view_csv')->with(['header' => $header, 'data' => $data]);
+    }
+
+    public function saveDataCsv(Request $request)
+    {
+        $tableType = $request->table_type;
+        abort_if(!$tableType, 404);
+        $arrayKey = ATTRIBUTE_DATA[$tableType];
+        $data = array();
+        if (($handle = fopen($_FILES['data_csv']['tmp_name'], 'r')) !== false) {
+            while (($row = fgetcsv($handle, 1000)) !== false) {
+                array_push($data, array_combine($arrayKey, $row));
+            }
+            fclose($handle);
+        }
+        unset($data[0]);
+        $check = false;
+        switch ($tableType) {
+            case INFANTS:
+                $check = $this->infant->createMany($data);
+                break;
+            case TODDLER:
+                $check = $this->toddler->createMany($data);
+                break;
+            case CHILDREN:
+                $check = $this->children->createMany($data);
+                break;
+            case TEENS:
+                $check = $this->teen->createMany($data);
+                break;
+            case ADULTS:
+                $check = $this->adult->createMany($data);
+                break;
+            case SENIORS:
+                $check = $this->senior->createMany($data);
+                break;
+        }
+        if ($check) {
+            Session::flash(STR_SUCCESS_FLASH, 'Thêm thành công.');
+            return redirect()->route(USER_NUTRITION_INDEX);
+        }
+        Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
+        return redirect()->back();
+    }
+
+    public function downCsv(Request $request)
+    {
+        $export = new TemplateCsv();
+        $export->setTableType($request->table_type);
+        return Excel::download($export, $export->getFileName());
     }
 
     public function store(DataRequest $request)

@@ -178,17 +178,24 @@
                 <div class="content-wrapper" style="background-color: white;">
                     <div class="row m0 m30b">
                         <div class="col-3 p0">
-                            <select name="" id="" class="form-control" style="width: 200px;">
+                            <form id="form-down-csv" action="{{ route(DOWN_CSV) }}" method="GET">
+                            <select id="csv-table-type" name="table_type" id="" class="form-control" style="width: 200px;">
                                 @foreach(TYPE_POPULATION_NAME as $key => $value)
                                     <option value="{{ $key }}">{{ $value }}</option>
                                 @endforeach
                             </select>
+                            </form>
                         </div>
-                        <div class="col-9 p0 display-flex justify-content-end">
-                            <input type="text" class="form-control" style="width: 500px;" placeholder="example.csv">
-                            <button class="btn custom-btn-success m20l">Chọn file</button>
-                        </div>
+                        <form id="form-csv" action="{{ route(SAVE_DATA_CSV) }}" class="col-9 p0 display-flex justify-content-end" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input id="show-file-name" type="text" class="form-control" style="width: 500px;" placeholder="example.csv" readonly>
+                            <button id="choose-file" type="button" class="btn custom-btn-success m20l">Chọn file</button>
+                            <button id="down-csv" type="button" class="btn custom-btn-success m20l">Tải file mẫu</button>
+                            <input id="input-csv" name="data_csv" type="file" class="d-none">
+                            <input id="input-table-type" name="table_type" type="hidden" class="d-none" value="infants_0_0">
+                        </form>
                     </div>
+                    <div id="table-show-csv">
                     <table class="table table-bordered table-striped border-0 m0">
                         <thead>
                         <tr>
@@ -263,14 +270,15 @@
 
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row m0 p30t" style="justify-content: flex-end">
             <div class="text-right">
-                <a href="" class="btn custom-btn-primary">
+                <button type="button" id="post-data-csv" class="btn custom-btn-primary">
                     Lưu
-                </a>
+                </button>
             </div>
         </div>
     </div>

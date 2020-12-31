@@ -130,6 +130,27 @@ let statisticNutritionFunction = (function () {
         });
     };
 
+    modules.checkCsv = function () {
+        let data = new FormData($('#form-csv')[0]);
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: window.origin + '/nutrition/check-csv',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            $('#table-show-csv').html(response)
+        });
+    }
+
+    modules.prevent = function (event) {
+        event.preventDefault();
+        event.stopPropagation()
+    };
+
     return modules;
 }(window.jQuery, window, document));
 
@@ -152,5 +173,107 @@ $(document).ready(function () {
 
     $('select[name=survey_id]').on('change', function () {
         statisticNutritionFunction.getSurvey();
-    })
+    });
+
+    $('#choose-file').on('click', function () {
+        $('#input-csv').click()
+    });
+
+    $('#input-csv').on('change', function (event) {
+        statisticNutritionFunction.prevent(event)
+        let files = event.target.files || event.originalEvent.dataTransfer.files;
+        if (files.length === 0) {
+            $(this).val('');
+            $('#show-file-name').val('')
+            $('#table-show-csv').html(`<table class="table table-bordered table-striped border-0 m0">
+                        <thead>
+                        <tr>
+                            <td>....</td>
+                            <td>....</td>
+                            <td>....</td>
+                            <td>....</td>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        </tbody>
+                    </table>`)
+            return
+        }
+        $('#show-file-name').val(files[0].name);
+        statisticNutritionFunction.checkCsv();
+    });
+
+    $('#down-csv').on('click', function () {
+        $('#form-down-csv').submit();
+    });
+
+    $('#post-data-csv').on('click', function () {
+        $('#form-csv').submit();
+    });
+
+    $('#csv-table-type').on('change', function () {
+        $('#input-table-type').val($(this).val())
+    });
 });

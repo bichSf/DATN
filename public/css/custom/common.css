@@ -1678,3 +1678,12 @@
 .table td, .table th {
     vertical-align: middle !important;
 }
+
+#table-show-csv{
+    overflow-x: scroll;
+    height: 300px;
+}
+
+.csv-cell-error {
+    border: 3px solid red !important;
+}
