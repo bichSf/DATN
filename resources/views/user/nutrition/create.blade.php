@@ -191,7 +191,7 @@
                             <input id="show-file-name" type="text" class="form-control" style="width: 500px;" placeholder="example.csv" readonly>
                             <button id="choose-file" type="button" class="btn custom-btn-success m20l">Chọn file</button>
                             <button id="down-csv" type="button" class="btn custom-btn-success m20l">Tải file mẫu</button>
-                            <input id="input-csv" name="data_csv" type="file" class="d-none">
+                            <input id="input-csv" name="data_csv" type="file" class="d-none" accept=".csv,.pdf">
                             <input id="input-table-type" name="table_type" type="hidden" class="d-none" value="infants_0_0">
                         </form>
                     </div>
