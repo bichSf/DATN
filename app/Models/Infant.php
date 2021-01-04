@@ -6,6 +6,7 @@ use App\Traits\CommonFunction;
 use App\Traits\StatisticNutrition;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Infant extends Model
 {

@@ -9,6 +9,7 @@ use App\Models\Senior;
 use App\Models\Survey;
 use App\Models\Teen;
 use App\Models\Toddler;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -65,6 +66,26 @@ class HomeController extends Controller
                 return $this->adult->getDataSpiderChart($params);
             case SENIORS:
                 return $this->senior->getDataSpiderChart($params);
+        }
+    }
+
+    public function malnutritionRate(Request $request)
+    {
+        $params = $request->all();
+        $params['table_type'] = $params['table_type'] ?? INFANTS;
+        switch ($params['table_type']) {
+            case INFANTS:
+                return $this->infant->getDataMultipleColumnChart($params);
+            case TODDLER:
+                return $this->toddler->getDataMultipleColumnChart($params);
+            case CHILDREN:
+                return $this->children->getDataMultipleColumnChart($params);
+            case TEENS:
+                return $this->teen->getDataMultipleColumnChart($params);
+            case ADULTS:
+                return $this->adult->getDataMultipleColumnChart($params);
+            case SENIORS:
+                return $this->senior->getDataMultipleColumnChart($params);
         }
     }
 }

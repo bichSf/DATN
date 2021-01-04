@@ -183,7 +183,7 @@
                             </div>
                             <div class="row m0  m15t">
                                 <div class="col-4">Thể trạng:</div>
-                                <div id="z-bmi-status" class="col-6">Suy dinh dưỡng cấp I</div>
+                                <div id="z-bmi-status" class="col-6">Gầy độ I</div>
                             </div>
                             <div class="row m0  m15t">
                                 <div class="col-4">Cân nặng nên có:</div>
@@ -199,7 +199,7 @@
             <div class="item-block-property m15l h-100">
                 <div class="m0 m30b diagram-analysisu h-100">
                     <div class="col-12 p30 m25b diagram-block bg-white h-100">
-                        <div id="id-chart-5"></div>
+                        <div id="id-multiples-column-chart"></div>
                     </div>
                 </div>
             </div>

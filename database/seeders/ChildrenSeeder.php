@@ -18,8 +18,8 @@ class ChildrenSeeder extends Seeder
         $faker = Faker\Factory::create();
         for ($i = 0; $i < 1500; $i++) {
             DB::table('children_5_11')->insert([
-                'weight' => $faker->randomFloat(1, 3.0, 13.0),
-                'height' => $faker->randomFloat(1, 100.0, 150.0),
+                'weight' => $faker->randomFloat(1, 17, 30),
+                'height' => $faker->randomFloat(1, 65.0, 135.0),
                 'arm_circumference' => $faker->randomFloat(1, 18.0, 20.0),
                 'head_circumference' => $faker->randomFloat(1, 30.0, 40.0),
                 'chest_circumference' => $faker->randomFloat(1, 50.0, 70.0),
@@ -29,8 +29,8 @@ class ChildrenSeeder extends Seeder
                 'gender' => false
             ]);
             DB::table('children_5_11')->insert([
-                'weight' => $faker->randomFloat(1, 3.0, 13.0),
-                'height' => $faker->randomFloat(1, 100.0, 150.0),
+                'weight' => $faker->randomFloat(1, 18.0, 30),
+                'height' => $faker->randomFloat(1, 60.0, 130.0),
                 'arm_circumference' => $faker->randomFloat(1, 18.0, 20.0),
                 'head_circumference' => $faker->randomFloat(1, 30.0, 40.0),
                 'chest_circumference' => $faker->randomFloat(1, 50.0, 70.0),

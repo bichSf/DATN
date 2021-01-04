@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', 'HomeController@index')->name(HOME);
 Route::post('/see-results', 'HomeController@seeResults')->name(SEE_RESULT);
+Route::post('/malnutrition-rate', 'HomeController@malnutritionRate')->name(MALNUTRITION_RATE);
 Route::get('/login', 'LoginController@index')->name(USER_LOGIN);
 Route::post('/login', 'LoginController@login')->name(LOGIN);
 Route::post('/logout', 'LoginController@logout')->name(LOGOUT);

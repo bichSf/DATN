@@ -18,8 +18,8 @@ class SeniorSeeder extends Seeder
         $faker = Faker\Factory::create();
         for ($i = 0; $i < 1500; $i++) {
             DB::table('seniors_60_100')->insert([
-                'weight' => $faker->randomFloat(1, 3.0, 13.0),
-                'height' => $faker->randomFloat(1, 120.0, 160.0),
+                'weight' => $faker->randomFloat(1, 45, 80.0),
+                'height' => $faker->randomFloat(1, 120.0, 170.0),
                 'arm_circumference' => $faker->randomFloat(1, 20.0, 30.0),
                 'biceps_skinfold' => $faker->randomFloat(1, 0.5, 0.8),
                 'knee_height' => $faker->randomFloat(1, 20.0, 50.0),
@@ -29,7 +29,7 @@ class SeniorSeeder extends Seeder
                 'gender' => false
             ]);
             DB::table('seniors_60_100')->insert([
-                'weight' => $faker->randomFloat(1, 3.0, 13.0),
+                'weight' => $faker->randomFloat(1, 45.0, 70.0),
                 'height' => $faker->randomFloat(1, 120.0, 160.0),
                 'arm_circumference' => $faker->randomFloat(1, 20.0, 30.0),
                 'biceps_skinfold' => $faker->randomFloat(1, 0.5, 0.8),

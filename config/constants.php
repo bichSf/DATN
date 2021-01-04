@@ -4,6 +4,7 @@
  */
 const HOME = 'home';
 const SEE_RESULT = 'see.result';
+const MALNUTRITION_RATE = 'malnutrition.rate';
 const USER_LOGIN = 'user.login';
 const LOGIN = 'login';
 const LOGOUT = 'logout';

@@ -52,65 +52,32 @@ var simulation = (function () {
     };
 
     modules.buildChart = function () {
-        Common.buildSpiderChart('id-spider-chart', 'Hiện trạng & trung bình', defaultDataSpiderChart)
-        Highcharts.chart('id-chart-5', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: ' Tỷ lệ SDD của trẻ dưới 5 tuổi qua các năm'
-            },
-            // subtitle: {
-            //     text: 'Source: WorldClimate.com'
-            // },
-            xAxis: {
-                categories: ['SDD thấp còi', 'SDD nhẹ cân', 'SDD gày còm'],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Tỷ lệ (%)'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                // column: {
-                //     pointPadding: 0.2,
-                //     borderWidth: 0
-                // }
-            },
-            series: [{
-                name: '2000',
-                data: [50, 45, 40],
-                color:'#0066ff'
-
-            }, {
-                name: '2002',
-                data: [40, 32, 28],
-                color:'#3385ff'
-            }, {
-                name: '2005',
-                data: [38, 30, 25],
-                color:'#66a3ff'
-            }, {
-                name: '2008',
-                data: [35, 28, 23],
-                color:'#99c2ff'
-            }, {
-                name: '2010',
-                data: [32, 24, 18],
-                color:'#cce0ff'
-            }]
-        });
+        Common.buildSpiderChart('id-spider-chart', 'Hiện trạng & trung bình', defaultDataSpiderChart);
+        modules.buildMultipleColumnChart();
     };
+
+    modules.buildMultipleColumnChart = function () {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("area", $('select[name=area]').val());
+        data.append("table_type", $('select[name=table_type]').val());
+        Common.convertNumeralForForm(data);
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: window.origin + '/malnutrition-rate',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            Common.buildMultipleColumnChart('id-multiples-column-chart', 'Tình trạng cân nặng các năm gần đây', response)
+        });
+
+        submitAjax.fail(function (response) {
+
+        })
+    }
 
     modules.seeResults = function () {
         let data = new FormData($('#form-data')[0]);
@@ -171,9 +138,14 @@ $(document).ready(function () {
 
     $('select[name=table_type]').on('change', function () {
         simulation.showInput();
+        simulation.buildMultipleColumnChart();
+    });
+
+    $('select[name=area]').on('change', function () {
+        simulation.buildMultipleColumnChart();
     });
 
     $('#btn-see-results').on('click', function () {
         simulation.seeResults();
-    })
+    });
 });

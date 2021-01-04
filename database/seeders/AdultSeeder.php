@@ -18,8 +18,8 @@ class AdultSeeder extends Seeder
         $faker = Faker\Factory::create();
         for ($i = 0; $i < 1500; $i++) {
             DB::table('adults_20_60')->insert([
-                'weight' => $faker->randomFloat(2, 45, 90),
-                'height' => $faker->randomFloat(2, 150, 187),
+                'weight' => $faker->randomFloat(2, 45, 95),
+                'height' => $faker->randomFloat(2, 145, 190),
                 'arm_circumference' => $faker->randomFloat(1, 20.0, 30.0),
                 'biceps_skinfold' => $faker->randomFloat(1, 0.5, 0.8),
                 'fat_percentage' => $faker->randomFloat(1, 10.0, 30.0),

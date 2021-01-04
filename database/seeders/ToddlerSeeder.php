@@ -17,11 +17,11 @@ class ToddlerSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         for ($i = 0; $i < 1500; $i++) {
-            $height = $faker->randomFloat(1, 50.0, 120.0);
+            $height = $faker->randomFloat(1, 50.0, 60);
             DB::table('toddlers_1_60')->insert([
                 'weight' => $faker->randomFloat(1, 3.0, 13.0),
                 'height' => $height,
-                'is_infant' => $height < 75,
+                'is_infant' => $height < 55,
                 'biceps_skinfold' => $faker->randomFloat(1, 0.1, 0.5),
                 'arm_circumference' => $faker->randomFloat(1, 10.0, 15.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
@@ -32,7 +32,7 @@ class ToddlerSeeder extends Seeder
             DB::table('toddlers_1_60')->insert([
                 'weight' => $faker->randomFloat(1, 3.0, 13.0),
                 'height' => $height,
-                'is_infant' => $height < 75,
+                'is_infant' => $height < 55,
                 'biceps_skinfold' => $faker->randomFloat(1,0.1, 0.5),
                 'arm_circumference' => $faker->randomFloat(1, 10.0, 15.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),

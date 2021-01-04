@@ -44,4 +44,48 @@ trait CommonFunction
             return false;
         }
     }
+
+    public function getDataMultipleColumnChart($params)
+    {
+        $maxYear = max(getRangeYearSurvey());
+        $dataReturn = [];
+        $numberColor = 1;
+        for ($year = $maxYear - 4; $year <= $maxYear; $year++) {
+            array_push($dataReturn, $this->getDataBMIYearArea('rgb(15,54,103,'.$numberColor.')', $year, $params['area'] ?? null));
+            $numberColor-=0.15;
+        }
+        return $dataReturn;
+    }
+
+    public function getDataBMIYearArea($color, $year = 2015, $area = 1)
+    {
+        $thin = $this->whereRaw('weight/(height*height/10000) < 18.5')
+            ->whereHas('survey', function ($query) use ($year, $area) {
+                return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
+                    return $query->where('area_id', $area);
+                });
+            })->count();
+        $normal = $this->whereRaw('weight/(height*height/10000) >= 18.5 and weight/(height*height/10000) < 25')
+            ->whereHas('survey', function ($query) use ($year, $area) {
+                return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
+                    return $query->where('area_id', $area);
+                });
+            })->count();
+        $fat = $this->whereRaw('weight/(height*height/10000) >= 25')
+            ->whereHas('survey', function ($query) use ($year, $area) {
+                return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
+                    return $query->where('area_id', $area);
+                });
+            })->count();
+        $total = $thin + $normal + $fat;
+        return [
+            'name' => $year,
+            'data' => [
+                round($thin/$total*100, 2),
+                round($normal/$total*100, 2),
+                round($fat/$total*100, 2)
+            ],
+            'color' => $color
+        ];
+    }
 }
