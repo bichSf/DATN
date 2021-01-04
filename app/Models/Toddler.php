@@ -51,7 +51,7 @@ class Toddler extends Model
                 ],
                 [
                     'name' => 'Trung bình',
-                    'data' =>  $this->getAvgAttributeToddler($params['year'], $params['area'])
+                    'data' =>  $this->getAvgAttributeToddler($params['year'], $params['area'], $params['gender'])
                 ]
             ],
             'data_detail' => [
@@ -63,9 +63,11 @@ class Toddler extends Model
         ];
     }
 
-    public function getAvgAttributeToddler($year, $area)
+    public function getAvgAttributeToddler($year, $area, $gender = 0)
     {
-        $avg = $this->selectRaw('round(avg(weight), 2) as avg_weight, round(avg(height), 2) as avg_height, round(avg(arm_circumference), 2) as avg_arm_circumference, round(avg(biceps_skinfold), 2) as avg_biceps_skinfold')->whereHas('survey', function ($query) use ($year, $area) {
+        $avg = $this->selectRaw('round(avg(weight), 2) as avg_weight, round(avg(height), 2) as avg_height, round(avg(arm_circumference), 2) as avg_arm_circumference, round(avg(biceps_skinfold), 2) as avg_biceps_skinfold')
+            ->where('gender', $gender)
+            ->whereHas('survey', function ($query) use ($year, $area) {
             return $query->where('year', $year)->when(!empty($area), function ($query) use ($area) {
                 return $query->where('area_id', $area);
             });
