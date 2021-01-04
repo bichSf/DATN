@@ -23,7 +23,9 @@ class Teen extends Model
         'height',
         'biceps_skinfold',
         'fat_percentage',
+        'gender',
         'survey_id',
+        'user_id',
     ];
 
     /**

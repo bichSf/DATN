@@ -21,6 +21,16 @@
                                     </div>
                                 </div>
                                 <div class="row m10b">
+                                    <div class="col-4 d-flex align-items-center"><span>Giới tính<span class="text-danger">*</span></span></div>
+                                    <div class="col-8">
+                                        <select class="form-control" name="gender">
+                                                <option value="0">Nam</option>
+                                                <option value="1">Nữ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
+                                <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Cân nặng<span class="text-danger">*</span></span></div>
                                     <div class="row col-8 m0 p0">
                                         <div class="col-10">

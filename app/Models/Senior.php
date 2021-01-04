@@ -25,7 +25,9 @@ class Senior extends Model
         'biceps_skinfold',
         'knee_height',
         'stomach_feet',
+        'gender',
         'survey_id',
+        'user_id',
     ];
 
     /**

@@ -25,6 +25,8 @@ class Adult extends Model
         'biceps_skinfold',
         'fat_percentage',
         'survey_id',
+        'gender',
+        'user_id',
     ];
 
     /**

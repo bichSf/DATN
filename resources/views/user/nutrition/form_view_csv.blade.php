@@ -12,7 +12,7 @@
         <tr>
             <td>{{ $key }}</td>
             @foreach($row as $key => $item)
-                <td class="@if(($key != count($row)-1 && $key != count($row)-2) && (empty($item) || $item == 0)) csv-cell-error @endif">{{ $item }}</td>
+                <td class="@if(($key != count($row)-3) && (empty($item) || $item == 0)) csv-cell-error @endif">{{ $item }}</td>
             @endforeach
         </tr>
     @endforeach

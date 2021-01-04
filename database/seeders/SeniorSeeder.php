@@ -25,6 +25,7 @@ class SeniorSeeder extends Seeder
                 'knee_height' => $faker->randomFloat(1, 20.0, 50.0),
                 'stomach_feet' => $faker->randomFloat(1, 30.0, 50.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
                 'gender' => false
             ]);
             DB::table('seniors_60_100')->insert([
@@ -35,6 +36,7 @@ class SeniorSeeder extends Seeder
                 'knee_height' => $faker->randomFloat(1, 20.0, 50.0),
                 'stomach_feet' => $faker->randomFloat(1, 30.0, 50.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
                 'gender' => true
             ]);
         }

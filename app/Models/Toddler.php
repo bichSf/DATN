@@ -26,7 +26,9 @@ class Toddler extends Model
         'is_infant',
         'biceps_skinfold',
         'arm_circumference',
+        'gender',
         'survey_id',
+        'user_id',
     ];
 
     /**

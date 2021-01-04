@@ -24,6 +24,7 @@ class AdultSeeder extends Seeder
                 'biceps_skinfold' => $faker->randomFloat(1, 0.5, 0.8),
                 'fat_percentage' => $faker->randomFloat(1, 10.0, 30.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
                 'gender' => false
             ]);
             DB::table('adults_20_60')->insert([
@@ -33,6 +34,7 @@ class AdultSeeder extends Seeder
                 'biceps_skinfold' => $faker->randomFloat(1, 0.5, 0.8),
                 'fat_percentage' => $faker->randomFloat(1, 10.0, 30.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
                 'gender' => true
             ]);
         }

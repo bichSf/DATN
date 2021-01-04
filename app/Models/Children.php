@@ -27,7 +27,9 @@ class Children extends Model
         'head_circumference',
         'chest_circumference',
         'biceps_skinfold',
+        'gender',
         'survey_id',
+        'user_id',
     ];
 
     /**

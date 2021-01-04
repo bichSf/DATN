@@ -25,6 +25,8 @@ class Infant extends Model
         'height',
         'head_circumference',
         'survey_id',
+        'gender',
+        'user_id',
     ];
 
     /**

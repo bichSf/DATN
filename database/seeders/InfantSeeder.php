@@ -22,6 +22,7 @@ class InfantSeeder extends Seeder
                 'height' => $faker->randomFloat(2, 25, 40),
                 'head_circumference' => $faker->randomFloat(2, 30.0, 40.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
                 'gender' => false,
             ]);
             DB::table('infants_0_0')->insert([
@@ -29,6 +30,7 @@ class InfantSeeder extends Seeder
                 'height' => $faker->randomFloat(2, 25, 40),
                 'head_circumference' => $faker->randomFloat(2, 30.0, 40.0),
                 'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
                 'gender' => true
             ]);
         }
