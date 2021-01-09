@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+}
+
+.text-error-login {
+    color: red;
+    font-size: 14px;
+}
+
+.form-group input {
+    margin-bottom: 3px;
+}
+
+.login {
+    margin: auto;
+    background-color: #329fbd;
+    padding: 6% 0;
+    min-height: 100vh;
+}
+
+.title-project {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 550;
+}
+
+.title-form-login {
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 550;
+}
+
+#block-login {
+    padding: 3% 5% 5% 5%;
+    background-color: white;
+    margin: auto;
+    width: 40%;
+    border-radius: 6px;
+}
+
+#block-login .form-control {
+    border-radius: 6px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 18px;
+    border: 1px solid #e1e1e1;
+    height: 45px;
+    line-height: 20px;
+}
+
+#block-login .form-group {
+    margin-bottom: 25px;
+}
+
+#block-login .button-login {
+    background-color: #329fbd;
+    color: white;
+    margin: 45px auto 0;
+    padding: 1% 7%;
+    font-size: 16px;
+
+}
+/*====Begin custom Checkbox login=====*/
+.checkbox {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.checkbox > input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+.checkbox__icon {
+    display: inline-block;
+    color: #999;
+}
+input[type="checkbox"]:checked ~ .checkbox__icon {
+    color: #2a7dea;
+}
+
+#block-login .form-login .container-input {
+    font-size: 14px;
+    text-align: left;
+    z-index: 9;
+    margin-bottom: 0;
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#block-login .form-login .container-input input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+#block-login .form-login .checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: white;
+    border: 2px solid #8b8b8b;
+    border-radius: 3px;
+}
+
+#block-login .form-login .container-input input[type=checkbox]:checked ~ .checkmark:after {
+    display: block;
+}
+
+@-moz-keyframes loginAnimation1 {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 6px;
+    }
+}
+@-webkit-keyframes loginAnimation1 {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 6px;
+    }
+}
+@keyframes loginAnimation1 {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 6px;
+    }
+}
+@keyframes loginAnimation2 {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 0;
+    }
+    100% {
+        height: 11px;
+    }
+}
+@-webkit-keyframes loginAnimation2 {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 0;
+    }
+    100% {
+        height: 11px;
+    }
+}
+@-moz-keyframes loginAnimation2 {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 0;
+    }
+    100% {
+        height: 11px;
+    }
+}
+
+#block-login .form-login .checkmark::before,
+#block-login .form-login .checkmark::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    height: 0;
+    width: 2px;
+    background-color: #8b8b8b;
+    display: inline-block;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    border-radius: 5px;
+    content: ' ';
+    -webkit-transition: opacity ease .5s;
+    -moz-transition: opacity ease .5s;
+    transition: opacity ease .5s;
+}
+#block-login .form-login .checkmark::before {
+    top: 8px;
+    left: 7px;
+    box-shadow: 0 0 0 3px #fff;
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+#block-login .form-login .checkmark::after {
+    top: 4px;
+    left: 2px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#block-login .form-login input[type=checkbox]:checked + .checkmark::after,
+#block-login .form-login .checkmark.checked::after {
+    height: 6px;
+    -moz-animation: loginAnimation1 0.2s ease 0s forwards;
+    -o-animation: loginAnimation1 0.2s ease 0s forwards;
+    -webkit-animation: loginAnimation1 0.2s ease 0s forwards;
+    animation: loginAnimation1 0.2s ease 0s forwards;
+}
+#block-login .form-login input[type=checkbox]:checked + .checkmark::before,
+#block-login .form-login .checkmark.checked::before {
+    height: 15px;
+    -moz-animation: loginAnimation2 0.4s ease 0s forwards;
+    -o-animation: loginAnimation2 0.4s ease 0s forwards;
+    -webkit-animation: loginAnimation2 0.4s ease 0s forwards;
+    animation: loginAnimation2 0.4s ease 0s forwards;
+}
+/*====End custom Checkbox login=====*/

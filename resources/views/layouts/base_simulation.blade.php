@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="DATN">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name') }}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome-free-5.6.1.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/custom/common.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    @yield('styles')
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/highcharts/highstock.js')}}"></script>
+    <script src="{{ asset('js/highcharts/highcharts-more.js')}}"></script>
+    <script src="{{ asset('js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/cleave.js')}}"></script>
+    <script src="{{ asset('js/custom/common.js')}}"></script>
+    @yield('script-files')
+</head>
+<body>
+<div id="wrapper">
+    @include('layouts/header_simulation')
+
+        <div class="container-fluid container-wrapper p30t" style="background-color: #f0f1f2!important; padding: 0 10px">
+            <div class="container-info">
+            @yield('content')
+            </div>
+        </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+@yield('js')
+</html>

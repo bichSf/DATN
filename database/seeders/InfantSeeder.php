@@ -16,11 +16,22 @@ class InfantSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 1500; $i++) {
             DB::table('infants_0_0')->insert([
-                'weight' => $faker->randomFloat($nbMaxDecimals = 1, $min = 2.0, $max = 5.0),
-                'height' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 60.0),
-                'head_circumference' => $faker->randomFloat($nbMaxDecimals = 1, $min = 30.0, $max = 40.0)
+                'weight' => $faker->randomFloat(2, 1.5, 4.5),
+                'height' => $faker->randomFloat(2, 25, 40),
+                'head_circumference' => $faker->randomFloat(2, 20, 25),
+                'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
+                'gender' => false,
+            ]);
+            DB::table('infants_0_0')->insert([
+                'weight' => $faker->randomFloat(2, 1.5, 4.5),
+                'height' => $faker->randomFloat(2, 25, 40),
+                'head_circumference' => $faker->randomFloat(2, 20, 25),
+                'survey_id' => $faker->numberBetween(1, getMaxIdSurvey()),
+                'user_id' => $faker->numberBetween(2, 10),
+                'gender' => true
             ]);
         }
     }

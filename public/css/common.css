@@ -1,3 +1,10 @@
+html, body  {
+    height: 100%;
+    background-color: #f0f1f2!important;
+    font-size: 15px !important;
+    position: relative;
+    font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
+}
 .m10b {
     margin-bottom: 10px !important;
 }
@@ -55,7 +62,7 @@
 
 #wrapper-content {
     background-color: rgb(240, 241, 242);
-    min-height: 100vh;
+    /*min-height: 100vh;*/
 }
 
 .main-sidebar-left {
@@ -72,7 +79,6 @@
 
 .error-message {
     color: red;
-    font-size: 13px;
 }
 
 .input-error {
@@ -89,8 +95,16 @@
     height: 90%;
 }
 
+.h-30 {
+    height: 30% !important;
+}
+
+.w-30 {
+    width: 30% !important;
+}
+
 .wrapper-content {
-    padding-top: 85px;
+    padding-top: 80px;
     padding-left: 270px !important;
 }
 
@@ -115,6 +129,10 @@
     padding-left: 0;
     padding-right: 0;
     width: 40px;
+}
+.a-disabled {
+    pointer-events: none;
+    cursor: default;
 }
 
 td.td-table-teacher {

@@ -28,6 +28,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+//    protected static $currentUser;
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -36,6 +38,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
+//        self::$currentUser = 'erwrwer';
+//        dd(123123);
 
         $this->routes(function () {
             Route::prefix('api')

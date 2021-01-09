@@ -12,36 +12,65 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'HomeController@index')->name(HOME);
+Route::post('/see-results', 'HomeController@seeResults')->name(SEE_RESULT);
+Route::post('/malnutrition-rate', 'HomeController@malnutritionRate')->name(MALNUTRITION_RATE);
+Route::get('/login', 'LoginController@index')->name(USER_LOGIN);
+Route::post('/login', 'LoginController@login')->name(LOGIN);
+Route::post('/logout', 'LoginController@logout')->name(LOGOUT);
 
-Route::get('/', function () {
-    return view('auth.login');
-})->name(USER_LOGIN);
+Route::middleware('auth.admin')->group(function () {
+    Route::middleware('role:admin')->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('/', 'UserController@index')->name(ADMIN_MANAGER_USER);
+            Route::get('/create', 'UserController@create')->name(ADMIN_USER_CREATE);
+            Route::post('/store', 'UserController@store')->name(ADMIN_USER_STORE);
+            Route::get('/edit/{id}', 'UserController@edit')->name(ADMIN_USER_EDIT);
+            Route::post('/update/{id}', 'UserController@update')->name(ADMIN_USER_UPDATE);
+            Route::delete('/delete/{id}', 'UserController@destroy')->name(ADMIN_USER_DESTROY);
+        });
 
-Route::get('/pass-reminder', function () {
-    return view('auth.passwords.step1');
-})->name(USER_FORGET_PASSWORD_INDEX);
+        Route::prefix('survey')->group(function () {
+            Route::get('/', 'SurveyController@index')->name(ADMIN_MANAGER_SURVEY);
+            Route::get('/create', 'SurveyController@create')->name(ADMIN_SURVEY_CREATE);
+            Route::post('/store', 'SurveyController@store')->name(ADMIN_SURVEY_STORE);
+            Route::get('/edit/{id}', 'SurveyController@edit')->name(ADMIN_SURVEY_EDIT);
+            Route::post('/update/{id}', 'SurveyController@update')->name(ADMIN_SURVEY_UPDATE);
+            Route::delete('/delete/{id}', 'SurveyController@destroy')->name(ADMIN_SURVEY_DESTROY);
+        });
+    });
 
-Route::get('/profile', function () {
-    return view('profiles.index');
-})->name(USER_PROFILE);
+    Route::middleware('role:user')->group(function () {
+        Route::prefix('nutrition')->group(function () {
+            Route::get('/', 'NutritionController@index')->name(USER_NUTRITION_INDEX);
+            Route::post('/get-survey', 'NutritionController@getSurvey');
+            Route::get('/create', 'NutritionController@create')->name(USER_NUTRITION_CREATE);
+            Route::post('/store', 'NutritionController@store')->name(USER_NUTRITION_STORE);
+            Route::delete('/delete/{id}', 'NutritionController@destroy')->name(USER_NUTRITION_DESTROY);
+            Route::post('/delete-multi', 'NutritionController@destroyMulti')->name(USER_NUTRITION_DESTROY_MULTI);
+            Route::post('/check-csv', 'NutritionController@checkCsv');
+            Route::get('/down-csv', 'NutritionController@downCsv')->name(DOWN_CSV);
+            Route::post('/save-data-csv', 'NutritionController@saveDataCsv')->name(SAVE_DATA_CSV);
+        });
 
-Route::get('/pass-reset', function () {
-    return view('auth.passwords.reset');
-})->name(USER_RESET_PASSWORD_INDEX);
+        Route::prefix('statistical')->group(function () {
+            Route::get('/', 'NutritionController@showStatistic')->name(USER_STATISTICAL);
+            Route::post('/get-zscore', 'NutritionController@getZscore');
+            Route::get('/get-zscore', 'NutritionController@getZscore');
+            Route::get('/get-zscore', 'NutritionController@getZscore');
+            Route::post('/get-column-chart', 'NutritionController@getColumnChart');
+            Route::get('/get-avg-weight-height', 'NutritionController@getAvgWeightHeight');
+            Route::post('/get-data-bmi', 'NutritionController@getDataBmi');
+        });
 
-Route::get('/population', function () {
-    return view('admin.population.index');
-})->name(USER_POPULATION);
+        Route::prefix('change-password')->group(function () {
+            Route::get('/', 'ChangePasswordController@index')->name(USER_RESET_PASSWORD_INDEX);
+            Route::post('/update', 'ChangePasswordController@update')->name(USER_RESET_PASSWORD);
+        });
 
-Route::get('/statistical', 'HomeController@index')->name(USER_STATISTICAL);
-
-Route::namespace('Auth')->group(function () {
-
+        Route::prefix('profile')->group(function () {
+            Route::get('/', 'ProfileController@index')->name(USER_PROFILE);
+            Route::post('/update', 'ProfileController@update')->name(USER_RESET_PASSWORD);
+        });
+    });
 });
-
-Route::namespace('Backend')->group(function () {
-
-});
-/*
-| Web Routes need to login
-*/

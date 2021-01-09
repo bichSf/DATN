@@ -16,11 +16,11 @@ class CreateSenior extends Migration
         Schema::create('seniors_60_100', function (Blueprint $table) {
             $table->id();
             $table->float('weight', 4, 1)->comment('kg');
-            $table->float('height', 3, 1)->comment('cm');
-            $table->float('arm_circumference', 2, 1)->comment('cm');
-            $table->float('biceps_skinfold', 2, 1)->comment('cm');
-            $table->float('knee_height', 2, 1)->comment('cm');
-            $table->float('stomach_feet', 2, 1)->comment('cm');
+            $table->float('height', 4, 1)->comment('cm');
+            $table->float('arm_circumference', 4, 1)->comment('cm');
+            $table->float('biceps_skinfold', 4, 1)->comment('cm');
+            $table->float('knee_height', 4, 1)->comment('cm');
+            $table->float('stomach_feet', 4, 1)->comment('cm');
             $table->timestamps();
             $table->softDeletes();
         });

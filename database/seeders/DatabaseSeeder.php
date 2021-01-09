@@ -14,13 +14,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            AdminSeeder::class,
+            SurveysSeeder::class,
             InfantSeeder::class,
             ToddlerSeeder::class,
             ChildrenSeeder::class,
             TeenSeeder::class,
             AdultSeeder::class,
             SeniorSeeder::class,
-            CreateFunctionSeeder::class,
         ]);
     }
 }
