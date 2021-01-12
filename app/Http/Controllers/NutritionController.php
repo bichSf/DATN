@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DataRequest;
 use App\Libraries\Export\TemplateCsv;
+use App\Models\District;
 use App\Models\Infant;
 use App\Models\Adult;
 use App\Models\Children;
+use App\Models\Provincial;
 use App\Models\Senior;
 use App\Models\Teen;
 use App\Models\Survey;
@@ -25,6 +27,8 @@ class NutritionController extends Controller
     private $adult;
     private $teen;
     private $senior;
+    private $provincial;
+    private $district;
 
     public function __construct
     (
@@ -34,7 +38,9 @@ class NutritionController extends Controller
         Children $children,
         Adult $adult,
         Teen $teen,
-        Senior $senior
+        Senior $senior,
+        Provincial $provincial,
+        District $district
     ) {
         $this->survey = $survey;
         $this->infant = $infant;
@@ -43,6 +49,8 @@ class NutritionController extends Controller
         $this->adult = $adult;
         $this->teen = $teen;
         $this->senior = $senior;
+        $this->provincial = $provincial;
+        $this->district = $district;
     }
 
     /**
@@ -58,7 +66,8 @@ class NutritionController extends Controller
     public function create()
     {
         $listSurvey = $this->survey->getAllRecords();
-        return view('user.nutrition.create', compact('listSurvey'));
+        $provincial = $this->provincial->getAllRecords();
+        return view('user.nutrition.create', compact('listSurvey', 'provincial'));
     }
 
     public function checkCsv(Request $request)
@@ -327,5 +336,10 @@ class NutritionController extends Controller
     {
         $survey = $this->survey->find($request->survey_id) ?? $this->survey->get()->last();
         return response()->json(['data' => $survey->toArray()]);
+    }
+
+    public function getDistrict(Request $request)
+    {
+        return response()->json(['district' => $this->district->getDistrictFromProvincial($request->provincial_id)]);
     }
 }

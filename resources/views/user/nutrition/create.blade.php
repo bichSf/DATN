@@ -155,15 +155,18 @@
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Tỉnh / Thành Phố</span></div>
                                     <div class="col-8">
-                                        <select class="form-control" name="provincial" id="">
+                                        <select class="form-control" name="provincial">
                                             <option value="">Tỉnh/ Thành phố</option>
+                                            @foreach($provincial as $item)
+                                                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Quận / Huyện</span></div>
                                     <div class="col-8">
-                                        <select class="form-control" name="district" id="">
+                                        <select class="form-control" name="district">
                                             <option value="">Quận/ Huyện</option>
                                         </select>
                                     </div>
@@ -294,6 +297,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js/custom/address.js')}}"></script>
     <script src="{{ asset('js/custom/statistic_nutrition.js')}}"></script>
 @endsection

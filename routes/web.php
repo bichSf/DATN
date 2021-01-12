@@ -51,6 +51,7 @@ Route::middleware('auth.admin')->group(function () {
             Route::post('/check-csv', 'NutritionController@checkCsv');
             Route::get('/down-csv', 'NutritionController@downCsv')->name(DOWN_CSV);
             Route::post('/save-data-csv', 'NutritionController@saveDataCsv')->name(SAVE_DATA_CSV);
+            Route::post('/get-district', 'NutritionController@getDistrict');
         });
 
         Route::prefix('statistical')->group(function () {
