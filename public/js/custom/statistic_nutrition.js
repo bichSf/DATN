@@ -58,12 +58,6 @@ let statisticNutritionFunction = (function () {
         })
     };
 
-    modules.setSelectProvincial = function () {
-        $.each(c, function (key, value) {
-           $('select[name=provincial]').append(`<option value="`+key+`">`+value+`</option>`);
-        });
-    };
-
     modules.setSelectDistrict = function () {
         let idProvincial = $('select[name=provincial]').val();
         $('select[name=district]').html(`<option value="">Quận/ Huyện</option>`);
@@ -151,19 +145,37 @@ let statisticNutritionFunction = (function () {
         event.stopPropagation()
     };
 
+    modules.getDistrict = function (provincial_id) {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("provincial_id", provincial_id);
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: window.origin + '/nutrition/get-district',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            $('select[name=district]').html(`<option value="">Quận/ Huyện</option>`)
+            $.each(response.district, function (key, value) {
+                $('select[name=district]').append(`<option value="`+value.id+`">`+value.name+`</option>`)
+            })
+        });
+
+        submitAjax.fail(function (response) {
+        })
+    };
+
     return modules;
 }(window.jQuery, window, document));
 
 $(document).ready(function () {
     statisticNutritionFunction.showInput();
-    statisticNutritionFunction.setSelectProvincial();
 
     $('select[name=table_type]').on('change', function () {
         statisticNutritionFunction.showInput();
-    });
-
-    $('select[name=provincial]').on('change', function () {
-        statisticNutritionFunction.setSelectDistrict();
     });
 
     $('#btn-create-data').on('click', function () {
@@ -275,5 +287,9 @@ $(document).ready(function () {
 
     $('#csv-table-type').on('change', function () {
         $('#input-table-type').val($(this).val())
+    });
+
+    $('select[name=provincial]').on('change', function () {
+        statisticNutritionFunction.getDistrict($(this).val());
     });
 });
