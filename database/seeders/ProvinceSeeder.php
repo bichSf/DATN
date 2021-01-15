@@ -97,13 +97,13 @@ class ProvinceSeeder extends Seeder
                     'name' => $province,
                     'area_id' => $areaId + 1
                 ]);
-                $index ++;
                 foreach ($array_district[$areaId][$provinceId] as $district) {
                     DB::table('districts')->insert([
                         'province_id' => $index,
                         'name' => $district,
                     ]);
                 }
+                $index ++;
             }
         }
     }

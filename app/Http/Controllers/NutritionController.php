@@ -8,7 +8,7 @@ use App\Models\District;
 use App\Models\Infant;
 use App\Models\Adult;
 use App\Models\Children;
-use App\Models\Provincial;
+use App\Models\Province;
 use App\Models\Senior;
 use App\Models\Teen;
 use App\Models\Survey;
@@ -39,7 +39,7 @@ class NutritionController extends Controller
         Adult $adult,
         Teen $teen,
         Senior $senior,
-        Provincial $provincial,
+        Province $provincial,
         District $district
     ) {
         $this->survey = $survey;

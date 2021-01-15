@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class District extends Model
 {
-    protected $table = 'district';
+    protected $table = 'districts';
 
     /**
      * The attributes that are mass assignable.
@@ -14,17 +14,17 @@ class District extends Model
      * @var array
      */
     protected $fillable = [
-        'provincial_id',
+        'province_id',
         'name',
     ];
 
     public function provincial()
     {
-        return $this->belongsTo(Provincial::class, 'id', 'provincial_id');
+        return $this->belongsTo(Province::class, 'id', 'provincial_id');
     }
 
     public function getDistrictFromProvincial($provincialId)
     {
-        return $this->where('provincial_id', $provincialId)->get()->toArray();
+        return $this->where('province_id', $provincialId)->get()->toArray();
     }
 }
