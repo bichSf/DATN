@@ -14,28 +14,28 @@ class AddDistrictIdAndProvinceIdIntoTable extends Migration
     public function up()
     {
         Schema::table('infants_0_0', function (Blueprint $table) {
-            $table->bigInteger('province_id')->unsigned()->after('id');
-            $table->bigInteger('district_id')->unsigned()->after('id');
+            $table->bigInteger('province_id')->unsigned()->after('id')->nullable();
+            $table->bigInteger('district_id')->unsigned()->after('id')->nullable();
         });
         Schema::table('toddlers_1_60', function (Blueprint $table) {
-            $table->bigInteger('province_id')->unsigned()->after('id');
-            $table->bigInteger('district_id')->unsigned()->after('id');
+            $table->bigInteger('province_id')->unsigned()->after('id')->nullable();
+            $table->bigInteger('district_id')->unsigned()->after('id')->nullable();
         });
         Schema::table('children_5_11', function (Blueprint $table) {
-            $table->bigInteger('province_id')->unsigned()->after('id');
-            $table->bigInteger('district_id')->unsigned()->after('id');
+            $table->bigInteger('province_id')->unsigned()->after('id')->nullable();
+            $table->bigInteger('district_id')->unsigned()->after('id')->nullable();
         });
         Schema::table('teens_11_20', function (Blueprint $table) {
-            $table->bigInteger('province_id')->unsigned()->after('id');
-            $table->bigInteger('district_id')->unsigned()->after('id');
+            $table->bigInteger('province_id')->unsigned()->after('id')->nullable();
+            $table->bigInteger('district_id')->unsigned()->after('id')->nullable();
         });
         Schema::table('adults_20_60', function (Blueprint $table) {
-            $table->bigInteger('province_id')->unsigned()->after('id');
-            $table->bigInteger('district_id')->unsigned()->after('id');
+            $table->bigInteger('province_id')->unsigned()->after('id')->nullable();
+            $table->bigInteger('district_id')->unsigned()->after('id')->nullable();
         });
         Schema::table('seniors_60_100', function (Blueprint $table) {
-            $table->bigInteger('province_id')->unsigned()->after('id');
-            $table->bigInteger('district_id')->unsigned()->after('id');
+            $table->bigInteger('province_id')->unsigned()->after('id')->nullable();
+            $table->bigInteger('district_id')->unsigned()->after('id')->nullable();
         });
     }
 

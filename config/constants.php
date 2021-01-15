@@ -111,14 +111,14 @@ const BMI_RATE = [
     'Thừa cân độ 3' => [40, 100]
 ];
 
-//const ARRAY_COLUMN_CSV = [
-//    INFANTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng đầu (cm)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    TODDLER => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    CHILDREN => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Vòng đầu (cm)', 'Vòng ngực (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    TEENS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    ADULTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    SENIORS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Chiều cao đầu gối (cm)', 'Vòng bụng chân', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//];
+const ARRAY_COLUMN_CSV = [
+    INFANTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng đầu (cm)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    TODDLER => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    CHILDREN => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Vòng đầu (cm)', 'Vòng ngực (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    TEENS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    ADULTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    SENIORS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Chiều cao đầu gối (cm)', 'Vòng bụng chân', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+];
 
 const ARRAY_COLUMN_CSV = [
     INFANTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng đầu (cm)', 'Giới tính', 'Id đợt khảo sát', 'Id User'],

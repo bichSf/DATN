@@ -14,22 +14,22 @@ class AddSurveyIdColumnIntoTable extends Migration
     public function up()
     {
         Schema::table('infants_0_0', function (Blueprint $table) {
-            $table->bigInteger('survey_id')->after('id')->unsigned()->nullable();
+            $table->bigInteger('survey_id')->after('id')->unsigned();
         });
         Schema::table('toddlers_1_60', function (Blueprint $table) {
-            $table->bigInteger('survey_id')->after('id')->unsigned()->nullable();
+            $table->bigInteger('survey_id')->after('id')->unsigned();
         });
         Schema::table('children_5_11', function (Blueprint $table) {
-            $table->bigInteger('survey_id')->after('id')->unsigned()->nullable();
+            $table->bigInteger('survey_id')->after('id')->unsigned();
         });
         Schema::table('teens_11_20', function (Blueprint $table) {
-            $table->bigInteger('survey_id')->after('id')->unsigned()->nullable();
+            $table->bigInteger('survey_id')->after('id')->unsigned();
         });
         Schema::table('adults_20_60', function (Blueprint $table) {
-            $table->bigInteger('survey_id')->after('id')->unsigned()->nullable();
+            $table->bigInteger('survey_id')->after('id')->unsigned();
         });
         Schema::table('seniors_60_100', function (Blueprint $table) {
-            $table->bigInteger('survey_id')->after('id')->unsigned()->nullable();
+            $table->bigInteger('survey_id')->after('id')->unsigned();
         });
     }
 
