@@ -22,4 +22,9 @@ class Province extends Model
     {
         return $this->orderBy('name')->get()->toArray();
     }
+
+    public function getProvinceFromArea($areaId)
+    {
+        return $this->where('area_id', $areaId)->orderBy('name')->get()->toArray();
+    }
 }

@@ -14,6 +14,7 @@ use App\Models\Teen;
 use App\Models\Survey;
 use App\Models\Toddler;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use Mockery\Exception;
@@ -86,48 +87,56 @@ class NutritionController extends Controller
 
     public function saveDataCsv(Request $request)
     {
-        $tableType = $request->table_type;
-        abort_if(!$tableType, 404);
-        $arrayKey = ATTRIBUTE_DATA[$tableType];
-        $data = array();
-        if (($handle = fopen($_FILES['data_csv']['tmp_name'], 'r')) !== false) {
-            while (($row = fgetcsv($handle, 1000)) !== false) {
-                if (count($arrayKey) !== count($row)) {
-                    Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
-                    return redirect()->back();
+        try {
+            $tableType = $request->table_type;
+            abort_if(!$tableType, 404);
+            $arrayKey = ATTRIBUTE_DATA[$tableType];
+            $data = array();
+            if (($handle = fopen($_FILES['data_csv']['tmp_name'], 'r')) !== false) {
+                $userId = Auth::user()->id;
+                while (($row = fgetcsv($handle, 1000)) !== false) {
+                    if (count($arrayKey) - 1 !== count($row)) {
+                        Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
+                        return redirect()->back();
+                    }
+                    array_push($row, $userId);
+                    array_push($data, array_combine($arrayKey, $row));
                 }
-                array_push($data, array_combine($arrayKey, $row));
+                fclose($handle);
             }
-            fclose($handle);
+            unset($data[0]);
+            $check = false;
+            switch ($tableType) {
+                case INFANTS:
+                    $check = $this->infant->createMany($data);
+                    break;
+                case TODDLER:
+                    $check = $this->toddler->createMany($data);
+                    break;
+                case CHILDREN:
+                    $check = $this->children->createMany($data);
+                    break;
+                case TEENS:
+                    $check = $this->teen->createMany($data);
+                    break;
+                case ADULTS:
+                    $check = $this->adult->createMany($data);
+                    break;
+                case SENIORS:
+                    $check = $this->senior->createMany($data);
+                    break;
+            }
+            if ($check) {
+                Session::flash(STR_SUCCESS_FLASH, 'Thêm thành công.');
+                return redirect()->route(USER_NUTRITION_INDEX);
+            }
+            Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
+            return redirect()->back();
+        } catch (Exception $exception) {
+            report($exception);
+            Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
+            return response()->json(['save' => false]);
         }
-        unset($data[0]);
-        $check = false;
-        switch ($tableType) {
-            case INFANTS:
-                $check = $this->infant->createMany($data);
-                break;
-            case TODDLER:
-                $check = $this->toddler->createMany($data);
-                break;
-            case CHILDREN:
-                $check = $this->children->createMany($data);
-                break;
-            case TEENS:
-                $check = $this->teen->createMany($data);
-                break;
-            case ADULTS:
-                $check = $this->adult->createMany($data);
-                break;
-            case SENIORS:
-                $check = $this->senior->createMany($data);
-                break;
-        }
-        if ($check) {
-            Session::flash(STR_SUCCESS_FLASH, 'Thêm thành công.');
-            return redirect()->route(USER_NUTRITION_INDEX);
-        }
-        Session::flash(STR_ERROR_FLASH, 'Thêm thất bại.');
-        return redirect()->back();
     }
 
     public function downCsv(Request $request)
@@ -338,8 +347,13 @@ class NutritionController extends Controller
         return response()->json(['data' => $survey->toArray()]);
     }
 
+    public function getProvince(Request $request)
+    {
+        return response()->json(['provinces' => $this->provincial->getProvinceFromArea($request->area_id)]);
+    }
+
     public function getDistrict(Request $request)
     {
-        return response()->json(['district' => $this->district->getDistrictFromProvincial($request->provincial_id)]);
+        return response()->json(['districts' => $this->district->getDistrictFromProvince($request->province_id)]);
     }
 }

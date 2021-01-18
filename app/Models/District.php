@@ -23,8 +23,8 @@ class District extends Model
         return $this->belongsTo(Province::class, 'id', 'provincial_id');
     }
 
-    public function getDistrictFromProvincial($provincialId)
+    public function getDistrictFromProvince($provinceId)
     {
-        return $this->where('province_id', $provincialId)->get()->toArray();
+        return $this->where('province_id', $provinceId)->orderBy('name')->get()->toArray();
     }
 }

@@ -135,6 +135,16 @@ html, body  {
     cursor: default;
 }
 
+.input-rounded-right {
+    border-top-right-radius: .25rem!important;
+    border-bottom-right-radius: .25rem!important;
+}
+
+.form-control:focus {
+     border-color: #ced4da !important;
+     box-shadow: unset !important;
+}
+
 td.td-table-teacher {
     word-break: break-all !important;
     white-space: normal !important;

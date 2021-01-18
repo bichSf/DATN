@@ -25,6 +25,8 @@ class Teen extends Model
         'fat_percentage',
         'gender',
         'survey_id',
+        'province_id',
+        'district_id',
         'user_id',
     ];
 

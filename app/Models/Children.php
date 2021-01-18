@@ -29,6 +29,8 @@ class Children extends Model
         'biceps_skinfold',
         'gender',
         'survey_id',
+        'province_id',
+        'district_id',
         'user_id',
     ];
 

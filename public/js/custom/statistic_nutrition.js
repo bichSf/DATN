@@ -59,10 +59,10 @@ let statisticNutritionFunction = (function () {
     };
 
     modules.setSelectDistrict = function () {
-        let idProvincial = $('select[name=provincial]').val();
-        $('select[name=district]').html(`<option value="">Quận/ Huyện</option>`);
-        $.each(arr[idProvincial], function (key, value) {
-            $('select[name=district]').append(`<option value="`+key+`">`+value+`</option>`);
+        let provinceIds = $('select[name=province_id]').val();
+        $('select[name=district_id]').html(`<option value="">Quận/ Huyện</option>`);
+        $.each(arr[provinceIds], function (key, value) {
+            $('select[name=district_id]').append(`<option value="`+key+`">`+value+`</option>`);
         });
     };
 
@@ -83,26 +83,9 @@ let statisticNutritionFunction = (function () {
         });
 
         submitAjax.fail(function (response) {
-            let messageList = response.responseJSON.errors;
-            modules.showMessageValidate(messageList);
+            Common.showMessage($('#form-create-data'), response.responseJSON.errors);
             $('#btn-create-data').prop("disabled", false);
         })
-    };
-
-    modules.showMessageValidate = function (messageList) {
-        $('body').find('p.error-message').css('padding-top', 0).hide();
-        $("body").find('input').removeClass('input-error');
-        $("body").find('select').parent().removeClass('input-error');
-        $.each(messageList, function (key, value) {
-            $('p.error-message[data-error=' + key + ']').text(value).css('padding-top', 4).show();
-            $('input[name=' + key + ']').addClass('input-error');
-            $('select[name=' + key + ']').addClass('input-error');
-        });
-        $('html, body').animate({
-            scrollTop: (
-                $(document).find('p.error-message[data-error=' + Object.keys(messageList)[0] + ']').offset().top - 300
-            )
-        }, 0);
     };
 
     modules.getSurvey = function () {
@@ -120,7 +103,8 @@ let statisticNutritionFunction = (function () {
         submitAjax.done(function (response) {
             $('input[name=year]').val(response.data.year);
             $('input[name=month]').val(response.data.month);
-            $('input[name=area]').val(areaName[response.data.area_id]);
+            $('input[name=area_id]').attr('data-id' , response.data.area_id);
+            $('input[name=area_id]').val(areaName[response.data.area_id]);
         });
     };
 
@@ -138,17 +122,40 @@ let statisticNutritionFunction = (function () {
         submitAjax.done(function (response) {
             $('#table-show-csv').html(response)
         });
-    }
+    };
 
     modules.prevent = function (event) {
         event.preventDefault();
         event.stopPropagation()
     };
 
-    modules.getDistrict = function (provincial_id) {
+    modules.getProvince = function (area_id) {
         let data = new FormData();
         data.append("_token", $('meta[name="csrf-token"]').attr('content'));
-        data.append("provincial_id", provincial_id);
+        data.append("area_id", area_id);
+        let submitAjax = $.ajax({
+            type: "POST",
+            url: window.origin + '/nutrition/get-province',
+            data: data,
+            processData: false,
+            contentType: false,
+        });
+
+        submitAjax.done(function (response) {
+            $('select[name=province_id]').html(`<option value="">Tỉnh/ Thành phố</option>`)
+            $.each(response.provinces, function (key, value) {
+                $('select[name=province_id]').append(`<option value="`+value.id+`">`+value.name+`</option>`)
+            })
+        });
+
+        submitAjax.fail(function (response) {
+        })
+    };
+
+    modules.getDistrict = function (province_id) {
+        let data = new FormData();
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+        data.append("province_id", province_id);
         let submitAjax = $.ajax({
             type: "POST",
             url: window.origin + '/nutrition/get-district',
@@ -158,9 +165,9 @@ let statisticNutritionFunction = (function () {
         });
 
         submitAjax.done(function (response) {
-            $('select[name=district]').html(`<option value="">Quận/ Huyện</option>`)
-            $.each(response.district, function (key, value) {
-                $('select[name=district]').append(`<option value="`+value.id+`">`+value.name+`</option>`)
+            $('select[name=district_id]').html(`<option value="">Quận/ Huyện</option>`)
+            $.each(response.districts, function (key, value) {
+                $('select[name=district_id]').append(`<option value="`+value.id+`">`+value.name+`</option>`)
             })
         });
 
@@ -185,6 +192,13 @@ $(document).ready(function () {
 
     $('select[name=survey_id]').on('change', function () {
         statisticNutritionFunction.getSurvey();
+        setTimeout(function () {
+            statisticNutritionFunction.getProvince($('input[name=area_id]').attr('data-id'));
+        },300)
+    });
+
+    $('select[name=province_id]').on('change', function () {
+        statisticNutritionFunction.getDistrict($(this).val());
     });
 
     $('#choose-file').on('click', function () {
@@ -287,9 +301,5 @@ $(document).ready(function () {
 
     $('#csv-table-type').on('change', function () {
         $('#input-table-type').val($(this).val())
-    });
-
-    $('select[name=provincial]').on('change', function () {
-        statisticNutritionFunction.getDistrict($(this).val());
     });
 });

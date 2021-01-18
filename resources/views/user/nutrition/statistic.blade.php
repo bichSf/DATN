@@ -24,11 +24,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                                <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
                                     <label class="m0 text-white fs16">Năm</label>
                                 </div>
                                 <div class="centered p0 bg-white">
-                                    <select class="form-control change-zscore" name="year_1">
+                                    <select class="form-control change-zscore input-rounded-right" name="year_1">
                                         @foreach($rangeYear as $year)
                                             <option value="{{ $year }}" @if($year == 2008) selected @endif>{{ $year }}</option>
                                         @endforeach
@@ -41,11 +41,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                                <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
                                     <label class="m0 text-white fs16">Khu vực</label>
                                 </div>
                                 <div class="centered p0 bg-white">
-                                    <select class="form-control change-zscore" name="area">
+                                    <select class="form-control change-zscore input-rounded-right" name="area">
                                         <option value="">Toàn quốc</option>
                                         @foreach(AREAS as $key => $value)
                                             <option value="{{ $key }}">{{ $value }}</option>
@@ -67,11 +67,11 @@
                     <div class="m0 m30b diagram-analysisu">
                         <div class="col-12 p30 m25b diagram-block bg-white">
                             <div id="block-status" class="row spBlock m0l m30r w-auto h-100 p10b">
-                                <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                                <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
                                     <label class="m0 text-white fs16">Năm</label>
                                 </div>
                                 <div class="centered p0 bg-white">
-                                    <select id="change-pie" class="form-control change-pie" name="year">
+                                    <select id="change-pie" class="form-control change-pie input-rounded-right" name="year">
                                         @foreach($rangeYear as $year)
                                             <option value="{{ $year }}" @if($year == 2018) selected @endif>{{ $year }}</option>
                                         @endforeach
@@ -88,11 +88,11 @@
                     <div class="m0 m30b diagram-analysisu">
                         <div class="col-12 p30 m25b diagram-block bg-white">
                             <div id="block-status" class="row spBlock m0l m30r w-auto h-100 p10b">
-                                <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                                <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
                                     <label class="m0 text-white fs16">Độ tuổi</label>
                                 </div>
                                 <div class="centered p0 bg-white">
-                                    <select id="select-column-chart" class="form-control" name="table_type">
+                                    <select id="select-column-chart" class="form-control input-rounded-right" name="table_type">
                                         @foreach(TYPE_POPULATION_NAME as $key => $value)
                                             @if(in_array($key, ARRAY_CHILDREN))
                                                 <option value="{{ $key }}">{{ $value }}</option>

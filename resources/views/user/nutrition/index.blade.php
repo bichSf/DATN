@@ -9,20 +9,20 @@
         <form id="form-statistical-population" action="{{ route(USER_NUTRITION_INDEX) }}" method="GET">
             <div class="row m0 m30b">
                 <div id="block-status" class="row spBlock m0l w-auto h-100">
-                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                    <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
                         <label class="m0 text-white fs16">Độ tuổi</label>
                     </div>
-                    <div class="centered p0 bg-white m30r">
+                    <div class="centered p0 bg-white m30r border input-rounded-right"">
                         <select name="table_type" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 140px">
                             @foreach(TYPE_POPULATION_NAME as $key => $value)
                                 <option value="{{ $key }}" @if(isset($params['table_type']) && $params['table_type'] == $key) selected @endif>{{ $value }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
+                    <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 150px;">
                         <label class="m0 text-white fs16">Đợt khảo sát</label>
                     </div>
-                    <div class="centered p0 bg-white">
+                    <div class="centered p0 bg-white border input-rounded-right">
                         <select name="survey_id" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 140px">
                             <option value="" selected>Chọn đợt khảo sát</option>
                             @foreach($surveys as $value)

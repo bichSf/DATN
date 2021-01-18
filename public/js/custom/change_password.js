@@ -19,7 +19,7 @@ let changePassword = (function () {
                 $('#form-change-password').find('[data-error=old_password]').text('Password hiện tại không đúng!');
                 $('#form-change-password').find(`[name=old_password]`).addClass('error')
             } else if (response.save) {
-                window.location.href = '/statistical'
+                window.location.href = '/change-password'
             } else {
                 window.location.reload();
             }
