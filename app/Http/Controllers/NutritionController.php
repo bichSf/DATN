@@ -61,7 +61,7 @@ class NutritionController extends Controller
      */
     public function showStatistic()
     {
-        return view('user.nutrition.statistic');
+        return view('admin.nutrition.statistic');
     }
 
     public function create()
