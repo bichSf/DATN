@@ -3,10 +3,11 @@ let Common = (function () {
 
     modules.optionDateTime = function () {
         $('.date-time').datepicker({
-            format: 'dd-mm-yyyy',
+            format: 'dd/mm/yyyy',
             language: "vi",
             forceParse: true,
             useCurrent: false,
+            todayHighlight: true,
         });
     };
 

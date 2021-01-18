@@ -8,7 +8,7 @@
         <div class="row m0 bg-white" style="padding: 30px 15px;">
             <div class="col-12">
                 <form id="form-update-profile" action="">
-                    <input type="hidden" name="id" value="{{ $user->id }}">
+                    <input type="hidden" name="id" value="{{ $currentUser->id }}">
                     <table class="table table-bordered">
                         <tr>
                             <td class="label-info">
@@ -16,7 +16,7 @@
                             </td>
                             <td>
                                 <div class="row p20l">
-                                    <img id="image-avatar" class="avatar essential-icon-img pointer"  @if($user->avatar) src="{{ old('avatar', asset( PATH_AVATAR_USER . $user->avatar )) }}" @endif style="object-fit: contain">
+                                    <img id="image-avatar" class="avatar essential-icon-img pointer"  @if($currentUser->avatar) src="{{ old('avatar', asset( PATH_AVATAR_USER . $currentUser->avatar )) }}" @endif style="object-fit: contain">
                                     <div class="centered-vertical p20l" style="width: 60%">
                                         <p class="fs-16 fw-bold m5b">Chọn tệp để tải lên</p>
                                     </div>
@@ -33,7 +33,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control fs13" placeholder="Họ tên">
+                                        <input type="text" name="name" value="{{ $currentUser->name }}" class="form-control fs13" placeholder="Họ tên">
                                         <p class="error-message p5t m0" data-error="name"></p>
                                     </div>
                                 </div>
@@ -49,14 +49,14 @@
                                     <div class="col-10 col-md-8 p0l p0r">
                                         <select name="gender" class="form-control m5b fs13">
                                             <option value="">Chọn giới tính</option>
-                                            <option value="0" @if($user->gender == 0) selected @endif>Nam</option>
-                                            <option value="1" @if($user->gender == 1) selected @endif>Nữ</option>
+                                            <option value="0" @if($currentUser->gender == 0) selected @endif>Nam</option>
+                                            <option value="1" @if($currentUser->gender == 1) selected @endif>Nữ</option>
                                         </select>
                                         <p class="error-message" data-error="gender"></p>
                                     </div>
 
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="birthday" id="date-picker" class="date-time form-control fs13" value="{{ old('birthday', $user->birthday) }}" placeholder="1970-01-01">
+                                        <input type="text" name="birthday" id="date-picker" class="date-time form-control fs13 bg-white" readonly value="{{ $currentUser->birthday ? date('d/m/Y', strtotime($currentUser->birthday)) : '' }}" placeholder="01/01/1970">
                                         <p class="error-message p5t m0" data-error="birthday"></p>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="email" value="{{ old('email', $user->email) }}" class="form-control fs13"  placeholder="abc@gmail.com">
+                                        <input type="text" name="email" value="{{ $currentUser->email }}" class="form-control fs13"  placeholder="abc@gmail.com">
                                         <p class="error-message p5t m0" data-error="email"></p>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="phone" class="form-control fs13" value="{{ old('phone', $user->phone) }}" placeholder="01683024581">
+                                        <input type="text" name="phone" class="form-control fs13" value="{{ $currentUser->phone }}" placeholder="01683024581">
                                         <p class="error-message p5t m0" data-error="phone"></p>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="department" class="form-control fs13" value="{{ old('department', $user->department) }}">
+                                        <input type="text" name="department" class="form-control fs13" value="{{ $currentUser->department }}">
                                         <p class="error-message p5t m0" data-error="department"></p>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="part" class="form-control fs13" value="{{ old('part', $user->part) }}">
+                                        <input type="text" name="part" class="form-control fs13" value="{{ $currentUser->part }}">
                                     </div>
                                     <p class="error-message p5t m0" data-error="part"></p>
                                 </div>
@@ -149,7 +149,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="branch" class="form-control fs13" value="{{ old('branch', $user->branch) }}">
+                                        <input type="text" name="branch" class="form-control fs13" value="{{ $currentUser->branch }}">
                                     </div>
                                     <p class="error-message p5t m0" data-error="branch"></p>
                                 </div>
@@ -162,7 +162,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <input type="text" name="address" class="form-control fs13" value="{{ old('address', $user->address) }}">
+                                        <input type="text" name="address" class="form-control fs13" value="{{ $currentUser->address }}">
                                         <p class="error-message p5t m0" data-error="address"></p>
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@
                             <td>
                                 <div class="row p20l">
                                     <div class="col-10 col-md-8 p0l p0r">
-                                        <textarea name="note" class="form-control" rows="5">{{ old('note', $user->note) }}</textarea>
+                                        <textarea name="note" class="form-control" rows="5">{{ $currentUser->note }}</textarea>
                                         <p class="error-message p5t m0" data-error="note"></p>
                                     </div>
                                 </div>

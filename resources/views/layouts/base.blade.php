@@ -18,6 +18,7 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js')}}"></script>
     <script src="{{ asset('js/highcharts/highstock.js')}}"></script>
     <script src="{{ asset('js/cleave.js')}}"></script>

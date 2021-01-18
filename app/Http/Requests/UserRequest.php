@@ -48,6 +48,7 @@ class UserRequest extends FormRequest
         return [
             "required" => "Trường này không được để trống",
             "email.unique" => "Email này đã tồn tại.",
+            "email.email" => "Không đúng định dạng email.",
             "phone.unique" => "Số điện thoại này đã tồn tại.",
             "phone.numeric" => "Không đúng định dạng số điện thoại.",
             "phone.digits_between" => "Không đúng định dạng số điện thoại.",
