@@ -49,6 +49,12 @@ class HomeController extends Controller
         return view('simulation.simulation');
     }
 
+    /**
+     * Data Spider Chart (compare)
+     *
+     * @param DataRequest $request
+     * @return array
+     */
     public function seeResults(DataRequest $request)
     {
         $params = $request->all();
@@ -69,6 +75,12 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * Column chart in screen simulation
+     *
+     * @param Request $request
+     * @return array
+     */
     public function malnutritionRate(Request $request)
     {
         $params = $request->all();

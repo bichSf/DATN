@@ -43,7 +43,6 @@ Route::middleware('auth.admin')->group(function () {
             Route::get('/', 'NutritionController@showStatistic')->name(USER_STATISTICAL);
             Route::post('/get-zscore', 'NutritionController@getZscore');
             Route::get('/get-zscore', 'NutritionController@getZscore');
-            Route::get('/get-zscore', 'NutritionController@getZscore');
             Route::post('/get-column-chart', 'NutritionController@getColumnChart');
             Route::get('/get-avg-weight-height', 'NutritionController@getAvgWeightHeight');
             Route::post('/get-data-bmi', 'NutritionController@getDataBmi');

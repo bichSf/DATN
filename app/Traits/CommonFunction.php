@@ -10,6 +10,8 @@ use Mockery\Exception;
 trait CommonFunction
 {
     /**
+     * Get ZScore Weight Height
+     *
      * @param $params
      * @return float
      */
@@ -22,6 +24,8 @@ trait CommonFunction
     }
 
     /**
+     * Function create multi
+     *
      * @param $listData
      * @return bool
      */
@@ -46,6 +50,12 @@ trait CommonFunction
         }
     }
 
+    /**
+     * Get data multiple column chart by BMI with year-area
+     *
+     * @param $params
+     * @return array
+     */
     public function getDataMultipleColumnChart($params)
     {
         $maxYear = max(getRangeYearSurvey());

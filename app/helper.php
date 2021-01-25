@@ -126,12 +126,14 @@ if (!function_exists('getRuleDataRequest')) {
             } elseif ($item == 'gender') {
                 $rules[$item] = ['bail', 'required', 'numeric', 'between: 0,1'];
             } else {
-                $rules[$item] = ['bail', 'required', 'numeric', 'between: 1,1000'];
+                $rules[$item] = ['bail', 'required', 'numeric', 'between: 0.1,1000'];
             }
         }
         if ($isSimulation == 'simulation') {
             unset($rules['survey_id']);
             unset($rules['user_id']);
+            unset($rules['district_id']);
+            unset($rules['province_id']);
         } else {
             $rules['survey_id'] = 'required';
         }
