@@ -26,6 +26,8 @@ class Adult extends Model
         'fat_percentage',
         'survey_id',
         'gender',
+        'province_id',
+        'district_id',
         'user_id',
     ];
 

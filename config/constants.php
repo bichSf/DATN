@@ -62,12 +62,12 @@ const SENIORS = 'seniors_60_100';
 const ARRAY_CHILDREN = ['infants_0_0', 'toddlers_1_60', 'children_5_11'];
 
 const ATTRIBUTE_DATA = [
-    INFANTS => ['weight', 'height', 'head_circumference', 'gender', 'survey_id', 'user_id'],
-    TODDLER => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'gender', 'survey_id', 'user_id'],
-    CHILDREN => ['weight', 'height','arm_circumference', 'head_circumference', 'chest_circumference','biceps_skinfold', 'gender', 'survey_id', 'user_id'],
-    TEENS => ['weight', 'height', 'biceps_skinfold', 'fat_percentage', 'gender', 'survey_id', 'user_id'],
-    ADULTS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'fat_percentage', 'gender', 'survey_id', 'user_id'],
-    SENIORS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'knee_height', 'stomach_feet', 'gender', 'survey_id', 'user_id'],
+    INFANTS => ['weight', 'height', 'head_circumference', 'gender', 'survey_id', 'province_id', 'district_id','user_id'],
+    TODDLER => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'gender', 'survey_id', 'province_id', 'district_id', 'user_id'],
+    CHILDREN => ['weight', 'height','arm_circumference', 'head_circumference', 'chest_circumference','biceps_skinfold', 'gender', 'survey_id', 'province_id', 'district_id', 'user_id'],
+    TEENS => ['weight', 'height', 'biceps_skinfold', 'fat_percentage', 'gender', 'survey_id', 'province_id', 'district_id', 'user_id'],
+    ADULTS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'fat_percentage', 'gender', 'survey_id', 'province_id', 'district_id', 'user_id'],
+    SENIORS => ['weight', 'height', 'arm_circumference', 'biceps_skinfold', 'knee_height', 'stomach_feet', 'gender', 'survey_id', 'province_id', 'district_id', 'user_id'],
 ];
 
 const PATH_AVATAR_USER = '/storage/imagesProfileUser/';
@@ -111,21 +111,12 @@ const BMI_RATE = [
     'Thừa cân độ 3' => [40, 100]
 ];
 
-//const ARRAY_COLUMN_CSV = [
-//    INFANTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng đầu (cm)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    TODDLER => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    CHILDREN => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Vòng đầu (cm)', 'Vòng ngực (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    TEENS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    ADULTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//    SENIORS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Chiều cao đầu gối (cm)', 'Vòng bụng chân', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
-//];
-
 const ARRAY_COLUMN_CSV = [
-    INFANTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng đầu (cm)', 'Giới tính', 'Id đợt khảo sát', 'Id User'],
-    TODDLER => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Id User'],
-    CHILDREN => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Vòng đầu (cm)', 'Vòng ngực (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Id User'],
-    TEENS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Id User'],
-    ADULTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Id User'],
-    SENIORS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Chiều cao đầu gối (cm)', 'Vòng bụng chân', 'Giới tính', 'Id đợt khảo sát', 'Id User'],
+    INFANTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng đầu (cm)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    TODDLER => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    CHILDREN => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Vòng đầu (cm)', 'Vòng ngực (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Giới tính',  'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    TEENS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    ADULTS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Phần trăm mỡ của cơ thể (%)', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
+    SENIORS => ['Cân nặng (kg)', 'Chiều cao (cm)', 'Vòng cánh tay (cm)', 'Nếp gấp da ở cơ tam đầu (cm)', 'Chiều cao đầu gối (cm)', 'Vòng bụng chân', 'Giới tính', 'Id đợt khảo sát', 'Tỉnh/thành phố', 'Quận/huyện'],
 ];
 

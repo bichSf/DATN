@@ -18,6 +18,7 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js')}}"></script>
     <script src="{{ asset('js/highcharts/highstock.js')}}"></script>
     <script src="{{ asset('js/cleave.js')}}"></script>
@@ -29,7 +30,7 @@
     @include('layouts/header')
     <div id="wrapper-content" class="wrapper-content">
         @include('layouts/sidebar')
-        <div class="container-fluid container-wrapper p0 p30t" style="background-color: #f0f1f2!important">
+        <div class="container-fluid container-wrapper p0 p30t" style="background-color: #ecf0f5!important">
             <div class="container-info">
             @yield('content')
         </div>

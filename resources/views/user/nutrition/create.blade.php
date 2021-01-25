@@ -29,7 +29,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <input type="hidden" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
+                                <input type="hidden" name="user_id" value="{{ $currentUser->id }}">
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Cân nặng<span class="text-danger">*</span></span></div>
                                     <div class="row col-8 m0 p0">
@@ -149,21 +149,24 @@
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Khu vực thống kê</span></div>
                                     <div class="col-8">
-                                        <input type="text" class="form-control" name="area" disabled>
+                                        <input type="text" class="form-control" name="area_id" readonly>
                                     </div>
                                 </div>
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Tỉnh / Thành Phố</span></div>
                                     <div class="col-8">
-                                        <select class="form-control" name="provincial" id="">
+                                        <select class="form-control" name="province_id">
                                             <option value="">Tỉnh/ Thành phố</option>
+                                            @foreach($provincial as $item)
+                                                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row m10b">
                                     <div class="col-4 d-flex align-items-center"><span>Quận / Huyện</span></div>
                                     <div class="col-8">
-                                        <select class="form-control" name="district" id="">
+                                        <select class="form-control" name="district_id">
                                             <option value="">Quận/ Huyện</option>
                                         </select>
                                     </div>
@@ -294,6 +297,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js/custom/address.js')}}"></script>
     <script src="{{ asset('js/custom/statistic_nutrition.js')}}"></script>
 @endsection

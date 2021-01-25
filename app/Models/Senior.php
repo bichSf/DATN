@@ -27,6 +27,8 @@ class Senior extends Model
         'stomach_feet',
         'gender',
         'survey_id',
+        'province_id',
+        'district_id',
         'user_id',
     ];
 

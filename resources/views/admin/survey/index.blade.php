@@ -8,10 +8,10 @@
         <form id="form-statistical-population" action="{{ route(ADMIN_MANAGER_SURVEY) }}" method="GET">
             <div class="row m0 m30b">
                 <div id="block-status" class="row spBlock m0l w-auto h-100">
-                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 100px;">
+                    <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 100px;">
                         <label class="m0 text-white fs16">Khu vực</label>
                     </div>
-                    <div class="centered p0 bg-white m30r">
+                    <div class="centered p0 bg-white m30r border input-rounded-right">
                         <select name="area_id" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 80px">
                             <option value="" selected>Chọn khu vực khảo sát</option>
                             @foreach(AREAS as $key => $value)
@@ -20,10 +20,10 @@
                         </select>
                     </div>
 
-                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 50px;">
+                    <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 50px;">
                         <label class="m0 text-white fs16">Tháng </label>
                     </div>
-                    <div class="centered p0 bg-white m30r">
+                    <div class="centered p0 bg-white m30r border input-rounded-right">
                         <select name="month" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 80px">
                             <option value="" selected>Chọn tháng khảo sát</option>
                             @for($month=1; $month<=12; $month++)
@@ -32,11 +32,11 @@
                         </select>
                     </div>
 
-                    <div class="centered first-block p15r p15l" style="background-color: #6e7a94; min-width: 50px;">
+                    <div class="centered first-block rounded-left p15r p15l" style="background-color: #6e7a94; min-width: 50px;">
                         <label class="m0 text-white fs16">Năm </label>
                     </div>
-                    <div class="centered p0 bg-white">
-                        <select name="year" class="option-paginate-1 btn form-control hp100 p15lr fs16" style="min-width: 80px">
+                    <div class="centered p0 bg-white border input-rounded-right">
+                        <select name="year" class="option-paginate-1 btn form-controlhp100 p15lr fs16" style="min-width: 80px">
                             <option value="" selected>Chọn năm khảo sát</option>
                             @foreach(dateYear() as $key => $year)
                                 <option value="{{ $year }}" @if(isset($params['year']) && $params['year'] == $year) selected @endif>{{ $year }}</option>

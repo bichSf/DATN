@@ -28,6 +28,8 @@ class Toddler extends Model
         'arm_circumference',
         'gender',
         'survey_id',
+        'province_id',
+        'district_id',
         'user_id',
     ];
 

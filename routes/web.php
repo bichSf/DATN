@@ -38,20 +38,6 @@ Route::middleware('auth.admin')->group(function () {
             Route::post('/update/{id}', 'SurveyController@update')->name(ADMIN_SURVEY_UPDATE);
             Route::delete('/delete/{id}', 'SurveyController@destroy')->name(ADMIN_SURVEY_DESTROY);
         });
-    });
-
-    Route::middleware('role:user')->group(function () {
-        Route::prefix('nutrition')->group(function () {
-            Route::get('/', 'NutritionController@index')->name(USER_NUTRITION_INDEX);
-            Route::post('/get-survey', 'NutritionController@getSurvey');
-            Route::get('/create', 'NutritionController@create')->name(USER_NUTRITION_CREATE);
-            Route::post('/store', 'NutritionController@store')->name(USER_NUTRITION_STORE);
-            Route::delete('/delete/{id}', 'NutritionController@destroy')->name(USER_NUTRITION_DESTROY);
-            Route::post('/delete-multi', 'NutritionController@destroyMulti')->name(USER_NUTRITION_DESTROY_MULTI);
-            Route::post('/check-csv', 'NutritionController@checkCsv');
-            Route::get('/down-csv', 'NutritionController@downCsv')->name(DOWN_CSV);
-            Route::post('/save-data-csv', 'NutritionController@saveDataCsv')->name(SAVE_DATA_CSV);
-        });
 
         Route::prefix('statistical')->group(function () {
             Route::get('/', 'NutritionController@showStatistic')->name(USER_STATISTICAL);
@@ -62,15 +48,31 @@ Route::middleware('auth.admin')->group(function () {
             Route::get('/get-avg-weight-height', 'NutritionController@getAvgWeightHeight');
             Route::post('/get-data-bmi', 'NutritionController@getDataBmi');
         });
+    });
 
-        Route::prefix('change-password')->group(function () {
-            Route::get('/', 'ChangePasswordController@index')->name(USER_RESET_PASSWORD_INDEX);
-            Route::post('/update', 'ChangePasswordController@update')->name(USER_RESET_PASSWORD);
+    Route::middleware('role:user')->group(function () {
+        Route::prefix('nutrition')->group(function () {
+            Route::get('/', 'NutritionController@index')->name(USER_NUTRITION_INDEX);
+            Route::post('/get-survey', 'NutritionController@getSurvey');
+            Route::post('/get-province', 'NutritionController@getProvince');
+            Route::post('/get-district', 'NutritionController@getDistrict');
+            Route::get('/create', 'NutritionController@create')->name(USER_NUTRITION_CREATE);
+            Route::post('/store', 'NutritionController@store')->name(USER_NUTRITION_STORE);
+            Route::delete('/delete/{id}', 'NutritionController@destroy')->name(USER_NUTRITION_DESTROY);
+            Route::post('/delete-multi', 'NutritionController@destroyMulti')->name(USER_NUTRITION_DESTROY_MULTI);
+            Route::post('/check-csv', 'NutritionController@checkCsv');
+            Route::get('/down-csv', 'NutritionController@downCsv')->name(DOWN_CSV);
+            Route::post('/save-data-csv', 'NutritionController@saveDataCsv')->name(SAVE_DATA_CSV);
         });
+    });
 
-        Route::prefix('profile')->group(function () {
-            Route::get('/', 'ProfileController@index')->name(USER_PROFILE);
-            Route::post('/update', 'ProfileController@update')->name(USER_RESET_PASSWORD);
-        });
+    Route::prefix('change-password')->group(function () {
+        Route::get('/', 'ChangePasswordController@index')->name(USER_RESET_PASSWORD_INDEX);
+        Route::post('/update', 'ChangePasswordController@update')->name(USER_RESET_PASSWORD);
+    });
+
+    Route::prefix('profile')->group(function () {
+        Route::get('/', 'ProfileController@index')->name(USER_PROFILE);
+        Route::post('/update', 'ProfileController@update')->name(USER_RESET_PASSWORD);
     });
 });
