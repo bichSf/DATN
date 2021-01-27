@@ -382,6 +382,11 @@ let Common = (function () {
 }(window.jQuery, window, document));
 
 $(document).ready(function () {
+    if ($('body').find('#id-chart-zscore').length > 0) {
+        $('#loader-box').delay(1500).fadeOut();
+    } else {
+        $('#loader-box').delay(100).fadeOut();
+    }
     Common.optionDateTime();
     Common.cleaveNumeral();
 });

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome-free-5.6.1.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/datepicker.standalone.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom/common.css')}}">
+    <link rel="stylesheet" href={{ asset('css/custom/loader.css') }}>
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     @yield('styles')
@@ -26,6 +27,7 @@
     @yield('script-files')
 </head>
 <body>
+@include('layouts.loader')
 <div id="wrapper">
     @include('layouts/header')
     <div id="wrapper-content" class="wrapper-content">

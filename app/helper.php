@@ -132,6 +132,8 @@ if (!function_exists('getRuleDataRequest')) {
         if ($isSimulation == 'simulation') {
             unset($rules['survey_id']);
             unset($rules['user_id']);
+            unset($rules['province_id']);
+            unset($rules['district_id']);
         } else {
             $rules['survey_id'] = 'required';
         }
