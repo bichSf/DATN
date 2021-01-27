@@ -3,10 +3,12 @@
 namespace App\Traits;
 
 
+use Mockery\Exception;
+
 trait StatisticNutrition
 {
     // Lấy giá trị ZScore cân nặng theo năm.
-    public function getZScore($year = 2000)
+    public function getZScore($year)
     {
         $avg = $this->selectRaw('avg(weight) as avg')->whereHas('survey', function ($query) use ($year) {
             return $query->where('year', $year);
@@ -17,6 +19,7 @@ trait StatisticNutrition
         return array_column($data, 'zscore');
     }
 
+    // Lấy giá trị ZScore cân theo cao theo 2 năm.
     public function getDataZScoreWH($year1, $year2, $area)
     {
         $categories = [];
@@ -33,6 +36,7 @@ trait StatisticNutrition
         return $dataReturn;
     }
 
+    // Tính tỷ lệ Suy dinh dưỡng theo Zscore cân theo cao
     public function makeDataZcore($year, $area, $color)
     {
         $avg = $this->selectRaw('avg(weight / height) as avg')->whereHas('survey', function ($query) use ($year, $area) {

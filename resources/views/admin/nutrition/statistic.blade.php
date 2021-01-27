@@ -37,7 +37,7 @@
                                 <div class="centered p0 bg-white m10r">
                                     <select class="form-control change-zscore" name="year_2">
                                         @foreach($rangeYear as $year)
-                                            <option value="{{ $year }}" @if($year == 2018) selected @endif>{{ $year }}</option>
+                                            <option value="{{ $year }}" @if($year == date('Y')) selected @endif>{{ $year }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -73,7 +73,7 @@
                                 <div class="centered p0 bg-white">
                                     <select id="change-pie" class="form-control change-pie input-rounded-right" name="year">
                                         @foreach($rangeYear as $year)
-                                            <option value="{{ $year }}" @if($year == 2018) selected @endif>{{ $year }}</option>
+                                            <option value="{{ $year }}" @if($year == date('Y')) selected @endif>{{ $year }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -131,5 +131,5 @@
     </div>
 @endsection
 @section('js')
-<script src="{{ asset('js/statistic.js')}}"></script>
+<script src="{{ asset('js/custom/statistic.js')}}"></script>
 @endsection
