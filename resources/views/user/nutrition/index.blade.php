@@ -35,11 +35,11 @@
             <div class="row m-0">
                 <div class="offset-8 col-4 p-0 m30b">
                     <div class="row m0" style="justify-content: flex-end">
-                        <div class="text-right">
-                            <a href="/create" class="btn custom-btn-success">
-                                Xuất file
-                            </a>
-                        </div>
+{{--                        <div class="text-right">--}}
+{{--                            <a href="/create" class="btn custom-btn-success">--}}
+{{--                                Xuất file--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                         <div class="text-right m10l">
                             <a href="{{ route(USER_NUTRITION_CREATE) }}" class="btn custom-btn-success">
                                 Thêm bản ghi
